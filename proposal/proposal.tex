@@ -1,5 +1,4 @@
-% Topic document -- 2 to 4 pages in THIS format (11pt, 1-inch margins).
-% It accompanies the 20-minute topic presentation.
+% Topic proposal: original template format, five mandatory sections.
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -8,52 +7,87 @@
 \usepackage{xcolor}
 \usepackage[round]{natbib}
 \usepackage[colorlinks=true,allcolors=blue!50!black]{hyperref}
-
-\newcommand{\replace}[1]{\par\smallskip\noindent
-  \fcolorbox{orange!80!black}{yellow!12}{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{%
-  \small\textbf{Replace.} #1}}\par\smallskip}
-
-\title{Project Topic: Your Working Title}
-\author{Your Name \\ \small\url{https://github.com/your-user/ai-project}}
-\date{Topic presentation, October 2026}
-
+\title{Public Dollar Backing and Voluntary Bank Buffers}
+\author{Carlos G\'omez Puic\'an\\
+\small Universidad del Pac\'ifico\\
+\small\url{https://github.com/carlosgomezp28/ai-project}}
+\date{AI \& Economic Modeling: Track B, October 2026}
 \begin{document}
 \maketitle
 
-\section{The question and the track}
-\replace{One paragraph. The question in one sentence, and the track:
-\textbf{Track A} --- you relax an assumption of a course paper and re-derive the
-proposition it affects; or \textbf{Track B} --- you formulate the economic model
-behind your own thesis.}
+\section{The question and Track B}
+How does additional public dollar backing change a representative bank's optimal voluntary dollar buffer, conditional on aggregate liquidity conditions? This is Track B: a private decision margin within a thesis framework. For motivation, \citet[Box~7]{bcrp2024} attributes substantially higher dollar reserve requirements than soles requirements to higher foreign-currency liquidity risk. This motivates distinguishing currencies; it does not establish our comparative static.
 
-\section{The baseline and the assumption you change}
-\replace{Track A: cite the paper, the exact proposition and page, and state the
-assumption you relax, in the paper's notation. Track B: state the model your
-thesis currently lacks or cites as a black box. Write the agent's problem
-formally --- what is maximised, over which variable, under which constraints.}
+The baseline is joint IE1 work by Carlos G\'omez Puic\'an and Fabi\'an M\'endez Su\'arez, supervised by Marco Ortiz, used here with Fabi\'an's permission. It already anticipates endogenous voluntary buffers and a future fixed point. Carlos's individual contribution completes the private optimization closure, introduces reduced-form private costs, derives its FOC, and characterizes a conditional best response to dollar backing.
 
-\section{The result you expect}
-\replace{Write the first-order condition you expect to obtain, and say which
-result of the baseline you expect to change and in which direction. This is a
-conjecture: it is graded on being precise, not on being right.}
+\section{The baseline and the model the thesis lacked}
+The inherited static economy has two representative classes $k\in\{L,S\}$, with masses $\mu_k$, differing in idiosyncratic liquidity-shock dispersion and interbank access, and currencies $c\in\{s,u\}$ (soles, dollars). Deposits satisfy $d_k^u=w_kd_k$ and $d_k^s=(1-w_k)d_k$, with $w_k$ fixed. Equity allocation satisfies $\sum_cE_k^c=E_k$. Define $v_k^c:=u_k^c$ in the joint IE1 notation to separate the buffer symbol from the dollar superscript. Required reserves $\rho^c$, voluntary buffers $v_k^c$, and total reserves $m_k^c=\rho^c+v_k^c$ are ratios to deposits; credit $b_k^c$ and deposits are amounts.
 
-\begin{equation}\label{eq:foc}
-  \frac{\partial}{\partial e}\Bigl[\, a e - \tfrac{c}{2} e^{2} \Bigr]
-  \;=\; a - c e \;=\; 0 .
+The bank chooses its portfolio before the shock, then accesses interbank funding and public coverage. The inherited shock is $\omega_k^c=\beta_kA^c+e_k^c$, with $e_k^c\sim U[-a_k^c,a_k^c]$, $A^s=0$, and $A^u\in\{-\eta,0\}$ with probabilities $p,1-p$. We maintain this conditional uniform law, $a_k^c>0$, $\eta>0$, and $0\le p\le1$. In NU, required reserves are not usable and back a collective fund; in U they are usable and their principal is not counted twice. For $r\in\{NU,U\}$, with $\chi_{NU}=0$, $\chi_U=1$, normalized liquidity is
+\[
+ x_k^c:=s_k^c/d_k^c=\beta_kA^c+e_k^c+v_k^c+\chi_r\rho^c.
+\]
+Inherited expected deficit and surplus amounts are $S_k^{c-}(A)=\mathbb E_e[(-s_k^c)^+\mid A]$ and $S_k^{c+}(A)=\mathbb E_e[(s_k^c)^+\mid A]$; $\pi_k^{c-}(A)=\Pr(s_k^c<0\mid A)$.
+
+\newpage
+Interbank contact has probability $\tau_k=1-e^{-\lambda_k}$, $\lambda_k\ge0$. Admitted supply and demand and residual deficits are
+\begin{align*}
+ P^c(A)&=\sum_k\mu_k\tau_kS_k^{c+}(A),&
+ Q^c(A)&=\sum_k\mu_k\tau_kS_k^{c-}(A),\\
+ \Psi_k^{-,c}(A)&=\tau_k\min\{1,P^c(A)/Q^c(A)\},&
+ \Delta^c(A)&=\sum_k\mu_k(1-\Psi_k^{-,c}(A))S_k^{c-}(A).
+\end{align*}
+Dollar capacity and public coverage are
+\[
+ F^u=\mathbf1_{\{NU\}}\nu_F^u\rho^uD^u+R_D,
+ \qquad \phi^u(A)=\min\{1,F^u/\Delta^u(A)\},
+ \qquad D^u=\sum_k\mu_kd_k^u,
+\]
+where $\nu_F^u\in[0,1]$ is the mobilizable fraction and $R_D\ge0$ additional dollar backing. We write $\phi^u$ for inherited $\phi$, and take $\phi^s=1$ under the elastic soles benchmark. Displayed ratios require positive denominators; no-deficit conventions remain to be specified for numerical cases.
+
+The joint proposal envisages optimizing buffers but lacks the following explicit private-cost objective. Conditional on aggregate coverage schedules, the representative bank minimizes cost per unit of deposits:
+\begin{equation}\label{eq:problem}
+ \min_{0\le v_k^c\le\bar v_k^c}V_k^c(v_k^c)
+ =\kappa_k^c v_k^c+\mathbb E_{A^c}[h_k^c(A^c)L_k^c(v_k^c,A^c)],
 \end{equation}
+\begin{equation}\label{eq:h}
+ h_k^c(A)=\Psi_k^{-,c}(A)q_I^c+
+ (1-\Psi_k^{-,c}(A))\{\phi^c(A)q_F^c+(1-\phi^c(A))\ell^c\}.
+\end{equation}
+The new primitives are marginal buffer cost $\kappa_k^c>0$ and nonnegative unit costs $q_I^c,q_F^c,\ell^c$ for interbank funding, public funding, and uncovered deficits. The exclusive weights in \eqref{eq:h} sum to one. These costs are reduced-form, not identified with contractual interest rates. Imposing the \emph{new} restriction $b_k^c\ge0$ on inherited $b_k^c+d_k^c(\rho^c+v_k^c)=d_k^c+E_k^c$ yields $\bar v_k^c=1+E_k^c/d_k^c-\rho^c$, maintained positive with $d_k^c>0$ and fixed equity allocation.
+
+\section{The result expected}
+Define the new normalized object $L_k^c(v,A):=S_k^{c-}(v,A)/d_k^c$. Suppressing indices, put $z=\beta A+v+\chi_r\rho$. Under the conditional uniform law,
+\[
+ L(v,A)=\begin{cases}-z,&z\le-a,\\(a-z)^2/(4a),&-a<z<a,\\0,&z\ge a.\end{cases}
+ \qquad L_v=-\pi^-(v,A).
+\]
+An extra buffer unit reduces shortfall by one only in deficit realizations. The pieces join in value and first derivative. For the amount, $S_v^-=-d\pi^-$; the deposit factor cannot be omitted. With $h$ independent of the individual choice in this conditional exercise, differentiation of \eqref{eq:problem} gives the interior FOC
+\begin{equation}\label{eq:foc}
+ \kappa_k^c=\mathbb E_{A^c}[h_k^c(A^c)\pi_k^{c-}(v_k^{c,*},A^c)].
+\end{equation}
+The objective is convex. A regular interior solution requires $0<v^*<\bar v$, local smoothness away from support and coverage kinks, and curvature $\mathcal H:=V_{vv}(v^*,R_D)>0$. Positive curvature holds if a positive-weight state has $h>0$ and its threshold strictly inside the uniform support. Positive deficit probability alone is insufficient. At the boundaries the convex problem instead uses $V_v(0)\ge0$ or $V_v(\bar v)\le0$.
+
+For dollars, freeze $P^u(A),Q^u(A),\Delta^u(A)$ across backing scenarios, not across states; also freeze the other primitives, shock law, regime, and feasible set. In a rationed state, $\Delta^u(A)>0$ and $F^u<\Delta^u(A)$ imply
+\[
+ h_{R_D}=-\frac{(1-\Psi_k^{-,u})(\ell^u-q_F^u)}{\Delta^u},
+ \qquad \frac{dv_k^{u,*}}{dR_D}
+ =\frac{\mathbb E_A[\pi_k^{u-}h_{R_D}]}{\mathcal H}.
+\]
+Thus the candidate strict sign is $dv_k^{u,*}/dR_D<0$ at a regular interior optimum if $\ell^u>q_F^u$ and at least one positive-probability state simultaneously has a deficit probability greater than zero, incomplete interbank coverage $\Psi_k^{-,u}<1$, and rationed public coverage responsive to $R_D$. Saturated states contribute zero locally. This is a conditional individual best response, \emph{not an equilibrium theorem}; aggregate feedback, corners, and coverage kinks lie outside this derivative claim.
 
 \section{Why this is not already solved}
-\replace{Where you looked: the paper's appendices, its working-paper versions,
-and the papers that cite it. Say what you found and why it does not answer your
-question. ``The model did not find it'' is not evidence.}
+\textbf{A. Internal gap.} The joint IE1 framework anticipates endogenous self-insurance and an equilibrium fixed point, but does not specify \eqref{eq:problem}--\eqref{eq:h} or derive \eqref{eq:foc}. The contribution is this private closure and its conditional characterization, not the introduction of endogenous buffers or sole authorship of the baseline.
+
+\textbf{B. External positioning.} The general mechanism already exists. \citet{ratnovski2009} studies precautionary bank liquidity choices and distortions from expected lender-of-last-resort support; our reduced-form closure does not claim to discover that incentive. \citet{farhi2012} link expected public intervention to private balance-sheet choices and collective moral hazard; we hold aggregate conditions fixed and do not establish their strategic or systemic result. \citet{freixas2011} study liquidity shocks, interbank allocation, and central-bank policy; we characterize the private buffer margin within the specified IE1 coverage rules. \citet{rochet2004} analyze failures of private liquidity provision and lender-of-last-resort intervention; we do not claim a coordination-failure theorem.
+
+The defensible contribution is a closure/application within the joint framework combining two bank classes, soles and dollars, voluntary and required reserve ratios, interbank coverage, U/NU usability, and limited dollar backing. Initial source checks support these broad comparisons. Exact proposition comparisons, appendices, working-paper versions, and citing papers remain to be reviewed; literature-wide novelty is uncertain and is not claimed.
 
 \section{Plan and risks}
-\replace{What you will prove, what you will simulate, and what you will
-formalize in Lean. Name the step most likely to fail and what you will do if it
-does.}
+Prove the piecewise deficit derivative, characterize corners and regular interior solutions, and verify the conditional backing sign. The existing script has 28 manually passing symbolic checks; it verifies conditional algebra, not equilibrium existence, calibration, or contractual accounting. Numerically illustrate interior, zero-buffer, and coverage-saturation cases. Then study the aggregate fixed point by recomputing matching and coverage consistently with buffers; report existence or convergence limitations rather than treating numerical convergence as a proof. Formalize the numbered final-paper results in Lean, disclose added hypotheses or open gaps, and keep the paper, handwritten derivations, and checks aligned.
+
+The main risk is that aggregate feedback overturns the conditional sign, or the optimum reaches a corner or coverage kink. The fallback is an honestly local/conditional result with explicit boundaries. Literature positioning, fixed-point analysis, and parameter interpretation remain work in progress; no net-transfer or welfare claim follows from this private problem.
 
 \bibliographystyle{plainnat}
 \bibliography{../paper/references}
-\nocite{acemoglu2018race}
-
 \end{document}
