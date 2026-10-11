@@ -1,66 +1,465 @@
-% Topic presentation -- 20 minutes.
-% No animations and no screenshots of papers: equations are typeset in LaTeX.
+% Controlling source: proposal/proposal.tex (approved October 2026).
+% 18 main frames: speaking times total 1200 seconds. No overlays/animations.
+% Six backup frames follow a separate, unnumbered Backup divider.
 \documentclass[aspectratio=169,11pt]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
-\usepackage{amsmath,amssymb}
-\usepackage{booktabs}
+\usepackage{amsmath,amssymb,booktabs,array}
 \usetheme{default}
 \usecolortheme{seahorse}
+\definecolor{ink}{RGB}{24,43,65}
+\definecolor{accent}{RGB}{0,112,117}
+\definecolor{caution}{RGB}{151,76,19}
+\setbeamercolor{normal text}{fg=ink,bg=white}
+\setbeamercolor{frametitle}{fg=ink,bg=white}
+\setbeamercolor{structure}{fg=accent}
+\setbeamercolor{alerted text}{fg=caution}
 \setbeamertemplate{navigation symbols}{}
-\setbeamertemplate{footline}[frame number]
-\setbeamerfont{frametitle}{size=\large}
-
-\title{Your Working Title}
-\subtitle{Topic presentation --- Track A or Track B}
-\author{Your Name}
-\date{October 2026}
-
+\setbeamertemplate{itemize items}[circle]
+\setbeamerfont{frametitle}{size=\Large,series=\bfseries}
+\setbeamersize{text margin left=8mm,text margin right=8mm}
+\setbeamertemplate{footline}{\hfill\color{gray}\scriptsize\insertframenumber\hspace{5mm}\vspace{3mm}}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcommand{\takeaway}[1]{\par\medskip{\color{accent}\bfseries #1}\par}
+\newcommand{\source}[1]{\par\medskip{\scriptsize\color{gray}#1}\par}
+\newcommand{\labelhead}[1]{{\color{accent}\bfseries #1}\par\smallskip}
+\title{Public Dollar Backing and Voluntary Bank Buffers}
+\author{Carlos G\'omez Puic\'an}
+\date{AI \& Economic Modeling --- October 2026}
 \begin{document}
 
-% The title slide carries the repository link.
+% MAIN 1 | 25 s. Q: Who owns the baseline? A: Joint IE1; individual private closure.
+% [Sources] Approved proposal section 1; joint attribution, used with Fabian's permission.
 \begin{frame}[plain]
-  \titlepage
-  \begin{center}\small
-    \texttt{github.com/your-user/ai-project}
-  \end{center}
+ {\color{accent}\large Track B: thesis model}\par\bigskip
+ {\fontsize{24}{28}\selectfont\bfseries Public Dollar Backing\\and Voluntary Bank Buffers}\par\bigskip
+ {\large Carlos G\'omez Puic\'an}\par\smallskip
+ Universidad del Pac\'ifico --- AI \& Economic Modeling\par\bigskip
+ \href{https://github.com/carlosgomezp28/ai-project}{\texttt{github.com/carlosgomezp28/ai-project}}\par\bigskip
+ {\small Joint IE1 baseline developed with Fabi\'an M\'endez Su\'arez;\\
+ supervised by Marco Ortiz. Used with Fabi\'an's permission.}
 \end{frame}
 
-\begin{frame}{1 \textperiodcentered{} The question}
-  \textbf{Replace.} The question in one sentence, and why the answer is not
-  obvious.
+% MAIN 2 | 40 s. Q: Does this evidence identify the mechanism? A: Motivation only.
+% [Sources] Proposal section 1; BCRP Inflation Report March 2024, Box 7.
+\begin{frame}{Why dollar liquidity is different}
+ \labelhead{Institutional motivation}
+ {\large Dollar reserve requirements are substantially higher\\than soles requirements because foreign-currency\\liquidity risk is higher.}\par\bigskip
+ \takeaway{This motivates the currency distinction.}
+ \alert{It does not prove the buffer comparative static.}
+ \source{BCRP, Inflation Report, March 2024, Box 7.}
 \end{frame}
 
-\begin{frame}{2 \textperiodcentered{} The baseline model}
-  \textbf{Replace.} The agent's problem, written formally.
-  \[
-    \max_{e \ge 0}\; a e - \frac{c}{2}\, e^{2}
-  \]
-  Cite the paper, the proposition and the page.
+% MAIN 3 | 40 s. Q: Which decision and which counterfactual? A: Buffer, conditional on aggregates.
+\begin{frame}{Research question and scope}
+ \medskip
+ {\large How does additional public dollar backing affect a representative bank's optimal voluntary dollar buffer, conditional on aggregate liquidity conditions?}\par\bigskip
+ \labelhead{Private decision margin}Voluntary dollar buffer\par\medskip
+ \labelhead{Aggregate conditions}Fixed across backing scenarios
+ \takeaway{A conditional private best response.}
 \end{frame}
 
-\begin{frame}{3 \textperiodcentered{} The assumption I change}
-  \textbf{Replace.} Which assumption, in the paper's notation, and what
-  replaces it.
+% MAIN 4 | 65 s. Q: Did you introduce endogenous buffers? A: No; complete their explicit closure.
+\begin{frame}{What is inherited, and what is added?}
+ \begin{columns}[T,onlytextwidth]
+ \begin{column}{.49\textwidth}
+ \labelhead{Joint IE1 baseline}
+ \begin{itemize}\setlength\itemsep{3pt}
+ \item Two classes; soles and dollars
+ \item Required and voluntary reserves
+ \item Shocks and interbank matching
+ \item U/NU; public dollar coverage
+ \item Endogenous buffers and a future fixed point anticipated
+ \end{itemize}
+ \end{column}
+ \begin{column}{.46\textwidth}
+ \labelhead{Carlos's individual contribution}
+ \begin{itemize}\setlength\itemsep{3pt}
+ \item Private cost closure
+ \item Reduced-form cost primitives
+ \item Explicit constrained problem
+ \item Buffer FOC
+ \item Conditional $R_D$ response
+ \end{itemize}
+ \end{column}
+ \end{columns}
 \end{frame}
 
-\begin{frame}{4 \textperiodcentered{} The result I expect}
-  \textbf{Replace.} The first-order condition you expect, and which result of
-  the baseline should change and in which direction.
-  \[
-    a - c e = 0 \quad\Longrightarrow\quad e^{*} = \frac{a}{c}
-  \]
+% MAIN 5 | 60 s. Q: Is omega a positive withdrawal? A: Signed flow; both signs possible.
+\begin{frame}{Baseline environment: classes, currencies, liquidity}
+ \begin{columns}[T,onlytextwidth]
+ \begin{column}{.46\textwidth}
+ \labelhead{Representative classes and currencies}
+ \[k\in\{L,S\},\qquad c\in\{s,u\}\]
+ $s$: soles; $u$: dollars\par\medskip
+ Deposits $d_k^c$: \textbf{amounts}\par\smallskip
+ $\rho^c$, $v_k^c$: \textbf{ratios to deposits}
+ \end{column}
+ \begin{column}{.49\textwidth}
+ \labelhead{Signed liquidity shock}
+ \[\omega_k^c=\beta_kA^c+e_k^c\]
+ Negative flow worsens liquidity;\\positive flow improves it.\par\medskip
+ Classes differ in idiosyncratic liquidity-shock dispersion and interbank access.
+ \end{column}
+ \end{columns}
+ \source{Notation mapping: $v_k^c:=u_k^c$ in the joint IE1 source.}
 \end{frame}
 
-\begin{frame}{5 \textperiodcentered{} Why this is not already solved}
-  \textbf{Replace.} Where you looked --- appendices, working-paper versions,
-  citing papers --- and what you found.
+% MAIN 6 | 50 s. Q: What is known at choice? A: Primitives and conditional schedules, not realized shocks.
+\begin{frame}{The buffer is chosen before uncertainty resolves}
+ \begin{center}
+ {\large Choose $v_k^c$ $\longrightarrow$ Shock realizes $\longrightarrow$ Interbank allocation}\par\bigskip
+ {\large $\longrightarrow$ Public coverage $\longrightarrow$ Uncovered deficit}
+ \end{center}
+ \bigskip
+ \labelhead{At the time of choice}
+ The bank knows the shock law, reserve regime, private costs,\\
+ feasible set, and state-contingent coverage rules/schedules.\par\medskip
+ It does not know realized $A^c$ and $e_k^c$.
+ \takeaway{State-contingent coverage schedules are taken as given.}
 \end{frame}
 
-\begin{frame}{6 \textperiodcentered{} Plan and risks}
-  \textbf{Replace.} What you will prove, simulate and formalize in Lean; the
-  step most likely to fail.
+% MAIN 7 | 70 s. Q: Is reserve principal counted twice? A: No; U excludes it from collective capacity.
+\begin{frame}{U versus NU: where required reserves can be used}
+ \begin{columns}[T,onlytextwidth]
+ \begin{column}{.47\textwidth}
+ \labelhead{NU: not individually usable}
+ Only the voluntary buffer absorbs the shock.\par\medskip
+ Required reserves may support collective dollar capacity.
+ \end{column}
+ \begin{column}{.47\textwidth}
+ \labelhead{U: usable by the bank}
+ Required and voluntary reserves absorb the shock.\par\medskip
+ The same principal is not counted again in the fund.
+ \end{column}
+ \end{columns}
+ \bigskip
+ {\large\[F^u=\mathbf1_{\{NU\}}\nu_F^u\rho^uD^u+R_D\]}
+ $\nu_F^u\in[0,1]$: mobilizable fraction; $D^u$: aggregate dollar deposits.\par\smallskip
+ $R_D\ge0$: additional dollar-backing capacity.
 \end{frame}
 
+% MAIN 8 | 80 s. Q: Does contact guarantee funding? A: No; admitted demand can exceed admitted supply.
+\begin{frame}{From own liquidity to the uncovered deficit}
+ \[x_k^c=s_k^c/d_k^c=\omega_k^c+v_k^c+\chi_r\rho^c\]
+ \begin{center}
+ Deficit probability $\pi_k^{c-}$ $\longrightarrow$ Interbank coverage $\Psi_k^{-,c}$\\[5pt]
+ $\longrightarrow$ Public coverage $\phi^c$ $\longrightarrow$ Uncovered deficit
+ \end{center}
+ \medskip
+ \begin{columns}[T,onlytextwidth]
+ \begin{column}{.47\textwidth}
+ $P^c$: admitted interbank supply\par\smallskip
+ $Q^c$: admitted interbank demand\par\smallskip
+ $\Delta^c$: residual deficit amount
+ \end{column}
+ \begin{column}{.49\textwidth}
+ \[\Psi_k^{-,c}(A)=\tau_k\min\!\left\{1,\frac{P^c(A)}{Q^c(A)}\right\}\]
+ \[\phi^u(A)=\min\!\left\{1,\frac{F^u}{\Delta^u(A)}\right\}\]
+ \end{column}
+ \end{columns}
+ \source{$\chi_{NU}=0$, $\chi_U=1$; $\phi^s=1$ in the elastic soles benchmark.  $\tau_k$: contact probability; positive denominators required.}
+\end{frame}
+
+% MAIN 9 | 45 s. Q: What specifically was missing? A: The explicit reduced-form private objective.
+\begin{frame}{The missing piece is the explicit private closure}
+ \labelhead{Already anticipated in the joint proposal}
+ Endogenous self-insurance and a future aggregate fixed point.\par\bigskip
+ \labelhead{Completed in this individual project}
+ An explicit trade-off between carrying liquidity\\and bearing the expected private cost of deficits.\par
+ \bigskip
+ {\Large\color{accent}What makes a chosen buffer privately optimal?}
+\end{frame}
+
+% MAIN 10 | 85 s. Q: Where does the upper bound come from? A: New b>=0 restriction on inherited balance sheet.
+\begin{frame}{The representative bank's conditional private problem}
+ {\large\[
+ \min_{0\le v_k^c\le\bar v_k^c}
+ \underbrace{\kappa_k^c v_k^c}_{\text{buffer carrying cost}}
+ +\underbrace{\mathbb E_{A^c}[h_k^c(A^c)L_k^c(v_k^c,A^c)]}_{\text{expected private deficit cost}}
+ \]}
+ \takeaway{$V_k^c$: cost per unit of deposits; choice: $v_k^c$.}
+ \[L_k^c(v,A):=\frac{S_k^{c-}(v,A)}{d_k^c}\]
+ Inherited $S_k^{c-}$ is an amount; new $L_k^c$ is normalized.\par\medskip
+ \textbf{New restriction:} nonnegative credit on the inherited balance sheet:
+ \[b_k^c\ge0\quad\Longrightarrow\quad\bar v_k^c=1+\frac{E_k^c}{d_k^c}-\rho^c.\]
+ \source{Maintain $d_k^c>0$, $\bar v_k^c>0$, and fixed equity allocation.}
+\end{frame}
+
+% MAIN 11 | 80 s. Q: Are funding costs double-counted? A: Exclusive shares sum to one; costs are reduced-form.
+\begin{frame}{What is $h(A)$? Three exclusive deficit-cost components}
+ \source{For this slide only, suppress bank and currency indices; all coverage shares depend on $A$.}
+ {\Large\[
+ h=\Psi^-q_I+(1-\Psi^-)\big[\phi q_F+(1-\phi)\ell\big]
+ \]}
+ \begin{columns}[T,onlytextwidth]
+ \begin{column}{.31\textwidth}\labelhead{Interbank-funded}
+ Weight $\Psi^-$\par\smallskip Unit cost $q_I$
+ \end{column}
+ \begin{column}{.31\textwidth}\labelhead{Publicly funded}
+ Weight $(1-\Psi^-)\phi$\par\smallskip Unit cost $q_F$
+ \end{column}
+ \begin{column}{.31\textwidth}\labelhead{Uncovered}
+ Weight $(1-\Psi^-)(1-\phi)$\par\smallskip Unit cost $\ell$
+ \end{column}
+ \end{columns}
+ \takeaway{The mutually exclusive weights sum to one.}
+ Reduced-form costs: $\kappa>0$; $q_I,q_F,\ell\ge0$.\par\smallskip
+ Public coverage is not a net-transfer measure.
+\end{frame}
+
+% MAIN 12 | 80 s. Q: Why a probability rather than an amount? A: Marginal shortfall saving is an indicator.
+\begin{frame}{Why does another buffer unit save $\pi^-$?}
+ \begin{columns}[T,onlytextwidth]
+ \begin{column}{.46\textwidth}\labelhead{No liquidity shortfall}
+ An extra unit saves \textbf{zero} deficit.
+ \end{column}
+ \begin{column}{.46\textwidth}\labelhead{Liquidity shortfall}
+ An extra unit saves \textbf{one} unit of deficit, locally.
+ \end{column}
+ \end{columns}
+ \bigskip
+ {\LARGE\[\frac{\partial L_k^c(v,A)}{\partial v}=-\pi_k^{c-}(v,A)\]}
+ \takeaway{Expectation turns the marginal saving into a deficit probability.}
+ For the amount, retain deposit scaling:
+ \[\frac{\partial S_k^{c-}(v,A)}{\partial v}=-d_k^c\pi_k^{c-}(v,A).\]
+\end{frame}
+
+% MAIN 13 | 85 s. Q: Why no h_v term? A: Conditional schedules make h independent of the individual choice.
+\begin{frame}{The FOC balances marginal cost and avoided deficits}
+ {\LARGE\[
+ \kappa_k^c=\mathbb E_{A^c}\!\left[
+ h_k^c(A^c)\pi_k^{c-}(v_k^{c,*},A^c)\right]
+ \]}
+ \bigskip
+ \begin{center}{\large Marginal carrying cost of self-insurance\\[6pt]
+ $=$\\[6pt]Expected marginal deficit cost avoided}\end{center}
+ \bigskip
+ \textbf{Maintained restriction:} $h_k^c(A)$ is independent of this bank's choice.\par\smallskip
+ \textbf{Domain:} an interior optimum.
+\end{frame}
+
+% MAIN 14 | 70 s. Q: Does a deficit guarantee strict convexity? A: No; certain-deficit region is locally linear.
+\begin{frame}{When does the FOC describe a regular interior optimum?}
+ \begin{columns}[T,onlytextwidth]
+ \begin{column}{.48\textwidth}
+ \labelhead{Conditions}
+ \begin{itemize}\setlength\itemsep{5pt}
+ \item Feasible and interior: $0<v^*<\bar v$
+ \item Away from support/coverage kinks
+ \item Positive curvature: $\mathcal H=V_{vv}>0$
+ \end{itemize}
+ \end{column}
+ \begin{column}{.47\textwidth}
+ \labelhead{What supplies curvature?}
+ A positive-probability state with $h>0$ and a threshold strictly inside the uniform support.\par\medskip
+ Corners remain possible.
+ \end{column}
+ \end{columns}
+ \bigskip
+ \alert{Positive deficit probability alone does not imply positive curvature.}
+\end{frame}
+
+% MAIN 15 | 80 s. Q: Why does h fall? A: Public funding replaces more expensive uncovered deficits, only when responsive.
+\begin{frame}{How public dollar backing enters the private incentive}
+ \begin{center}{\large
+ $R_D\uparrow$ $\ \Longrightarrow\ $ $\phi^u\uparrow$ when rationed\\[8pt]
+ $\Longrightarrow\ h\downarrow$ if $\ell^u>q_F^u$\\[8pt]
+ $\Longrightarrow$ marginal benefit of private buffering falls
+ }\end{center}
+ \bigskip
+ {\Large\[
+ \frac{\partial h_k^u(A)}{\partial R_D}
+ =-\frac{[1-\Psi_k^{-,u}(A)](\ell^u-q_F^u)}{\Delta^u(A)}
+ \]}
+ \source{Local rationing region: $\Delta^u(A)>0$, $F^u<\Delta^u(A)$; aggregate schedules fixed.}
+\end{frame}
+
+% MAIN 16 | 90 s. Q: Can separate states meet separate conditions? A: No; positive contribution requires their intersection.
+\begin{frame}{Candidate result: lower voluntary dollar buffers}
+ \begin{columns}[T,onlytextwidth]
+ \begin{column}{.32\textwidth}
+ {\LARGE\[\frac{dv_k^{u,*}}{dR_D}<0\]}
+ \medskip
+ {\color{accent}\bfseries CONDITIONAL PRIVATE\\BEST RESPONSE}\par\medskip
+ {\color{caution}\bfseries NOT A GENERAL-\\EQUILIBRIUM THEOREM}
+ \end{column}
+ \begin{column}{.63\textwidth}
+ \labelhead{All strict conditions}
+ \begin{itemize}\setlength\itemsep{3pt}
+ \item Regular interior optimum; $\ell^u>q_F^u$
+ \item One positive-probability state with \emph{all three}: deficit exposure, $\Psi_k^{-,u}<1$, and rationed public coverage responsive to $R_D$
+ \item $P^u(A),Q^u(A),\Delta^u(A)$ fixed across backing scenarios
+ \item Other primitives, shock law, regime, and feasible set also fixed
+ \end{itemize}
+ \end{column}
+ \end{columns}
+\end{frame}
+
+% MAIN 17 | 75 s. Q: Is the mechanism novel? A: Known mechanism; specific IE1 closure and characterization.
+% [Sources] Proposal section 4; the four cited articles, full DOI links on backup B6.
+\begin{frame}{Why this is not already solved}
+ \labelhead{The general mechanism already exists}
+ Public support affects private liquidity incentives.\par\smallskip
+ {\small Ratnovski (2009); Farhi--Tirole (2012); Freixas--Martin--Skeie (2011); Rochet--Vives (2004).}\par\medskip
+ \alert{This project does not claim literature-wide novelty.}\par\medskip
+ \labelhead{The contribution claimed here}
+ Specific private buffer-choice closure and conditional characterization\\
+ inside the \textbf{joint IE1 framework}: two bank classes, soles/dollars,\\
+ interbank coverage, U/NU, and limited dollar backing.
+ \source{Detailed proposition/version comparison remains under review.}
+\end{frame}
+
+% MAIN 18 | 80 s. Q: What can fail? A: Aggregate feedback or corners/kinks; preserve supported local scope.
+% [Sources] Proposal section 5; current verification and handwritten-derivation status supplied by Carlos.
+\begin{frame}{Plan, evidence, and main risk}
+ \labelhead{Current evidence}
+ 28 symbolic checks pass locally. Handwritten derivation completed.\par\medskip
+ \labelhead{Final-project tasks}
+ \begin{itemize}\setlength\itemsep{2pt}
+ \item Characterize interior and corner solutions
+ \item Numerical illustrations
+ \item Aggregate buffer fixed point
+ \item Lean formalization of numbered final-paper results
+ \end{itemize}
+ \medskip
+ \labelhead{Main risk}
+ Aggregate feedback may overturn the conditional sign, or the optimum\\
+ may hit a corner or coverage kink.
+ \takeaway{Report the supported local/conditional result honestly.}
+\end{frame}
+
+\appendix
+\setbeamertemplate{footline}{\hfill\color{gray}\scriptsize Backup\hspace{5mm}\vspace{3mm}}
+\begin{frame}[plain,noframenumbering]
+ \vfill{\fontsize{28}{32}\selectfont\color{accent}\bfseries Backup}\par\medskip
+ Definitions, derivations, accounting, and literature comparisons.\vfill
+\end{frame}
+
+% B1. Provenance categories refer to the approved proposal, not independent literature verification.
+\begin{frame}{B1. Complete notation and provenance}
+ \scriptsize
+ \setlength{\tabcolsep}{3pt}
+ \renewcommand{\arraystretch}{1.06}
+ \begin{tabular}{@{}P{.23\textwidth}P{.58\textwidth}P{.14\textwidth}@{}}
+ \toprule Symbol & Meaning & Provenance\\\midrule
+ $k,\mu_k;c$ & Classes $L,S$, masses; soles/dollars $s,u$ & IE1\\
+ $d_k,w_k,d_k^c$ & Deposits and fixed dollar share; $d_k^u=w_kd_k$, $d_k^s=(1-w_k)d_k$ & IE1\\
+ $E_k^c,b_k^c$ & Allocated equity and credit amounts; $\sum_cE_k^c=E_k$ & IE1\\
+ $\rho^c,m_k^c,v_k^c$ & Reserve ratios; $m=\rho+v$, with $v:=u$ in source & IE1; rename\\
+ $\omega_k^c,\beta_k$ & Signed flow $\omega=\beta A+e$; aggregate-shock loading & IE1\\
+ $e_k^c,a_k^c$ & Uniform shock; support half-width $a_k^c>0$ & IE1; condition\\
+ $A^c,\eta,p$ & $A^s=0$; $A^u=-\eta,0$ with probabilities $p,1-p$ & IE1\\
+ $r,\chi_r,x_k^c$ & U/NU; $\chi_U=1$, $\chi_{NU}=0$; $x=s/d$ & Shorthand\\
+ $s_k^c,S_k^{c-},S_k^{c+}$ & Liquidity position and expected deficit/surplus amounts & IE1\\
+ $\pi_k^{c-},L_k^c$ & Deficit probability; normalized deficit $L=S^-/d$ & IE1; new $L$\\
+ $\lambda_k,\tau_k$ & Access parameter and contact probability $1-e^{-\lambda_k}$ & IE1\\
+ $P^c,Q^c,\Psi_k^{-,c}$ & Admitted supply/demand; interbank coverage factor & IE1\\
+ $\Delta^c,D^u$ & Residual aggregate deficit; aggregate dollar deposits & IE1\\
+ $F^u,\nu_F^u,R_D,\phi^u$ & Dollar capacity, mobilization, additional backing, coverage & IE1\\
+ $\phi^s=1$ & Elastic soles benchmark operationalized & Benchmark\\
+ $\kappa_k^c,q_I^c,q_F^c,\ell^c,h_k^c$ & Private unit-cost primitives and deficit-cost composite & Individual\\
+ $V_k^c,\bar v_k^c,\mathcal H$ & Objective; new credit bound; curvature $V_{vv}$ & Individual\\
+ \bottomrule
+ \end{tabular}
+ \source{Positive denominators and conditional shock law maintained; no-deficit conventions remain open.}
+\end{frame}
+
+% B2. Suppressed k,c and fixed state A; joins are C1, second derivative changes at support boundaries.
+\begin{frame}{B2. Piecewise deficits and probabilities}
+ Fix $k,c,A$; suppress indices. Let $z=\beta A+v+\chi_r\rho$, $a>0$.
+ \[
+ L(v,A)=\begin{cases}
+ -z,&z\le-a,\\[3pt]
+ (a-z)^2/(4a),&-a<z<a,\\[3pt]
+ 0,&z\ge a,
+ \end{cases}
+ \quad
+ \pi^-(v,A)=\begin{cases}
+ 1,&z\le-a,\\[3pt]
+ (a-z)/(2a),&-a<z<a,\\[3pt]
+ 0,&z\ge a.
+ \end{cases}
+ \]
+ \[L_v=-\pi^-,\qquad L_{vv}=\frac1{2a}\quad\text{for }-a<z<a.\]
+ Curvature is zero outside the support.
+ \takeaway{Values and first derivatives join; curvature changes at $z=\pm a$.}
+ At a fixed state, $S^-=dL$ and $S_v^-=-d\pi^-$.
+\end{frame}
+
+% B3. Curvature positive and local differentiability are assumptions, not consequences of symbolic checks.
+\begin{frame}{B3. Implicit-function derivation}
+ Suppress $k$; dollars only. All aggregate schedules and other primitives fixed.
+ \[M(v,R_D):=\mathbb E_A[h^u(A;R_D)\pi^{u-}(v,A)],\qquad M(v^*,R_D)=\kappa^u.\]
+ \[M_v=\mathbb E[h\pi_v^-]=-\mathcal H<0,\qquad
+ M_{R_D}=\mathbb E[\pi^-h_{R_D}].\]
+ \[0=M_v\frac{dv^*}{dR_D}+M_{R_D}
+ \quad\Longrightarrow\quad
+ \boxed{\frac{dv^*}{dR_D}=\frac{\mathbb E[\pi^-h_{R_D}]}{\mathcal H}}.\]
+ \takeaway{Strict negativity needs a negative contribution in a positive-probability state.}
+ Regular interior optimum; no support or coverage kink at the point evaluated.
+\end{frame}
+
+% B4. Local zero-effect cases refer to the backing channel while the regularity conditions hold.
+\begin{frame}{B4. Corners and zero-effect cases}
+ \begin{columns}[T,onlytextwidth]
+ \begin{column}{.47\textwidth}
+ \labelhead{Convex constrained problem}
+ \[V_v=\kappa-\mathbb E[h\pi^-]\]
+ \[v^*=0:\quad V_v(0)\ge0\]
+ \[v^*=\bar v:\quad V_v(\bar v)\le0\]
+ \[0<v^*<\bar v:\quad V_v(v^*)=0\]
+ \end{column}
+ \begin{column}{.48\textwidth}
+ \labelhead{No local backing contribution if}
+ \begin{itemize}\setlength\itemsep{5pt}
+ \item $\ell^u=q_F^u$
+ \item $\Psi_k^{-,u}=1$
+ \item $\pi_k^{u-}=0$
+ \item Public coverage is saturated
+ \end{itemize}
+ \end{column}
+ \end{columns}
+ \takeaway{A boundary or kink requires its own argument; the interior derivative cannot be extended through it.}
+\end{frame}
+
+% B5. Public coverage is utilization, not a defined subsidy; contract accounting remains open.
+\begin{frame}{B5. U/NU capacity accounting}
+ \begin{columns}[T,onlytextwidth]
+ \begin{column}{.46\textwidth}
+ \labelhead{NU}
+ \[x_k^c=\omega_k^c+v_k^c\]
+ \[F^u=\nu_F^u\rho^uD^u+R_D\]
+ Full mobilization $\nu_F^u=1$ is a benchmark, not the general case.
+ \end{column}
+ \begin{column}{.46\textwidth}
+ \labelhead{U}
+ \[x_k^c=\omega_k^c+v_k^c+\rho^c\]
+ \[F^u=R_D\]
+ Required-reserve principal is already usable individually.
+ \end{column}
+ \end{columns}
+ \medskip
+ \[D^u=\sum_k\mu_kd_k^u,\qquad
+ \Delta^u(A)=\sum_k\mu_k[1-\Psi_k^{-,u}(A)]S_k^{u-}(A).\]
+ \[\phi^u(A)=\min\{1,F^u/\Delta^u(A)\},\qquad \phi^s=1.\]
+ \source{Fixed $P^u,Q^u,\Delta^u$ is an individual-project restriction; equity allocation and regime also fixed.}
+\end{frame}
+
+% B6 [Sources] Approved proposal section 4; DOI links match paper/references.bib.
+% Broad source comparisons only. Appendices, versions, citing papers remain to be reviewed.
+\begin{frame}{B6. Literature: known mechanisms and this closure}
+ \scriptsize\setlength{\tabcolsep}{3pt}\renewcommand{\arraystretch}{1.45}
+ \begin{tabular}{@{}P{.19\textwidth}P{.22\textwidth}P{.26\textwidth}P{.26\textwidth}@{}}
+ \toprule Paper & Main mechanism & Already establishes/studies & This project's different scope\\\midrule
+ \href{https://doi.org/10.1016/j.jfi.2007.08.001}{Ratnovski (2009)} & Precautionary liquidity and expected support & Lender-of-last-resort incentives can distort private liquidity choices & Specific reduced-form IE1 buffer closure\\
+ \href{https://doi.org/10.1257/aer.102.1.60}{Farhi--Tirole (2012)} & Public intervention and collective moral hazard & Expected intervention affects private balance-sheet choices & Fixed aggregates; no systemic or strategic theorem\\
+ \href{https://doi.org/10.1093/rfs/hhr018}{Freixas--Martin--Skeie (2011)} & Interbank allocation and central-bank policy & Liquidity shocks, interbank allocation, and policy response & Private buffer margin under IE1 coverage rules\\
+ \href{https://doi.org/10.1162/1542476042813850}{Rochet--Vives (2004)} & Private liquidity failure and lender of last resort & Failures of private provision and public intervention & No coordination-failure theorem\\
+ \bottomrule
+ \end{tabular}
+ \takeaway{Contribution: closure/application in this two-currency, heterogeneous-bank framework.}
+ \source{Broad comparisons only. Detailed propositions, appendices, versions, and citing papers remain under review; external novelty uncertain.}
+\end{frame}
 \end{document}

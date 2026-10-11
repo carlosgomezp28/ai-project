@@ -1,124 +1,38 @@
-# Term project — template
+# Public Dollar Backing and Voluntary Bank Buffers
 
-**Artificial Intelligence and Economic Modeling · UP 2026-II**
+**Carlos Gómez Puicán · AI & Economic Modeling · Universidad del Pacífico · Track B: thesis model**
 
-> **This is the template for the term project.** Press **Use this template**,
-> name your repository **`ai-project`**, and replace the content. Every project
-> in the course has this structure, so that anyone can open any repository and
-> find the paper, the slides, the code and the Lean proofs in the same place.
->
-> Dates, page limits and what is graded are in the
-> [project issue](https://github.com/alexanderquispe/AI-Econ-Modeling/issues/7)
-> of the course repository. **Delete this block and the next two sections when
-> you write your own README.**
+**Provenance and contribution.** The baseline is joint IE1 work by Carlos Gómez Puicán and Fabián Méndez Suárez, supervised by Marco Ortiz, used with Fabián's permission. It already anticipates endogenous buffers and a future fixed point. This individual project completes the private optimization closure, introduces reduced-form private costs, derives the FOC, and characterizes a conditional backing response.
 
-## What goes where
+**Question and inherited model.** How does public dollar backing affect a representative bank's voluntary dollar buffer, conditional on aggregate liquidity conditions? The static framework has two classes $k\in\{L,S\}$, soles/dollars $c\in\{s,u\}$, fixed deposit composition, uniform idiosyncratic shocks, interbank coverage, and finite dollar capacity. In NU required reserves back a collective fund; in U they are usable by the bank and their principal is not counted again in the fund.
 
-One repository for the whole project: it grows from the topic presentation to
-the final paper.
+**Individual problem.** Write $v_k^c:=u_k^c$ in the joint IE1 notation. Both $v_k^c$ and $\rho^c$ are ratios to deposits. Inherited $S_k^{c-}$ is an expected deficit amount; define $L_k^c(v,A):=S_k^{c-}(v,A)/d_k^c$. Conditional on coverage schedules, minimize cost per unit of deposits:
 
-| Path | What it holds | Needed for |
-|---|---|---|
-| `README.md` | One page: the question, the model, the main result with all its conditions, and the status of the project | always |
-| `proposal/proposal.tex` · `.pdf` | The topic document, **2–4 pages** | topic presentation |
-| `slides/topic.tex` · `.pdf` | Deck for the 20-minute topic presentation | topic presentation |
-| `slides/final.tex` · `.pdf` | Deck for the final presentation | final presentation |
-| `paper/paper.tex` · `references.bib` · `paper.pdf` | The final paper, **8–20 pages**, in LaTeX with its compiled PDF | final paper |
-| `code/` | Simulations and symbolic checks; `code/verify.py` runs them all and **fails** if a claim does not hold | final paper |
-| `lean/` | The Lean formalization of **your** paper, generated with AppliedModelingLib | final paper |
-| `hand/` | The handwritten appendix: every derivation, step by step | final paper |
-| `prompts.md` | Your prompts and the relevant answers, raw | always |
-| `.github/workflows/build.yml` | Compiles the PDFs and runs `code/verify.py` on every push | — leave it as it is |
+$$
+\min_{0\le v_k^c\le\bar v_k^c}V_k^c(v_k^c)
+=\kappa_k^c v_k^c+\mathbb E_{A^c}[h_k^c(A^c)L_k^c(v_k^c,A^c)],
+$$
+$$
+h_k^c(A)=\Psi_k^{-,c}(A)q_I^c+[1-\Psi_k^{-,c}(A)]
+\{\phi^c(A)q_F^c+[1-\phi^c(A)]\ell^c\}.
+$$
 
-Keep the file names. If a script, figure or section needs more files, add them
-inside the folder where they belong.
+Here $\phi^u$ is dollar public coverage and $\phi^s=1$ is the elastic soles benchmark; $\kappa$ is marginal buffer cost and $q_I,q_F,\ell$ are unit costs of interbank funding, public funding, and uncovered deficits. The **new** nonnegative-credit restriction on the inherited balance sheet gives $\bar v_k^c=1+E_k^c/d_k^c-\rho^c$, maintained positive. Since $L_v=-\pi_k^{c-}$, the interior FOC is
 
-Work as in the weekly repositories: **branch → pull request → merge**. Nothing
-is written directly to `main`, and what is graded is what is on `main` at the
-deadline.
+$$
+\kappa_k^c=\mathbb E_{A^c}[h_k^c(A^c)\pi_k^{c-}(v_k^{c,*},A^c)].
+$$
 
-## Building
+**Candidate result and limits.** $dv_k^{u,*}/dR_D<0$ is a conditional individual best response at a regular interior optimum with positive curvature, $\ell^u>q_F^u$, and a positive-probability state combining positive deficit probability, incomplete interbank coverage, and rationed public coverage responsive to $R_D$. State-dependent $P^u(A),Q^u(A),\Delta^u(A)$ remain fixed across backing scenarios, as do other primitives and the shock law. This is not a general-equilibrium theorem; corners or saturated coverage can remove the strict effect. Public-support/liquidity-incentive mechanisms already exist; external novelty remains uncertain.
 
-```bash
-python3 -m pip install -r code/requirements.txt
-python3 code/verify.py                      # checks + figures
-
-cd paper    && latexmk -pdf paper.tex       # or: tectonic paper.tex
-cd proposal && latexmk -pdf proposal.tex
-cd slides   && latexmk -pdf topic.tex final.tex
-```
-
-**Commit the compiled PDFs** next to their sources. The workflow in
-`.github/workflows/` recompiles everything from source on every push: the
-green check on your repository is the evidence that the PDF you committed is
-the one your LaTeX produces. If the check is red, the Actions tab shows the
-LaTeX error.
-
-Every orange **Replace** box in the PDFs is an instruction to you. A submitted
-document has none left.
-
-## The Lean component
-
-The target is that **every numbered result of your paper is stated and proved
-in Lean**, with no `sorry` and no hypothesis that smuggles in the conclusion.
-It is the same workflow as in the weekly repositories, pointed at your own
-paper instead of a published one.
-
-1. Merge the version of `paper/paper.pdf` you want formalized and copy the
-   commit hash.
-2. From the root of your [AppliedModelingLib](https://gargnikhil.com/AppliedModelingLib/)
-   clone (`git pull` first), with the same agent configuration as in the weekly
-   repositories, give the agent this task:
-
-   ```text
-   Please formalize my own paper, an unpublished manuscript with no arXiv
-   record: https://github.com/<your-user>/ai-project/blob/<commit>/paper/paper.pdf
-   (pinned at commit <commit>), using the paper-formalization skill and
-   workflow in this repository.
-   Use <Surname>26<ShortTitle> as the paper folder.
-   ```
-
-3. Run the paper-scoped check and keep its output:
-
-   ```bash
-   python3 scripts/paper_contribution.py check <Surname>26<ShortTitle> --fast
-   ```
-
-4. Copy the **entire** generated `papers/<Surname>26<ShortTitle>/` folder,
-   exactly as generated, into this repository as `lean/`. Stage it with
-   `git add lean/` and respect the generated `.gitignore` — never `git add -f`.
-5. Fill in the *Lean formalization* appendix of the paper: one row per numbered
-   result, the Lean declaration that proves it, and its status.
-
-If you change a proposition after the run, the Lean folder no longer matches
-the paper: run the workflow again. If a result is still open at the deadline,
-say exactly which one and what blocks it — an honest partial result is graded,
-a hidden gap is not.
-
----
-
-# Your title
-
-**Replace everything below with your own README — one page.**
-
-*Track A (extension of …) or Track B (thesis model).*
-
-## The question
-
-## The model
-
-The agent's problem, written formally: what is maximised, over which variable,
-under which constraints.
-
-## The main result, with all its conditions
-
-## Status
-
-| Component | State |
+| Component | Current status |
 |---|---|
-| Topic document and slides | |
-| Final slides | |
-| Paper | |
-| Simulations (`python3 code/verify.py`) | |
-| Lean (`check --fast` result, paper commit formalized) | |
-| Handwritten appendix | |
+| [Proposal](proposal/proposal.pdf) | Revised topic document; source in proposal/ |
+| Topic/final slides; final paper | Template material; pending revision |
+| Symbolic verification | 28 checks manually passed before this revision; conditional algebra, not equilibrium existence |
+| [Hand derivation](hand/Hand_derivation.pdf) | Present: normalized-deficit derivative, FOC, conditional backing sign |
+| Literature positioning | Initial comparison; detailed result/version review in progress |
+| Aggregate fixed point | In progress; not established by the conditional result |
+| Lean and AI log | Pending; current placeholders |
+
+Verification: <code>python3 code/verify.py</code>. [Operative requirements: Issue #7](https://github.com/alexanderquispe/AI-Econ-Modeling/issues/7).
