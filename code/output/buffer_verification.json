@@ -1,0 +1,366 @@
+{
+  "status": "PASS",
+  "counts": {
+    "historical_october": 28,
+    "v51_course_core": 38
+  },
+  "checks": [
+    {
+      "section": "historical_october",
+      "check": "interior uniform expected-deficit integral",
+      "status": "PASS"
+    },
+    {
+      "section": "historical_october",
+      "check": "interior dL/du = -pi",
+      "status": "PASS"
+    },
+    {
+      "section": "historical_october",
+      "check": "interior d2L/du2 = 1/(2a)",
+      "status": "PASS"
+    },
+    {
+      "section": "historical_october",
+      "check": "interior dpi/du = -1/(2a)",
+      "status": "PASS"
+    },
+    {
+      "section": "historical_october",
+      "check": "certain-deficit derivative",
+      "status": "PASS"
+    },
+    {
+      "section": "historical_october",
+      "check": "no-deficit derivative",
+      "status": "PASS"
+    },
+    {
+      "section": "historical_october",
+      "check": "lower-support value joins",
+      "status": "PASS"
+    },
+    {
+      "section": "historical_october",
+      "check": "upper-support value joins",
+      "status": "PASS"
+    },
+    {
+      "section": "historical_october",
+      "check": "lower-support slope joins",
+      "status": "PASS"
+    },
+    {
+      "section": "historical_october",
+      "check": "upper-support slope joins",
+      "status": "PASS"
+    },
+    {
+      "section": "historical_october",
+      "check": "single-state marginal cost",
+      "status": "PASS"
+    },
+    {
+      "section": "historical_october",
+      "check": "single-state convexity expression",
+      "status": "PASS"
+    },
+    {
+      "section": "historical_october",
+      "check": "positive curvature when h>0 and threshold is inside support",
+      "status": "PASS"
+    },
+    {
+      "section": "historical_october",
+      "check": "two-state weighted curvature",
+      "status": "PASS"
+    },
+    {
+      "section": "historical_october",
+      "check": "exclusive funding weights sum to one",
+      "status": "PASS"
+    },
+    {
+      "section": "historical_october",
+      "check": "deficit-composite rewrite",
+      "status": "PASS"
+    },
+    {
+      "section": "historical_october",
+      "check": "rationed coverage derivative",
+      "status": "PASS"
+    },
+    {
+      "section": "historical_october",
+      "check": "rationed private-cost derivative",
+      "status": "PASS"
+    },
+    {
+      "section": "historical_october",
+      "check": "fully covered private-cost derivative",
+      "status": "PASS"
+    },
+    {
+      "section": "historical_october",
+      "check": "capacity derivative in NU",
+      "status": "PASS"
+    },
+    {
+      "section": "historical_october",
+      "check": "capacity derivative in U",
+      "status": "PASS"
+    },
+    {
+      "section": "historical_october",
+      "check": "implicit-function differentiated FOC",
+      "status": "PASS"
+    },
+    {
+      "section": "historical_october",
+      "check": "conditional buffer derivative",
+      "status": "PASS"
+    },
+    {
+      "section": "historical_october",
+      "check": "strictly negative conditional backing derivative",
+      "status": "PASS"
+    },
+    {
+      "section": "historical_october",
+      "check": "zero derivative if public and uncovered costs coincide",
+      "status": "PASS"
+    },
+    {
+      "section": "historical_october",
+      "check": "zero derivative if all deficits are interbank-funded",
+      "status": "PASS"
+    },
+    {
+      "section": "historical_october",
+      "check": "weakly negative multistate derivative",
+      "status": "PASS"
+    },
+    {
+      "section": "historical_october",
+      "check": "strict sign with at least one positive state contribution",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "A: above-Base average reserve identity",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "A: below-Base average reserve identity",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "A: reserve amount joins at Base",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "A: above-Base marginal reserve rate",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "A: numeric reserve branches, B=0, B=d, and B>d",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "B: normalized balance-sheet identity",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "B: eligibility falls with the buffer",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "B/C: balance, q/H/W/v feasibility and optimal public recourse",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "D: closed expected positive parts vs independent midpoint integration",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "D: independent q/W/v integration reproduces assistance, deferral and J",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "E: single-active-state derivative",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "F: single-active-state curvature",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "H: mixed derivative with reserve burden",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "F: curvature positive when density weights are positive",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "E: full-mixture J derivative vs central differences",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "F: nonnegative curvature vs derivative finite differences away from knots",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "F: global Jensen checks across support boundaries",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "E/F: first derivative joins at internal support boundaries",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "G: piecewise analytical minimizers vs independent 12001-point global grids",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "G: lower corner, upper corner, interior and nonunique cases covered",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "H: reserve response vs finite differences in unchanged regular interior regimes",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "H: positive and negative reserve responses both exhibited",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "H: refuse reserve derivative at upper corner",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "H: refuse reserve derivative at lower corner",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "H: refuse reserve derivative at nonunique optimum",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "H: refuse reserve derivative at optimum on support boundary",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "Input guard: invalid state probability sum",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "Input guard: zero uniform width",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "Input guard: negative state probability",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "Input guard: invalid public cost ordering",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "Input guard: invalid chi",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "Input guard: invalid usability",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "Input guard: infeasible U",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "Input guard: infeasible buffer",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "Input guard: zero deposits",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "Outputs: all experiment rows satisfy accounting, feasibility, cost and KKT checks",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "Outputs: paired cost gaps and pure exposure/Base/Base-rate experiments",
+      "status": "PASS"
+    },
+    {
+      "section": "v51_course_core",
+      "check": "Outputs: every cost-curve point and reported optimum reproduced",
+      "status": "PASS"
+    }
+  ],
+  "diagnostics": {
+    "state_feasibility_points": 594,
+    "positive_part_max_absolute_error": 2.7722851791978087e-11,
+    "positive_part_test_points": 69,
+    "recourse_max_absolute_error": 8.940702345139329e-12,
+    "derivative_max_absolute_error": 7.500284809891511e-09,
+    "curvature_max_absolute_error": 2.126304687877223e-11,
+    "smooth_curvature_points": 254,
+    "optimizer_scenarios": 13,
+    "optimizer_regimes": [
+      "interior",
+      "lower_corner",
+      "nonunique",
+      "upper_corner"
+    ],
+    "optimizer_max_cost_gap": 1.3684048338902244e-10,
+    "optimizer_max_buffer_gap": 3.673570019713246e-05,
+    "reserve_response_points": 27,
+    "reserve_response_max_absolute_error": 5.967559779662679e-12,
+    "reserve_response_range": [
+      -0.5609167671893849,
+      0.6666666666666669
+    ],
+    "validated_experiment_rows": 537,
+    "validated_cost_curve_rows": 802
+  },
+  "scope": "Conditional direct-support benchmark; not advisor approval, OTC equilibrium or Peru calibration"
+}
