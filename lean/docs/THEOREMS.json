@@ -1,0 +1,250 @@
+[
+  {
+    "name": "Gomez26EligibilityBuffers.min_add_shortfall",
+    "file": "BufferCore.lean",
+    "paper": "P1 (10), proof",
+    "premises": "None; arbitrary reals",
+    "proved": "Accounting identity",
+    "excluded": "No feasibility or optimization claim"
+  },
+  {
+    "name": "Gomez26EligibilityBuffers.continuation_feasible",
+    "file": "BufferCore.lean",
+    "paper": "P1 (10); constraints (7)",
+    "premises": "q,H>=0; no extra condition",
+    "proved": "Candidate feasible, including zero cases",
+    "excluded": "No cost comparison"
+  },
+  {
+    "name": "Gomez26EligibilityBuffers.continuation_cost_gap",
+    "file": "BufferCore.lean",
+    "paper": "P1 proof of (10)",
+    "premises": "Feasible competitor; no extra condition",
+    "proved": "Exact cost difference",
+    "excluded": "No sign without cost ordering"
+  },
+  {
+    "name": "Gomez26EligibilityBuffers.continuation_optimal",
+    "file": "BufferCore.lean",
+    "paper": "P1 (10)",
+    "premises": "p<g and feasible competitor",
+    "proved": "Comparison with every feasible competitor",
+    "excluded": "Candidate feasibility supplied by separate theorem"
+  },
+  {
+    "name": "Gomez26EligibilityBuffers.continuation_unique",
+    "file": "BufferCore.lean",
+    "paper": "P1 (10)",
+    "premises": "p<g, feasibility, competitor cost <= candidate cost",
+    "proved": "Both coordinates equal candidate",
+    "excluded": "No ex-ante optimum"
+  },
+  {
+    "name": "Gomez26EligibilityBuffers.continuation_solution",
+    "file": "BufferCore.lean",
+    "paper": "P1 (10)",
+    "premises": "q,H>=0, 0<=p<g; source assumptions",
+    "proved": "Feasibility, universal optimality, uniqueness",
+    "excluded": "Rest of P1"
+  },
+  {
+    "name": "Gomez26EligibilityBuffers.positive_part_reduction",
+    "file": "BufferCore.lean",
+    "paper": "P1 proof between (10) and (11)",
+    "premises": "H>=0; no extra condition",
+    "proved": "Nested positive-part reduction",
+    "excluded": "No probability"
+  },
+  {
+    "name": "Gomez26EligibilityBuffers.optimized_cost_identity",
+    "file": "BufferCore.lean",
+    "paper": "P1 proof of (11)",
+    "premises": "None; scalar identity valid for all reals",
+    "proved": "Optimized scalar cost decomposition",
+    "excluded": "Expectation bridge"
+  },
+  {
+    "name": "Gomez26EligibilityBuffers.deferral_threshold",
+    "file": "BufferCore.lean",
+    "paper": "P1 (9)--(11), proof",
+    "premises": "chi*(U-u)>=0; source feasibility consequence made explicit",
+    "proved": "Exact severe-shortfall threshold",
+    "excluded": "Does not derive eligibility nonnegativity from feasible u"
+  },
+  {
+    "name": "Gomez26EligibilityBuffers.ell_lower",
+    "file": "BufferCore.lean",
+    "paper": "Appendix A (23)",
+    "premises": "sigma>0",
+    "proved": "Lower endpoint value",
+    "excluded": "Differentiability at endpoint"
+  },
+  {
+    "name": "Gomez26EligibilityBuffers.ell_upper",
+    "file": "BufferCore.lean",
+    "paper": "Appendix A (23)",
+    "premises": "sigma>0",
+    "proved": "Upper endpoint value",
+    "excluded": "Differentiability at endpoint"
+  },
+  {
+    "name": "Gomez26EligibilityBuffers.pi_lower",
+    "file": "BufferCore.lean",
+    "paper": "Appendix A (23)",
+    "premises": "None; holds for all sigma",
+    "proved": "Lower endpoint tail formula",
+    "excluded": "Probability interpretation"
+  },
+  {
+    "name": "Gomez26EligibilityBuffers.pi_upper",
+    "file": "BufferCore.lean",
+    "paper": "Appendix A (23)",
+    "premises": "sigma>0",
+    "proved": "Upper endpoint tail formula",
+    "excluded": "Probability interpretation"
+  },
+  {
+    "name": "Gomez26EligibilityBuffers.uniform_joins",
+    "file": "BufferCore.lean",
+    "paper": "Appendix A after (23)",
+    "premises": "sigma>0",
+    "proved": "Polynomial endpoint values and slope expressions coincide",
+    "excluded": "Actual derivative at joins, global C1"
+  },
+  {
+    "name": "Gomez26EligibilityBuffers.ell_derivative_below",
+    "file": "BufferCore.lean",
+    "paper": "Appendix A after (23)",
+    "premises": "z < -sigma; local algebra does not need sigma>0",
+    "proved": "HasDerivAt with slope -1",
+    "excluded": "Joins and integral bridge"
+  },
+  {
+    "name": "Gomez26EligibilityBuffers.ell_derivative_inside",
+    "file": "BufferCore.lean",
+    "paper": "Appendix A after (23)",
+    "premises": "sigma>0 and -sigma<z<sigma",
+    "proved": "HasDerivAt with interior slope",
+    "excluded": "Joins and integral bridge"
+  },
+  {
+    "name": "Gomez26EligibilityBuffers.ell_derivative_above",
+    "file": "BufferCore.lean",
+    "paper": "Appendix A after (23)",
+    "premises": "sigma>0 and sigma<z",
+    "proved": "HasDerivAt with slope zero",
+    "excluded": "Joins and integral bridge"
+  },
+  {
+    "name": "Gomez26EligibilityBuffers.ell_derivative",
+    "file": "BufferCore.lean",
+    "paper": "Appendix A after (23)",
+    "premises": "sigma>0; ADDED restriction z != +/-sigma",
+    "proved": "Derivative equals -piTail off knots",
+    "excluded": "Paper global derivative statement at knots"
+  },
+  {
+    "name": "Gomez26EligibilityBuffers.ell_second_inside",
+    "file": "BufferCore.lean",
+    "paper": "Appendix A after (23)",
+    "premises": "sigma>0 and -sigma<z<sigma",
+    "proved": "Derivative of deriv ell equals 1/(2*sigma)",
+    "excluded": "No global C2 claim"
+  },
+  {
+    "name": "Gomez26EligibilityBuffers.ell_second_below",
+    "file": "BufferCore.lean",
+    "paper": "Appendix A after (23)",
+    "premises": "z < -sigma",
+    "proved": "Derivative of deriv ell is zero below support",
+    "excluded": "Knots"
+  },
+  {
+    "name": "Gomez26EligibilityBuffers.ell_second_above",
+    "file": "BufferCore.lean",
+    "paper": "Appendix A after (23)",
+    "premises": "sigma>0 and sigma<z",
+    "proved": "Derivative of deriv ell is zero above support",
+    "excluded": "Knots"
+  },
+  {
+    "name": "Gomez26EligibilityBuffers.uniform_curvature_nonneg",
+    "file": "BufferCore.lean",
+    "paper": "Appendix A after (23)",
+    "premises": "sigma>0",
+    "proved": "Nonnegative interior curvature formula",
+    "excluded": "Global convexity"
+  },
+  {
+    "name": "Gomez26EligibilityBuffers.implicit_response",
+    "file": "BufferCore.lean",
+    "paper": "P2 proof of (17), differentiated (18)",
+    "premises": "Gu!=0 and ASSUMED Gu*response+Gr=0",
+    "proved": "Derives quotient; does not assume quotient",
+    "excluded": "Branch existence, actual derivatives, chain-rule bridge"
+  },
+  {
+    "name": "Gomez26EligibilityBuffers.curvature_nonneg",
+    "file": "BufferCore.lean",
+    "paper": "P1 (14); P2 (20)",
+    "premises": "p>=0, g>=p, f1,f2>=0",
+    "proved": "Nonnegative displayed curvature formula",
+    "excluded": "Identification with a second derivative"
+  },
+  {
+    "name": "Gomez26EligibilityBuffers.reserve_response_nonpos",
+    "file": "BufferCore.lean",
+    "paper": "P2 (17),(20),(21)",
+    "premises": "0<=p<g, 0<=chi<1, phi>=chi, densities>=0, curvature>0; ASSUMED differentiated FOC equation",
+    "proved": "Conditional scalar response <=0",
+    "excluded": "IFT, branch existence, identification of Gu/Gr, optimizer interpretation"
+  },
+  {
+    "name": "Gomez26EligibilityBuffers.finiteLoss_derivative",
+    "file": "FiniteCompanion.lean",
+    "paper": "Appendix A (23),(24)",
+    "premises": "sigma_j>0; ADDED all-component endpoint exclusions, even weight zero",
+    "proved": "Derivative of finite sum is negative finiteTail",
+    "excluded": "Weights need not be probabilities; no expectation/integral bridge"
+  },
+  {
+    "name": "Gomez26EligibilityBuffers.finiteObjective_derivative",
+    "file": "FiniteCompanion.lean",
+    "paper": "P1 (11),(12); Appendix A (23),(24)",
+    "premises": "sigma_j>0; ADDED endpoint exclusions for every component at both thresholds; U,r fixed for u derivative",
+    "proved": "HasDerivAt for explicit finite objective with exact factor 1-chi",
+    "excluded": "Knots, general law, constrained optimization"
+  },
+  {
+    "name": "Gomez26EligibilityBuffers.finite_foc_iff",
+    "file": "FiniteCompanion.lean",
+    "paper": "P1 (12), finite specialization",
+    "premises": "None; scalar equation equivalence",
+    "proved": "Displayed finite derivative zero iff marginal-cost equality",
+    "excluded": "Does not assert optimizer or existence"
+  },
+  {
+    "name": "Gomez26EligibilityBuffers.finiteDensity_nonneg",
+    "file": "FiniteCompanion.lean",
+    "paper": "Appendix A (25)",
+    "premises": "w_j>=0, sigma_j>0",
+    "proved": "Nonnegative finite density FORMULA",
+    "excluded": "Probability density interpretation or normalization"
+  },
+  {
+    "name": "Gomez26EligibilityBuffers.finite_curvature_formula_nonneg",
+    "file": "FiniteCompanion.lean",
+    "paper": "P1 (14); Appendix A (25)",
+    "premises": "w_j>=0,sigma_j>0,p>=0,g>=p",
+    "proved": "Nonnegative weighted curvature FORMULA",
+    "excluded": "Does not identify it with actual second derivative; no convexity proof"
+  },
+  {
+    "name": "Gomez26EligibilityBuffers.continuationBlock",
+    "file": "ProofInterface.lean",
+    "paper": "P1 (10), isolated block",
+    "premises": "Same as continuation_solution",
+    "proved": "Exact-type endpoint for continuationBlockSpec",
+    "excluded": "Not a complete P1 Spec or proof"
+  }
+]

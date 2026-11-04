@@ -1,0 +1,5 @@
+Lexical hits (instructional comments only; not proof holes):
+PaperInterface.lean:35:   proof body may be `by sorry` only in a private draft. This separation keeps
+PaperInterface.lean:45: - In the proof phase, replace the `ProofInterface.lean` `sorry` with a short
+
+Lean axiom query: all 31 theorem closures use only propext, Classical.choice, Quot.sound. No sorryAx or custom axiom. No unproved executable placeholder. Generated audit/review fields remain unfilled and are not acceptance evidence.
