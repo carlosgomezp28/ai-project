@@ -1,3 +1,18 @@
+# HISTORICAL: November-4 direct-support derivation guide
+
+> Retained for provenance only. The original guide below concerns the
+> asset-eligibility/deferral model and the historical paper at Git commit
+> `cf37d3f`, not the current post-Marco model. Its references to
+> `paper/paper.tex`, notation, numbered results, planned scans and completion
+> status describe that historical stage. No equations or derivation instructions
+> below have been migrated or validated for the current model.
+>
+> See [hand/README.md](README.md) for the current six-part checklist.
+> `hand/Post_marco_derivations.pdf` is **pending and not present**.
+> This file is typed documentation, not handwritten evidence.
+
+---
+
 # Final-model derivation guide
 
 **Typed guide only. This is not Carlos's handwritten appendix and is not a

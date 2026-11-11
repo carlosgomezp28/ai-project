@@ -1,107 +1,652 @@
-% Final presentation -- work in progress, presented for critique.
-% No animations and no screenshots of papers: equations are typeset in LaTeX.
+% Post-Marco final presentation. 13 main slides / 30 minutes, then discussion.
+% Timing: 2+2+2+3+3+3+2+2.5+2.5+2+2+2+2 = 30.
+% Sources: code/POST_MARCO_AUDIT.md; code/output/post_marco/; existing Lean.
+% No new Lean theorem or complete equilibrium claim. Notes are hidden.
 \documentclass[aspectratio=169,11pt]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
-\usepackage{amsmath,amssymb}
-\usepackage{booktabs}
-\usepackage{graphicx}
-\usepackage{newunicodechar}
-% Lean code is full of Unicode that typewriter fonts do not have. Each line
-% maps one symbol to math mode, so Lean can be pasted into a verbatim block
-% as it is (inside a [fragile] frame). Add a line for any symbol you need.
-\newunicodechar{∀}{\ensuremath{\forall}}  \newunicodechar{∃}{\ensuremath{\exists}}
-\newunicodechar{→}{\ensuremath{\to}}      \newunicodechar{↔}{\ensuremath{\leftrightarrow}}
-\newunicodechar{∧}{\ensuremath{\land}}    \newunicodechar{∨}{\ensuremath{\lor}}
-\newunicodechar{¬}{\ensuremath{\lnot}}    \newunicodechar{×}{\ensuremath{\times}}
-\newunicodechar{∈}{\ensuremath{\in}}      \newunicodechar{∉}{\ensuremath{\notin}}
-\newunicodechar{≤}{\ensuremath{\le}}      \newunicodechar{≥}{\ensuremath{\ge}}
-\newunicodechar{≠}{\ensuremath{\ne}}      \newunicodechar{↦}{\ensuremath{\mapsto}}
-\newunicodechar{ℝ}{\ensuremath{\mathbb{R}}} \newunicodechar{ℕ}{\ensuremath{\mathbb{N}}}
-\newunicodechar{⟨}{\ensuremath{\langle}}  \newunicodechar{⟩}{\ensuremath{\rangle}}
-\newunicodechar{λ}{\ensuremath{\lambda}}  \newunicodechar{α}{\ensuremath{\alpha}}
-\newunicodechar{β}{\ensuremath{\beta}}    \newunicodechar{ε}{\ensuremath{\varepsilon}}
+\usepackage{amsmath,amssymb,booktabs,graphicx,newunicodechar,array}
+\newunicodechar{≤}{\ensuremath{\le}}
+\newunicodechar{≠}{\ensuremath{\ne}}
+\newunicodechar{ℝ}{\ensuremath{\mathbb R}}
 \usetheme{default}
 \usecolortheme{seahorse}
 \setbeamertemplate{navigation symbols}{}
-\setbeamertemplate{footline}[frame number]
 \setbeamerfont{frametitle}{size=\large}
-
-\title{Your Title}
-\subtitle{Final presentation}
-\author{Your Name}
-\date{October--November 2026}
-
+\setbeameroption{hide notes}
+\definecolor{carry}{RGB}{44,89,145}
+\definecolor{borrow}{RGB}{166,85,19}
+\definecolor{lend}{RGB}{25,113,94}
+\definecolor{loss}{RGB}{162,48,68}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prb}{\mathbb P}
+\newcommand{\pos}[1]{(#1)^+}
+\newcommand{\smallsource}[1]{\par\par\medskip{\scriptsize\color{black!65}#1\par}}
+\newif\ifbackupslides
+\backupslidesfalse
+\setbeamertemplate{footline}{\hfill{\usebeamerfont{page number in head/foot}%
+\ifbackupslides B\insertframenumber\else\insertframenumber/13\fi}\hspace{1em}\vskip2mm}
+\title{Voluntary Liquidity Buffers under Finite Common Coverage}
+\subtitle{AI \& Economic Modeling --- Track B}
+\author{Carlos G\'omez Puic\'an}
+\institute{Universidad del Pac\'ifico}
+\date{13 November 2026}
 \begin{document}
 
-% The title slide carries the repository link.
-\begin{frame}[plain]
-  \titlepage
-  \begin{center}\small
-    \texttt{github.com/your-user/ai-project}
-  \end{center}
+% MAIN 1 -- 2 min; puzzle first, no extra cover.
+\begin{frame}{Uniform contributions do not imply uniform protection}
+\relax
+{\large\textbf{Voluntary buffers under finite common coverage}}\par\par\medskip
+The same reserve rate applies to banks with different liquidity exposure
+and interbank access.
+\par\medskip
+\begin{enumerate}
+\item Each bank chooses how much liquidity to keep before the shock.
+\item Interbank trade redistributes available surplus.
+\item A finite common capacity covers part of the remaining shortfall.
+\end{enumerate}
+\par\medskip
+\textbf{If protection is available later, how much self-insurance is worth holding now?}
+\smallsource{Carlos G\'omez Puic\'an \quad AI \& Economic Modeling, Track B\\
+Universidad del Pac\'ifico \quad 13 November 2026\\
+\href{https://github.com/carlosgomezp28/ai-project}{github.com/carlosgomezp28/ai-project}}
+\note{2 min. Begin with the story. A uniform RATE means proportional
+contributions, not identical amounts. Exposure and access need not map to size.
+The fund is a stylized episode capacity, not a literal BCRP description.}
 \end{frame}
 
-\begin{frame}{1 \textperiodcentered{} The question and the answer}
-  \textbf{Replace.} The question, and your result in one sentence --- with its
-  condition.
+% MAIN 2 -- 2 min.
+\begin{frame}{The current post-Marco benchmark}
+\relax
+\textbf{One currency, interpreted as USD; two bank types.}\par\par\medskip
+\begin{center}
+\begin{tabular}{c@{\quad$\longrightarrow$\quad}c@{\quad$\longrightarrow$\quad}c}
+$t=0$ & $t=1$ & $t=2$\\[3pt]
+Choose buffer $u_k$ &
+\shortstack{Shock $\to$ interbank trade\\$\to$ common coverage} & Settlement
+\end{tabular}
+\end{center}
+\par\medskip
+\begin{itemize}
+\item Required reserves are \textbf{not individually usable (NU)}.
+\item Allocation and interbank priority are \textbf{prescribed}; $i$ is given.
+\item Common coverage is free in the benchmark and has finite capacity.
+\end{itemize}
+\par\medskip
+{\footnotesize Joint thesis architecture: Carlos G\'omez Puic\'an and Fabi\'an
+M\'endez Su\'arez, under Marco Ortiz, incorporating his benchmark note.\\[3pt]
+\textbf{Individual course contribution:} buffer optimization, verification and
+simulations. Open choices are not treated as advisor-approved.}
+\note{2 min. Source: current thesis candidate framework and decisions package.
+Do not count NU reserves twice as personal liquidity and fund backing.
+Known state-contingent rules do not mean the bank observes realized shocks.
+Prescribed priority is not proved incentive-compatible.}
 \end{frame}
 
-\begin{frame}{2 \textperiodcentered{} The model}
-  \textbf{Replace.} Primitives, timing, and the agent's problem.
-  \[
-    \max_{e \ge 0}\; a e - \frac{c}{2}\, e^{2}, \qquad a > 0,\; c > 0
-  \]
+% MAIN 3 -- 2 min.
+\begin{frame}{The thesis question and the course question}
+\relax
+\textbf{Thesis: heterogeneous incidence}\par
+How does relative common coverage differ across banks with different exposure,
+access and self-insurance?
+\[
+I_k=\frac{C_k/d_k}{\bar C/D}
+\qquad\text{\small relative coverage, not a net transfer}
+\]
+\par\medskip
+\textbf{Individual AI-course question}\par
+How does a bank optimally choose voluntary liquidity buffers when interbank
+access and finite common coverage shape the marginal value of liquidity?
+\par\medskip
+\textbf{Narrowing the question:} solve and check the individual best response
+before claiming an aggregate incidence result.
+\note{2 min. C_k is expected common coverage per bank; Cbar is the
+mass-weighted total; D is aggregate deposits. Main result orally: marginal
+liquidity avoids deficit costs AND creates lending income; capacity can
+reduce self-insurance under fixed schedules. No net-transfer/welfare claim.}
 \end{frame}
 
-\begin{frame}{3 \textperiodcentered{} The result, with all its conditions}
-  \textbf{Replace.} The proposition as it is stated in the paper.
-
-  \medskip
-  \textbf{Proposition 1.} If $a > 0$ and $c > 0$, the unique solution is
-  $e^{*} = a/c$, and $\partial e^{*}/\partial a = 1/c > 0$.
+% MAIN 4 -- 3 min.
+\begin{frame}{Signed liquidity flow and market accounting}
+\relax
+\[
+\omega_k=\beta_k A+\varepsilon_k,\qquad s_k=d_k(\omega_k+u_k)
+\]
+\[
+D_k=\E[\pos{-s_k}\mid A],\qquad X_k=\E[\pos{s_k}\mid A]
+\]
+{\small Negative $s_k$: shortfall. Positive $s_k$: surplus.
+$D_k,X_k$ are \textbf{amounts}; $u_k$ is a ratio to deposits.}
+\par\medskip
+\[
+\psi_k=\tau_k\min\{1,P/Q\},\qquad \ell_k=\tau_k\min\{1,Q/P\}
+\]
+{\small Access $\tau_k\in[0,1]$;
+$P=\sum_k\mu_k\tau_kX_k$, $Q=\sum_k\mu_k\tau_kD_k$.}
+\[
+\underbrace{\sum_k\mu_k\psi_kD_k}_{\text{borrowed}}
+=\underbrace{\sum_k\mu_k\ell_kX_k}_{\text{lent}}=\min\{P,Q\}
+\]
+\textbf{Trade redistributes liquidity; it does not create it.}
+\note{3 min. Source: equations (1)--(4). Mu is population mass, d deposits PER
+BANK. All moments condition on A and integrate epsilon. If P<Q borrowers
+are the long side; if Q<P surplus banks lend only a fraction. Ratios shown
+require P,Q positive; zero-sided volume and implemented fractions are zero.
+Tau is prescribed access, not an estimated search probability.}
 \end{frame}
 
-\begin{frame}{4 \textperiodcentered{} The proof: what is done and what is open}
-  \textbf{Replace.} The idea of the proof, the step that was hard, and what is
-  still open today. This is a progress report: say where you are.
+% MAIN 5 -- 3 min.
+\begin{frame}{The bank's optimization problem}
+\relax
+\textbf{Expected private cost per deposit, $J_k(u_k)$}
+{\small
+\[
+\min_{u_k\in\mathcal U_k}\!\left\{
+\textcolor{carry}{r u_k}+\E_A\!\left[
+\textcolor{borrow}{i\psi_k\frac{D_k}{d_k}}
+-\textcolor{lend}{i\ell_k\frac{X_k}{d_k}}
++\textcolor{loss}{\kappa(1-\varphi)(1-\psi_k)\frac{D_k}{d_k}}
+\right]\right\}.
+\]
+}
+\begin{tabular}{@{}ll@{}}
+\textcolor{carry}{Carrying cost} & Liquidity held before knowing the shock\\[4pt]
+\textcolor{borrow}{Interbank financing} & Pay on the covered deficit\\[4pt]
+\textcolor{lend}{Lending income} & Earn on the surplus actually lent\\[4pt]
+\textcolor{loss}{Uncovered-shortfall cost} & Pay for the final residual
+\end{tabular}
+\par\medskip
+{\small The atomistic bank takes the \textbf{state-contingent schedules}
+$\psi_k(A),\ell_k(A),\varphi(A)$ and prices as given.\\
+It knows the rules, not realized $A$ or $\varepsilon_k$.}
+\smallsource{Current benchmark equation (7); $\kappa>i\ge0$.
+All objective terms are per unit of deposits.}
+\note{3 min. Explain the four terms slowly through the timeline. Coverage is
+free: p_F=0. Phi is common coverage, not November-4 reserve usability.
+F=nu_F rho D+R; Delta=sum mu(1-psi)D. The course uses a compact interval,
+not a newly approved thesis portfolio rule. Given schedules define the
+individual deviation, not aggregate equilibrium.}
 \end{frame}
 
-\begin{frame}{5 \textperiodcentered{} Simulations}
-  \begin{columns}
-    \column{.56\linewidth}
-    \includegraphics[width=\linewidth]{../code/figures/effort_check.pdf}
-    \column{.40\linewidth}
-    \textbf{Replace.} What the script checks, on which parameter range, and
-    what a simulation cannot show.
-  \end{columns}
+% MAIN 6 -- 3 min.
+\begin{frame}{Proposition 1: the marginal value of a buffer}
+\relax
+\[
+\pi_k^-=\Prb(\omega_k+u_k<0\mid A),\quad
+\pi_k^+=\Prb(\omega_k+u_k>0\mid A)
+\]
+\[
+\frac{\partial(D_k/d_k)}{\partial u_k}=-\pi_k^-,
+\qquad \frac{\partial(X_k/d_k)}{\partial u_k}=+\pi_k^+.
+\]
+\par\medskip
+\[
+\boxed{\displaystyle
+r=\E_A\!\left[
+\bigl(i\psi_k+\kappa(1-\varphi)(1-\psi_k)\bigr)\pi_k^-
++i\ell_k\pi_k^+
+\right]}
+\]
+\textbf{Marginal carrying cost = avoided deficit cost
++ additional lending opportunity.}
+\par\medskip
+{\small Conditions: integrable signed shocks; atomless conditional law;
+an interior choice; fixed schedules for this individual best response.\\
+This is a necessary FOC; sufficiency needs additional conditions.}
+\note{3 min. This is the new course characterization, not the old paper's
+eligibility proposition. Derive using Lipschitz positive-part differences
+and no atom at zero. Deficit costs matter in shortage states; lending income
+matters in surplus states. Pi_minus+pi_plus=1. Amount derivatives carry d.
+Do not substitute a positive withdrawal-need shock without changing signs.}
 \end{frame}
 
-% Required: paper statement -> Lean statement -> what Lean verifies.
-\begin{frame}[fragile]{6 \textperiodcentered{} Lean: what is verified}
-  \textbf{In the paper.} $a > 0,\ c > 0 \;\Longrightarrow\; e^{*} = a/c$.
+% MAIN 7 -- 2 min.
+\begin{frame}{Why the FOC is not automatically sufficient}
+\relax
+\[
+a_k=i\psi_k+\kappa(1-\varphi)(1-\psi_k),\qquad b_k=i\ell_k
+\]
+\[
+J_k''(u)=\E_A[(a_k-b_k)f_{\omega_k\mid A}(-u)].
+\]
+\begin{itemize}
+\item Avoided deficit costs add curvature.
+\item \textbf{Lending income subtracts curvature.}
+\item A sufficient global condition is $a_k(A)\ge b_k(A)$ state by state.
+\end{itemize}
+\par\medskip
+\textbf{Otherwise: compare stationary points and corners.}\\
+$\kappa>i$ alone does not establish convexity.
+\par\medskip
+{\small Density regularity is needed for $J''$.
+With global convexity, an interior stationary point with positive local
+curvature is the unique global minimum.}
+\note{2 min. Audit point: do not transfer old convexity automatically.
+X/d=D/d+E[omega|A]+u gives the global positive-part proof when a-b>=0.
+At phi=1 the difference is i(psi-ell), which can be negative. Local positive
+curvature alone does not prove global uniqueness. The numerical solver
+compares all region endpoints and stationary points, and reports flat ties.}
+\end{frame}
 
-  \medskip
-  \textbf{In Lean} (replace with your own statement and proof fragment):
+% MAIN 8 -- 2.5 min.
+\begin{frame}{Simulation: cost curves and optimal buffers}
+\relax
+{\centering
+\includegraphics[width=.98\linewidth,trim=0 37 0 47,clip]
+{../code/figures/post_marco/cost_and_optima.png}
+\par}
+\vspace{1mm}
+{\small\textbf{Type 1: $u_1^*=0.411523$}\hfill
+\textbf{Type 2: $u_2^*=0.553381$}\quad (unique, interior)}
+\par\vspace{2pt}
+{\footnotesize Constructed, not Peruvian estimates; large illustrative buffers.
+Vertical axis truncated.}
+\note{2.5 min. Source: baseline_optima.csv and cost_curves.csv.
+Walk down the curve: avoided shortfalls dominate; then carrying cost dominates.
+Both beta AND tau differ between types, so the level gap is not a pure access
+effect. Reference buffers (0.1,0.1), NOT these choices, generated schedules.
+The displayed choices are not a simultaneous equilibrium. Only redundant PNG
+title/footer are cropped; inspect that axes, legend and data remain readable.}
+\end{frame}
+
+% MAIN 9 -- 2.5 min.
+\begin{frame}{Proposition 2: common capacity and self-insurance}
+\relax
+\[
+\varphi(A)=\min\{1,F/\Delta(A)\},\qquad F=\nu_F\rho D+R
+\]
+\[
+\boxed{\displaystyle
+\frac{du_k^*}{dF}
+=-\frac{\kappa\,\E_A\!\left[
+1_{\{0<F<\Delta(A)\}}
+\frac{(1-\psi_k)\pi_k^-}{\Delta(A)}
+\right]}{J_k''(u_k^*)}}
+\]
+{\small
+\begin{itemize}
+\item Regular interior optimum, positive curvature; no coverage kink.
+\item Strict sign needs a rationed state with residual deficit exposure.
+\item $\psi_k,\ell_k,\Delta,P,Q$, prices, law and domain remain fixed.
+\item Local density/IFT regularity; off support knots in the uniform code.
+\end{itemize}}
+\par\medskip
+\textbf{More capacity reduces the private value of self-insurance.}\\
+{\small Conditional best response; not general equilibrium.
+With $\nu_F,\rho,D$ fixed, $du^*/dR=du^*/dF$.}
+\note{2.5 min. Phi is fixed within a u deviation but changes across F scenarios;
+Delta and interbank schedules remain fixed. Strictness needs positive
+probability of rationing, psi<1 and pi_minus>0 in the SAME states.
+No exposure/saturation gives only a weak effect. At Delta=0 phi=0; at F=Delta
+there is no asserted two-sided derivative. F=0 needs one-sided treatment.
+A global best response also needs sufficiency/stability against other minima.}
+\end{frame}
+
+% MAIN 10 -- 2 min.
+\begin{frame}{Simulation: the conditional capacity response}
+\relax
+{\centering
+\includegraphics[width=.92\linewidth,trim=0 37 0 47,clip]
+{../code/figures/post_marco/capacity_response.png}
+\par}
+\vspace{1mm}
+{\small At $F=0.015$: $du_1^*/dF=-2.377540$;\quad
+$du_2^*/dF=-1.214916$.}
+\par\vspace{2pt}
+{\footnotesize\textbf{Conditional best response, not general equilibrium.} With fixed buffers and
+fully rationed prorrata, absolute coverage rises; $I_k$ is invariant.\
+Constructed inputs; vertical axis truncated.}
+\note{2 min. F in [0.007,0.024], R in [0.0008,0.0178].
+Reference Delta normal=0.02704, adverse=0.3843536: both remain rationed.
+Slopes are per reference liquidity AMOUNT, not reserve-rate effects.
+Source: capacity_sweep.csv and fixed_buffer_incidence.csv. Fixed-buffer
+incidence is a separate exercise from individual u-star curves:
+C_k and Cbar scale with F, which cancels from I. No directional incidence claim.}
+\end{frame}
+
+% MAIN 11 -- 2 min.
+\begin{frame}{Simulation: exposure with access held fixed}
+\relax
+{\centering
+\includegraphics[width=.98\linewidth,trim=0 37 0 47,clip]
+{../code/figures/post_marco/exposure_response.png}
+\par}
+\vspace{1mm}
+{\small $\beta_2:0.6\to1.6$, $u_2^*:0.345\to0.713$;
+access/schedules fixed; Type 1 unchanged.}
+\par\vspace{2pt}
+{\footnotesize Constructed grid, $A\in\{-0.4,0\}$; no universal risk theorem.
+Vertical axis truncated.}
+\note{2 min. Source: exposure_sweep.csv. A single atomistic individual's beta
+changes, not the entire population's exposure. For positive A, raising beta
+would improve liquidity; beta is not a generic risk ordering. A slope change
+near a uniform support boundary is allowed. No universal linear response
+or aggregate comparative static is claimed.}
+\end{frame}
+
+% MAIN 12 -- 2 min. Authentic existing Lean excerpts, not a new theorem.
+\begin{frame}[fragile]{What Lean verifies, and the human unit check}
+\relax
+\begin{columns}[T,onlytextwidth]
+\column{.55\textwidth}
+{\small\textbf{Explicit finite-uniform building block}}
+\[
+\widehat L'(t)=-\sum_jw_j\Pi_{\sigma_j}(t-m_j).
+\]
+{\footnotesize Positive widths; every component off its support knots.\\
+\texttt{finiteLoss\_derivative}: type and proof excerpts}
+{\footnotesize
 \begin{verbatim}
-theorem prop_effort (a c : ℝ) (ha : 0 < a) (hc : 0 < c) :
-    a / c ∈ Set.Ici (0 : ℝ) ∧
-    IsMaxOn (fun e => a * e - c / 2 * e ^ 2) (Set.Ici 0) (a / c)
+HasDerivAt (finiteLoss w sigma mean)
+  (-finiteTail w sigma mean t) t := by
+
+convert hd using 1
+simp [finiteTail, Finset.sum_neg_distrib]
 \end{verbatim}
-  \textbf{Replace.} How the objects and assumptions are represented, whether
-  Lean verifies the paper's claim exactly or under an added hypothesis, and the
-  result of the check.
+}
+\column{.41\textwidth}
+{\small\textbf{Student's handwritten unit check}}
+\par\smallskip
+\includegraphics[page=2,trim=185bp 663bp 205bp 85bp,clip,width=\linewidth]
+{../hand/02-post-marco-shortfall-surplus.pdf}
+\par\smallskip
+{\footnotesize Authentic excerpt: manuscript 02, p.~2.\\
+The amount derivative carries $d_k$; the ratio derivative does not.}
+\end{columns}
+\par\medskip
+{\footnotesize Existing Lean proofs verify off-knot derivatives of the explicit
+finite-uniform positive-part building block. The post-Marco probability
+interpretation, buffer FOC, capacity response, and equilibrium are
+\textbf{not newly Lean-verified}.}
+\note{2 min. Lean excerpts remain from FiniteCompanion.lean,
+finiteLoss_derivative. Reflected means m_j=-beta*A_j and t=u interpret the
+new deficit; this probability/reflection bridge is not Lean-verified.
+Existing package: 31 closures, no executable sorry/admit.
+The crop is genuine student evidence from manuscript 02, page 2:
+d_k=1.6 and pi_minus=0.3 give the amount derivative -0.48,
+whereas the normalized derivative is -0.30. The manuscript records a human
+verdict on this unit distinction; do not invent an earlier AI error or dispute.
+All eight updated handwritten pages were reinspected independently. Manuscript
+03, page 2 now uses J'(u_bar)<=0 under global convexity. Manuscript 04, page 2
+establishes the local IFT branch from G=0, G_u>0 and local C1 regularity before
+differentiating. Global continuation remains in the paper's full proof.
+Manuscript 05 explicitly defines p_B=Pr(Delta>0) and handles zero-demand states.
+Strict negative state curvature requires positive threshold density.
+The existing unit-check crop remains authentic and readable; no crop change.
+No new Lean proof or equilibrium result is claimed.}
 \end{frame}
 
-\begin{frame}{7 \textperiodcentered{} Where I did not believe the AI}
-  \textbf{Replace.} One claim of the model, your verdict with its reason, and
-  the hand derivation on screen.
+% MAIN 13 -- 2 min, then discussion.
+\begin{frame}{Open mechanisms and questions for discussion}
+\relax
+{\small\textbf{Still open}
+\begin{itemize}
+\item Voluntary participation versus prescribed interbank allocation.
+\item Aggregate consistency: no population fixed point solved here.
+\item Shock laws and buffer domain are illustrative course choices.
+\end{itemize}}
+\par\medskip
+\textbf{Feedback}
+\begin{enumerate}
+\item Is prescribed interbank allocation an acceptable benchmark
+for the course/thesis transition?
+\item Is the conditional best response informative before solving
+aggregate consistency?
+\item What comes next: participation incentives, shock/domain discipline,
+or the aggregate fixed point?
+\end{enumerate}
+\note{2 min, then invite discussion. A free fund changes outside options;
+kappa>i does not establish participation. Nash cannot create trading gains
+without valid outside options. No net transfers, competition, welfare or
+optimal reserve-policy claim. Historical paper and Lean pin remain cf37d3f.
+The course question is answered conditionally; the thesis question is open.}
 \end{frame}
 
-\begin{frame}{8 \textperiodcentered{} What I want from you}
-  \textbf{Replace.} The two or three questions on which you want the class's
-  critique before writing the final version.
+\appendix
+\backupslidestrue
+\setcounter{framenumber}{0}
+\begin{frame}[plain,noframenumbering]
+\relax
+\begin{center}
+{\LARGE Backup material}\\[1em]
+Accounting, constructed assumptions, proof scope and model history
+\end{center}
 \end{frame}
 
+% BACKUP B1: current seven-equation benchmark, first half.
+\begin{frame}{B1 \textperiodcentered{} Full benchmark: flows and allocation}
+\relax
+{\small All moments and schedules below are conditional on $A$.}
+\begin{align}
+\omega_k&=\beta_k A+\varepsilon_k,\quad s_k=d_k(\omega_k+u_k) \tag{1}\\
+D_k&=\E[\pos{-s_k}\mid A],\quad X_k=\E[\pos{s_k}\mid A] \tag{2}\\
+\psi_k&=\tau_k\min\{1,P/Q\},\quad \ell_k=\tau_k\min\{1,Q/P\} \tag{3}\\
+\sum_k\mu_k\psi_kD_k&=\sum_k\mu_k\ell_kX_k=\min\{P,Q\}. \tag{4}
+\end{align}
+\[
+P=\sum_k\mu_k\tau_kX_k,\quad Q=\sum_k\mu_k\tau_kD_k,\quad D=\sum_k\mu_kd_k.
+\]
+{\small If $P=0$ or $Q=0$, transacted volume is zero
+(implemented fractions $\psi_k=\ell_k=0$).}
+\smallsource{Current thesis candidate, analytical framework (1)--(4).
+Prescribed quantities are not voluntary participation conditions.}
+\end{frame}
+
+% BACKUP B2.
+\begin{frame}{B2 \textperiodcentered{} Full benchmark: protection and choice}
+\relax
+{\small
+\[
+\begin{aligned}
+F&=\nu_F\rho D+R,\qquad \Delta=\sum_k\mu_k(1-\psi_k)D_k,\\
+\varphi&=\min\{1,F/\Delta\},\quad C_k=\E_A[\varphi(1-\psi_k)D_k].
+\end{aligned}\tag{5}
+\]
+If $\Delta=0$, set $\varphi=0$; common coverage has price $p_F=0$.
+\[
+\bar C=\sum_k\mu_kC_k,\qquad I_k=\frac{C_k/d_k}{\bar C/D},\quad \bar C>0. \tag{6}
+\]
+\[
+\min_{u_k\in\mathcal U_k}
+\left\{r u_k+\E_A\!\left[
+i\psi_k\frac{D_k}{d_k}-i\ell_k\frac{X_k}{d_k}
++\kappa(1-\varphi)(1-\psi_k)\frac{D_k}{d_k}
+\right]\right\}. \tag{7}
+\]
+\par\medskip
+$\nu_F\in[0,1]$, $R\ge0$, $\kappa>i$.
+NU reserves are not also individually usable liquidity.
+$I_k$ is undefined if $\bar C=0$.}
+\smallsource{Current thesis candidate (5)--(7).
+Net transfers require property, repayment and loss rules not supplied here.}
+\end{frame}
+
+% BACKUP B3.
+\begin{frame}{B3 \textperiodcentered{} Constructed course parameters}
+\relax
+\begin{columns}[T,onlytextwidth]
+\column{.47\textwidth}
+{\small\begin{tabular}{@{}lrr@{}}
+\toprule & Type 1 & Type 2\\ \midrule
+Mass $\mu_k$ & 0.6 & 0.4\\
+Deposits $d_k$ & 1 & 1.6\\
+Exposure $\beta_k$ & 0.8 & 1.2\\
+Access $\tau_k$ & 0.65 & 0.80\\
+Reference $u_k$ & 0.10 & 0.10\\
+Course upper bound & 0.8 & 0.8\\ \bottomrule
+\end{tabular}}
+\column{.48\textwidth}
+{\small\begin{tabular}{@{}lr@{}}
+\toprule Common primitives & Value\\ \midrule
+Carrying cost $r$ & 0.045\\
+Interbank rate $i$ & 0.015\\
+Uncovered cost $\kappa$ & 0.25\\
+Reserve rate $\rho$ & 0.10\\
+Capacity share $\nu_F$ & 0.05\\
+Backing $R$ & 0.0088\\
+Baseline $F$ & 0.015\\ \bottomrule
+\end{tabular}}
+\end{columns}
+\par\medskip
+{\small $A=(-0.4,0)$ with probabilities $(0.4,0.6)$;
+$\varepsilon_k\mid A\sim U[-0.5,0.5]$. Aggregate deposits $D=1.24$.\\
+Finite states, uniforms and $[0,0.8]$ are \textbf{course assumptions}.\\
+Schedules come from reference buffers, not the displayed best responses.}
+\smallsource{Source: code/output/post\_marco/parameters.json.
+All parameters constructed; no Peruvian estimates or advisor approval implied.}
+\end{frame}
+
+% BACKUP B4.
+\begin{frame}{B4 \textperiodcentered{} Conservation and fund feasibility}
+\relax
+\begin{center}
+{\small\begin{tabular}{@{}lrrrr@{}}
+\toprule State & $P$ & $Q$ & Borrowed = lent & Fund used\\ \midrule
+Adverse & 0.0189744 & 0.2993344 & 0.0189744 & 0.015\\
+Normal & 0.1623600 & 0.0721600 & 0.0721600 & 0.015\\ \bottomrule
+\end{tabular}}
+\end{center}
+\[
+\sum_k\mu_k\psi_kD_k=\min\{P,Q\}=\sum_k\mu_k\ell_kX_k,
+\]
+\[
+\sum_k\mu_k\varphi(1-\psi_k)D_k=\min\{F,\Delta\}\le F.
+\]
+{\small Reference $\Delta$: adverse $0.3843536$; normal $0.02704$.\\
+Checks also cover $P<Q$, $P>Q$, $P=Q$, zero sides/access,
+$\Delta=0$, zero capacity and saturated coverage.}
+\par\medskip
+\textbf{These are reference-population accounting checks.}\\
+{\small They do not make frozen-schedule best responses jointly consistent.}
+\smallsource{Sources: parameters.json, reference\_market\_accounting.csv,
+and verify.py: 99 checks across the three course models.}
+\end{frame}
+
+% BACKUP B5.
+\begin{frame}{B5 \textperiodcentered{} Convexity, corners and a counterexample}
+\relax
+\[
+X_k/d_k=D_k/d_k+\E[\omega_k\mid A]+u
+\]
+\[
+J(u)=(r-\E[b_k])u+\E[(a_k-b_k)L_k]-\E[b_k\E[\omega_k\mid A]].
+\]
+{\small Thus $a_k\ge b_k$ gives global convexity. Otherwise this proof fails.}
+\par\medskip
+\textbf{Counterexample to automatic convexity:}\\
+{\small Fully covered deficits give $\varphi=1$ and
+$a_k-b_k=i(\psi_k-\ell_k)$.
+In the adverse reference state, $\psi_1<\ell_1$.
+With $F=10$, $J_1''(0.65)\simeq-0.003653$.}
+\par\medskip
+{\small Under convexity on $[0,\bar u]$:
+\[
+J'(0)\ge0\Rightarrow0\text{ minimizes},\qquad
+J'(\bar u)\le0\Rightarrow\bar u\text{ minimizes}.
+\]
+Equalities can permit ties. The code compares every quadratic-region
+endpoint/stationary point, including nonconvex and flat cases.}
+\smallsource{Source: verify\_post\_marco.py; finite-uniform course specialization.}
+\end{frame}
+
+% BACKUP B6.
+\begin{frame}{B6 \textperiodcentered{} Relative incidence under fixed buffers}
+\relax
+\[
+\bar C=\sum_k\mu_kC_k,\quad I_k=\frac{C_k/d_k}{\bar C/D},\quad
+\sum_k\frac{\mu_kd_k}{D}I_k=1.
+\]
+{\small When every state with residual deficit remains rationed and buffers
+and allocation stay fixed,}
+\[
+C_k=F\,\E_A\!\left[\frac{(1-\psi_k)D_k}{\Delta}\right].
+\]
+\textbf{$F$ scales absolute coverage and cancels from relative incidence.}
+\par\medskip
+{\small In this constructed sweep: $I_1=1.091124$, $I_2=0.914571$;
+neither changes with $F$.\\[4pt]
+These are \textbf{fixed-reference-buffer} values.
+Incidence with jointly reoptimized buffers needs aggregate consistency.\\[4pt]
+If $\bar C=0$, $I_k$ is undefined.
+Coverage shares do not identify net transfers, subsidy or welfare.}
+\smallsource{Source: fixed\_buffer\_incidence.csv.
+Proportional scaling does not imply directional heterogeneous incidence.}
+\end{frame}
+
+% BACKUP B7.
+\begin{frame}{B7 \textperiodcentered{} Exact conditions for the capacity result}
+\relax
+{\small\begin{enumerate}
+\item Fixed deposits, domain, shock law, $r,i,\kappa$;
+fixed $\psi_k,\ell_k,\Delta,P,Q$. Only $\varphi$ changes with $F$.
+\item Regular differentiable interior optimum branch, $J''(u^*)>0$;
+no competing global-minimum switch.
+\item Valid derivative/expectation interchange. Finite-state uniforms:
+positive widths and no relevant support knot.
+\item $F>0$, no relevant $F=\Delta(A)$ kink.
+If $\Delta=0$, use the stated zero-coverage convention.
+\item Strict negativity requires positive-probability states with
+$F<\Delta$, $\psi_k<1$, and $\pi_k^->0$.
+Otherwise only a weak sign is justified.
+\end{enumerate}
+\par\medskip
+The implicit-function argument gives a \textbf{local} response.
+Global best-response language needs global sufficiency/stability.\\[4pt]
+Holding $\nu_F,\rho,D$ fixed gives $du^*/dR=du^*/dF$.
+It does not give a reserve-rate, GE or participation theorem.}
+\smallsource{POST\_MARCO\_AUDIT.md, section 4.
+Corners, ties, saturation and one-sided boundary questions are separate.}
+\end{frame}
+
+% BACKUP B8.
+\begin{frame}{B8 \textperiodcentered{} What changed across the course}
+\relax
+{\small\begin{tabular}{@{}>{\raggedright\arraybackslash}p{.18\linewidth}>{\raggedright\arraybackslash}p{.23\linewidth}>{\raggedright\arraybackslash}p{.24\linewidth}>{\raggedright\arraybackslash}p{.25\linewidth}@{}}
+\toprule & October & November 4 & Current post-Marco\\ \midrule
+Core & Two currencies; public dollar backing & Direct support; asset-linked eligibility &
+One USD currency; prescribed interbank allocation\\[7pt]
+Buffer benefit & Avoid deficit costs & Avoid financing and deferral costs &
+Avoid deficit costs AND earn lending income\\[7pt]
+$\varphi$ meaning & Common/public coverage & Reserve usability & Common coverage fraction\\[7pt]
+Comparative static & Conditional backing effect & Conditional reserve-burden effect &
+Conditional capacity effect\\ \bottomrule
+\end{tabular}}
+\par\medskip
+\textbf{Historical work is preserved; its equations are not silently reused.}\\
+{\small Existing Lean package remains pinned to paper \texttt{cf37d3f}.
+Current economic source: accepted post-Marco computational checkpoint.}
+\end{frame}
+
+% BACKUP B9. Existing theorem with line wrapping only.
+\begin{frame}[fragile]{B9 \textperiodcentered{} Existing Lean proof and the new interpretation}
+\relax
+{\footnotesize \texttt{Gomez26EligibilityBuffers.ell\_derivative}
+(\texttt{BufferCore.lean}), unchanged:}
+{\footnotesize
+\begin{verbatim}
+theorem ell_derivative {sigma z : ℝ} (hs : 0 < sigma)
+    (hnl : z ≠ -sigma) (hnu : z ≠ sigma) :
+    HasDerivAt (ell sigma) (-piTail sigma z) z := by
+  by_cases hl : z ≤ -sigma
+  · simpa [piTail, hl] using ell_derivative_below
+      (lt_of_le_of_ne hl hnl)
+  · by_cases hu : z < sigma
+    · simp only [piTail, if_neg hl, if_pos hu]
+      convert ell_derivative_inside hs
+        (lt_of_not_ge hl) hu using 1; ring
+    · simpa [piTail, hl, hu] using
+        ell_derivative_above hs
+          (lt_of_le_of_ne (le_of_not_gt hu) hnu.symm)
+\end{verbatim}
+}
+{\small New deficit input: $z=u+\beta A$
+(equivalently finite-loss means $m_j=-\beta A_j$).\\
+Reflecting the symmetric uniform shock gives the probability interpretation;
+that bridge and the new economic propositions are not already Lean proofs.}
+\note{Source: exact existing ell_derivative body, line wrapping only.
+It proves the explicit function derivative off both support knots.
+The finiteLoss theorem sums/chains this result. There are 31 old closures,
+not a newly formalized post-Marco FOC, capacity theorem or equilibrium.}
+\end{frame}
 \end{document}

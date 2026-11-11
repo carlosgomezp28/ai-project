@@ -1,38 +1,28 @@
-# Public Dollar Backing and Voluntary Bank Buffers
+# Voluntary Liquidity Buffers under Finite Common Coverage
 
 **Carlos Gómez Puicán · AI & Economic Modeling · Universidad del Pacífico · Track B: thesis model**
 
-**Provenance and contribution.** The baseline is joint IE1 work by Carlos Gómez Puicán and Fabián Méndez Suárez, supervised by Marco Ortiz, used with Fabián's permission. It already anticipates endogenous buffers and a future fixed point. This individual project completes the private optimization closure, introduces reduced-form private costs, derives the FOC, and characterizes a conditional backing response.
+**Question and provenance.** How does finite common coverage affect an individual bank's optimal voluntary liquidity buffer under prescribed interbank allocation? The thesis architecture is joint work by **Carlos Gómez Puicán and Fabián Méndez Suárez**, supervised by **Marco Ortiz**, incorporating his benchmark note. Carlos's individual course contribution is the private buffer-choice closure, proofs, verification and constructed simulations. Prescribed participation and added course restrictions are maintained assumptions, not claims of advisor approval.
 
-**Question and inherited model.** How does public dollar backing affect a representative bank's voluntary dollar buffer, conditional on aggregate liquidity conditions? The static framework has two classes $k\in\{L,S\}$, soles/dollars $c\in\{s,u\}$, fixed deposit composition, uniform idiosyncratic shocks, interbank coverage, and finite dollar capacity. In NU required reserves back a collective fund; in U they are usable by the bank and their principal is not counted again in the fund.
+**Current model.** The post-Marco seven-equation benchmark covers (1) signed liquidity flows and buffer positions, (2) deficit/surplus amounts, (3) prescribed interbank allocations, (4) conservation, (5) finite common capacity and proportional rationing, (6) relative coverage incidence, and (7) individual buffer optimization. It has one currency interpreted as USD, two bank types, ex ante voluntary buffers, and NU required reserves (no personal reuse). Positive flows improve liquidity. Capacity is $F=\nu_F\rho D+R$. At a reference population profile, schedules are formed and then frozen for a measure-zero bank's deviation.
 
-**Individual problem.** Write $v_k^c:=u_k^c$ in the joint IE1 notation. Both $v_k^c$ and $\rho^c$ are ratios to deposits. Inherited $S_k^{c-}$ is an expected deficit amount; define $L_k^c(v,A):=S_k^{c-}(v,A)/d_k^c$. Conditional on coverage schedules, minimize cost per unit of deposits:
+**Results and conditions.** With normalized deficit $L=D_k/d_k$, surplus $M=X_k/d_k$, $a=i\psi+\kappa(1-\varphi)(1-\psi)$, and $b=i\ell$, private cost is $J(u)=ru+\mathbb E[aL-bM]$. The interior FOC is $r=\mathbb E[a\pi^-+b\pi^+]$; lending income prevents automatic convexity. Proposition 1 gives sufficient convexity/corner conditions, a nonconvexity counterexample and exhaustive finite-uniform global optimization.
 
-$$
-\min_{0\le v_k^c\le\bar v_k^c}V_k^c(v_k^c)
-=\kappa_k^c v_k^c+\mathbb E_{A^c}[h_k^c(A^c)L_k^c(v_k^c,A^c)],
-$$
-$$
-h_k^c(A)=\Psi_k^{-,c}(A)q_I^c+[1-\Psi_k^{-,c}(A)]
-\{\phi^c(A)q_F^c+[1-\phi^c(A)]\ell^c\}.
-$$
+Proposition 2 gives $du^*/dF\le0$ locally for a **unique global interior optimum with positive curvature**, $F>0$, continuous local conditional densities, no coverage kink $F=\Delta(A)>0$, and fixed prices, shock laws, domain and population schedules $P,Q,\psi,\ell,\Delta$. The maintained environment has integrable atomless flows, finite aggregate states, a compact buffer interval, $r\ge0$, and $\kappa>i\ge0$. Strict negativity requires a positive-probability state with $0<F<\Delta$, $\psi<1$, and positive deficit probability. Corners/nonunique optima are excluded. This is a conditional best response, **not general equilibrium**; participation, aggregate consistency, calibration and welfare remain open.
 
-Here $\phi^u$ is dollar public coverage and $\phi^s=1$ is the elastic soles benchmark; $\kappa$ is marginal buffer cost and $q_I,q_F,\ell$ are unit costs of interbank funding, public funding, and uncovered deficits. The **new** nonnegative-credit restriction on the inherited balance sheet gives $\bar v_k^c=1+E_k^c/d_k^c-\rho^c$, maintained positive. Since $L_v=-\pi_k^{c-}$, the interior FOC is
-
-$$
-\kappa_k^c=\mathbb E_{A^c}[h_k^c(A^c)\pi_k^{c-}(v_k^{c,*},A^c)].
-$$
-
-**Candidate result and limits.** $dv_k^{u,*}/dR_D<0$ is a conditional individual best response at a regular interior optimum with positive curvature, $\ell^u>q_F^u$, and a positive-probability state combining positive deficit probability, incomplete interbank coverage, and rationed public coverage responsive to $R_D$. State-dependent $P^u(A),Q^u(A),\Delta^u(A)$ remain fixed across backing scenarios, as do other primitives and the shock law. This is not a general-equilibrium theorem; corners or saturated coverage can remove the strict effect. Public-support/liquidity-incentive mechanisms already exist; external novelty remains uncertain.
-
-| Component | Current status |
+| Current deliverable | Status |
 |---|---|
-| [Proposal](proposal/proposal.pdf) | Revised topic document; source in proposal/ |
-| Topic/final slides; final paper | Template material; pending revision |
-| Symbolic verification | 28 checks manually passed before this revision; conditional algebra, not equilibrium existence |
-| [Hand derivation](hand/Hand_derivation.pdf) | Present: normalized-deficit derivative, FOC, conditional backing sign |
-| Literature positioning | Initial comparison; detailed result/version review in progress |
-| Aggregate fixed point | In progress; not established by the conditional result |
-| Lean and AI log | Pending; current placeholders |
+| [Final paper](paper/paper.pdf) · [source](paper/paper.tex) | Current mathematical draft; 18 pages (12 body); full ordinary proofs of both propositions |
+| [Final presentation](slides/final.pdf) · [source](slides/final.tex) | Built and inspected: 13 main slides, 9 backups, one divider |
+| [Computational audit](code/POST_MARCO_AUDIT.md) · [outputs](code/output/post_marco/) | Constructed examples, not Peruvian estimates |
+| [Lean record](lean/README.md) | 31 historical supporting closures pinned to November-4 paper `cf37d3f`; new post-Marco propositions open in Lean |
+| [Hand evidence and checklist](hand/README.md) | Four genuine PDFs (8 pages) incorporated; explicit human unit verdict present; corrected corners, local IFT branch and zero-state accounting reconciled |
+| [Raw AI collaboration log](prompts.md) | October record preserved; recovered later exchanges distinguish AI claims, student verdicts and outstanding verification |
 
-Verification: <code>python3 code/verify.py</code>. [Operative requirements: Issue #7](https://github.com/alexanderquispe/AI-Econ-Modeling/issues/7).
+**Student handwritten evidence:** [02](hand/02-post-marco-shortfall-surplus.pdf): signed flows and the −0.48 versus −0.30 unit verdict; [03](hand/03-post-marco-buffer-optimality.pdf): FOC/curvature and corrected corners; [04](hand/04-post-marco-capacity-response.pdf): conditional capacity calculation; [05](hand/05-post-marco-conservation-incidence.pdf): conservation and zero-deficit incidence. Original scans are unchanged; see the [page-level review](hand/README.md).
+
+**Current figures:** [cost and optima](code/figures/post_marco/cost_and_optima.png), [capacity response](code/figures/post_marco/capacity_response.png), [exposure response](code/figures/post_marco/exposure_response.png).
+
+**Reproduce.** From the repository root, install `python -m pip install -r code/requirements.txt`, then run `python code/verify.py`. It runs **28 October + 38 November-4 + 33 post-Marco = 99 checks** and regenerates outputs/figures in their separate model directories. Only 33 checks concern the current benchmark; finite tests and historical Lean support are not proofs of its new economic propositions. Build PDFs from their own directories with `latexmk -pdf paper.tex` or `latexmk -pdf final.tex`.
+
+**Historical provenance:** [October proposal](proposal/proposal.pdf), [topic deck](slides/topic.pdf), [October manuscript](hand/Hand_derivation.pdf), [November-4 typed guide](hand/FINAL_DERIVATION_GUIDE.md), older code/outputs, and the paper at Git commit `cf37d3f` remain historical. The local `.private/` provenance source is excluded from Git. [Course requirements: Issue #7](https://github.com/alexanderquispe/AI-Econ-Modeling/issues/7).

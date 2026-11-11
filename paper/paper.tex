@@ -1,4 +1,4 @@
-% Phase 2 working draft. Historical October artifacts remain unchanged.
+% Current post-Marco course model; earlier models remain in Git history.
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -13,464 +13,459 @@
 \newtheorem{assumption}{Assumption}
 \newcommand{\E}{\mathbb E}
 \newcommand{\Prb}{\mathbb P}
-\newcommand{\pos}[1]{\left(#1\right)^+}
-\newcommand{\Vtag}{\textnormal{[V]}}
-\newcommand{\Ctag}{\textnormal{[C]}}
 \newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
 \raggedbottom
-\title{Required Reserves, Public-Support Eligibility,\\and Voluntary Buffers}
-\author{Carlos G\'omez Puic\'an\thanks{Universidad del Pac\'ifico. AI \& Economic Modeling, Track B: thesis model. Repository: \url{https://github.com/carlosgomezp28/ai-project}. The proposed V5.1 thesis architecture is joint work with Fabi\'an M\'endez Su\'arez under Marco Ortiz. The direct-support restriction and course optimization closure are the individual contribution developed here.}}
-\date{Working title and first paper-core draft: 3 November 2026}
+\title{Voluntary Liquidity Buffers\\under Finite Common Coverage}
+\author{Carlos G\'omez Puic\'an\thanks{Universidad del Pac\'ifico. AI \& Economic Modeling, Track B: thesis model. The thesis architecture is joint work by Carlos G\'omez Puic\'an and Fabi\'an M\'endez Su\'arez under Marco Ortiz, incorporating his benchmark note. The private buffer-choice closure, proofs, computational verification and illustrations are Carlos's individual course contribution. Prescribed participation and course restrictions are maintained assumptions, not claims of advisor approval. Repository: \url{https://github.com/carlosgomezp28/ai-project}.}}
+\date{11 November 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
-\noindent How do required reserves and public-support eligibility affect voluntary buffers? A bank with fixed deposits chooses liquidity before a shock. Buffers reduce shortfalls but displace the earning asset that determines public eligibility. In a direct-support benchmark, linear assistance and deferral costs give a convex private problem, an exact constrained optimality characterization, and sufficient conditions for uniqueness. At a regular interior optimum, a higher average reserve burden weakly reduces buffers when reserve usability is at least the eligibility coefficient; otherwise the sign is ambiguous. Deterministic finite-uniform illustrations verify the formulas under constructed parameters, not estimates for Peruvian banks. The broader joint V5.1 architecture and its OTC extension remain provisional. Lean formalization is planned and has not yet been performed.
+How does finite common coverage affect an individual bank's voluntary liquidity buffer? In a one-currency, two-type benchmark, signed liquidity flows generate deficits and surpluses, prescribed interbank allocations conserve funds, and a common facility proportionally covers residual deficits. Holding population schedules fixed, the bank chooses its buffer before shocks. Marginal benefits include avoided shortfall costs and additional lending income. The latter prevents automatic convexity. We give sufficient convexity conditions, a nonconvexity counterexample and a complete finite-uniform global optimization procedure. At a regular interior minimum, more coverage capacity weakly reduces the buffer, strictly so with positive rationed deficit exposure. This is a conditional best-response result, not a general-equilibrium theorem. Constructed examples illustrate the mechanism and fixed-buffer relative-incidence invariance. Computational checks support specified calculations; historical Lean results do not prove the new economic propositions.
 \end{abstract}
 
 \section{Introduction}
-A bank can insure itself against a liquidity need by holding reserves voluntarily. The protection has an opportunity cost: liquidity displaces earning assets. If public assistance is limited by those assets, the same portfolio adjustment also reduces the bank's access to support. The question in this paper is how required reserves and asset-linked public-support eligibility shape the optimal voluntary buffer when these two margins are accounted for together.
+A bank can prepare for liquidity outflows by holding a voluntary buffer, borrowing from other banks, or relying on a common facility. A buffer reduces the need for costly financing but also increases the surplus available for prescribed lending in favorable realizations. Public coverage changes the value of self-insurance. The research question is: \emph{how does finite common coverage affect optimal voluntary buffers when an individual bank takes state-contingent interbank and public-coverage schedules as given?}
 
-The analytical contribution is a private optimization closure within a proposed thesis framework. The bank chooses a buffer per unit of deposits before observing liquidity needs. Required reserves may be partly usable during the episode. After the shock, the analytical core permits eligible public assistance and costly deferral, with no interbank financing. This restriction makes the assistance decision explicit and separates the portfolio mechanism from unresolved search and matching choices. It does not permanently remove the interbank mechanism from the project.
+This paper closes the private choice problem in a seven-equation post-Marco thesis benchmark. One currency is interpreted as USD. Two types differ in deposits, exposure and prescribed access. Required reserves are not individually usable in the episode (NU); a fraction contributes to common capacity. Liquidity flows are signed: negative values worsen liquidity and positive values improve it. Prescribed borrowing and lending conserve conditional expected amounts at a reference population profile. Public coverage is free at use and proportionally rationed when capacity is insufficient.
 
-Two results organize the argument. First, the private problem is convex and admits a minimizer, with exact lower-corner, interior, and upper-corner conditions. At an interior optimum the marginal cost of liquidity equals a weighted sum of two shortfall probabilities. The severe-shortfall term is multiplied by one minus the eligibility coefficient: another buffer unit reduces the liquidity need but also reduces the asset backing assistance. Neither universal interiority nor universal strict convexity is claimed.
+The individual contribution is a conditional optimization closure. Proposition~\ref{prop:choice} derives the derivative, sufficient convexity conditions and constrained optimality conditions. Subtracting lending income can destroy convexity. An explicit counterexample explains why a first-order condition alone need not solve the problem. A finite-uniform global enumeration remains valid when the objective is nonconvex.
 
-Second, at a unique regular interior optimum, a higher average required-reserve burden has a weakly negative buffer response when usability is at least the eligibility coefficient. When usability is lower, the sign is generally ambiguous. The result holds with costs, equity, eligibility, usability, and the shock law fixed. It is a local conditional comparative static, not a statement about optimal reserve policy, welfare, or an equilibrium with interbank feedback.
+Proposition~\ref{prop:capacity} constructs a local response using the implicit function theorem (IFT), rather than assuming a differentiable optimizer. More capacity weakly reduces a regular interior buffer; strictness requires positive rationed deficit exposure. A unique global minimum remains the unique global solution for nearby capacity values under the stated additional conditions. Corners, nonuniqueness and coverage kinks require separate treatment.
 
-The proposed V5.1 thesis architecture is joint work by Carlos G\'omez Puic\'an and Fabi\'an M\'endez Su\'arez, supervised by Marco Ortiz. Its model-decision memo, dated 28 October 2026, remains pending advisor validation on explicitly open architecture choices. Carlos's individual AI-course contribution is the direct-support restriction, explicit buffer optimization closure, analytical propositions and proofs, verification, simulations, and formalization effort. No sole authorship of the joint baseline is claimed. No Lean theorem has yet been proved for this paper.
+Constructed baseline buffers are 0.411523 and 0.553381 per deposit. Their size reflects illustrative costs and shocks, not Peruvian estimates. At fixed reference buffers, relative coverage incidence is invariant to capacity scaling when all deficit states remain rationed. Neither this identity nor the buffer response is a welfare or equilibrium result.
 
-The existing illustrations use finite aggregate states and conditional uniform shocks. They are deliberately constructed examples, not estimates for Peruvian banks. Baseline voluntary buffers are quantitatively large, approximately 30 and 49 percent of deposits. Their purpose is to expose the mechanism and check formulas, not to predict observed bank portfolios. Heterogeneous incidence means a difference in optimized expected private cost per deposit under a specified counterfactual. It is not a measure of public transfers or social losses.
+The architecture is joint work by Carlos G\'omez Puic\'an and Fabi\'an M\'endez Su\'arez under Marco Ortiz. The course contribution adds the private optimization, proofs and computational closure. Unresolved voluntary-participation choices are not represented as approved. The October presentation and November~4 asset-eligibility paper are historical stages. Today's $r$ is an opportunity cost, $\varphi$ is common coverage, and $R$ adds to common capacity; they are not the November~4 reserve burden, usability parameter or asset-linked eligibility rule.
 
-\section{Joint V5.1 baseline and related literature}
-\paragraph{Relationship to the joint proposal.}
-The joint memo proposes one currency at a time, two types without automatic size labels, a historical-Base reserve rule, ex ante voluntary reserves, heterogeneous shock exposure, and individual public eligibility. Its wider interbank architecture is provisional. The present paper solves a restricted continuation problem in which assistance and deferral are the available responses to a shortfall. The linear penalty, explicit cost criterion, distributional regularity, and optimization characterization are maintained course assumptions rather than advisor-approved conclusions.
+\section{Literature and the contribution's boundary}
+The closest formal baseline is the joint working benchmark in equations~\eqref{eq:flow}--\eqref{eq:objective}, with source provenance recorded in \texttt{code/POST\_MARCO\_AUDIT.md} and the stored parameters. The departure is explicit ex ante buffer optimization under frozen schedules, with proofs and tests of that closure. This is a bounded Track~B contribution inside the joint framework.
 
-The October course milestone studied a different mechanism, \emph{Public Dollar Backing and Voluntary Bank Buffers}, within an older joint IE1 baseline. It used interbank coverage and pooled dollar-capacity schedules held fixed across backing scenarios. Its conditional backing result remains part of the historical proposal and topic deck. It is not reproduced as a current proposition: the direct-support core has individual eligibility rather than the old aggregate public-capacity parameter. The historical artifacts remain unchanged.
+Public support and private liquidity incentives are established research. \citet{ratnovski2009} analyzes liquidity choices and lender-of-last-resort support. \citet{farhi2012} studies public intervention and strategic private balance-sheet choices. Here policy prices and rules are given; an individual bank cannot alter aggregate schedules. \citet{freixas2011} studies liquidity uncertainty, interbank allocation and central-bank policy. \citet{rochet2004} supplies a coordination-based account of banking fragility and assistance. This paper derives neither coordination failure nor strategic intervention.
 
-\paragraph{Liquidity management and interbank architecture.}
-\citet{bianchi2022} develop a banking liquidity-management model with an OTC interbank market, reserve settlement of deposit transfers, and a lending--liquidity trade-off. Their published article is in \emph{Econometrica} 90(1), pp.~391--454. This paper shares the portfolio trade-off but does not reproduce that interbank equilibrium or its monetary-policy applications. Its earning asset is residual, deposits are fixed, and the analytical continuation problem is direct public support. The individual contribution claimed here is an explicit eligibility-aware buffer closure inside the specified joint framework, not the discovery of precautionary reserves or OTC banking frictions.
+\citet{bianchi2022} develops a liquidity-management model with an OTC interbank market and a lending--liquidity trade-off. This benchmark also values liquidity and financing, but replaces endogenous participation, prices and matching with prescribed fractions and a given interest rate. Its equilibrium and monetary-policy conclusions therefore cannot be imported here. Bilateral Nash pricing or endogenous search would require a different continuation problem.
 
-\paragraph{Public support and private incentives.}
-The October literature remains relevant at the mechanism level. \citet{ratnovski2009} studies liquidity choices distorted by expected lender-of-last-resort support. \citet{farhi2012} study the interaction of public intervention and strategic private balance-sheet choices. Here public prices and eligibility coefficients are given, and no strategic complementarity or bailout-policy equilibrium is derived. \citet{freixas2011} study liquidity uncertainty, interbank allocation, and central-bank policy; \citet{rochet2004} provide a coordination-based rationale for assistance when private markets fail to supply liquidity. Those allocation and coordination mechanisms lie outside the solved restriction.
+The cited works are published journal versions; no new preprint priority claim is made. No exact proposition/version comparison establishes that the literature lacks this closure. Literature-wide novelty is not claimed. Institutional references retained in the shared bibliography for the October proposal do not calibrate the present NU convention, shock law or common fund. They are not evidence that these constructed values describe Peru.
 
-These are bounded comparisons, not a literature-wide novelty claim. Bianchi--Bigio's published article and publisher metadata were checked; the other four references are the published articles used at the October milestone. Detailed proposition/page comparisons across appendices, working-paper versions, and citing papers remain incomplete. No assertion that those sources lack this exact closure is needed for the results below. The journal versions, rather than unverified new preprints, are cited.
+\section{Environment, units and timing}
+\subsection{Assumptions and provenance}
+Write $x^+=\max\{x,0\}$. Conditional expectations integrate idiosyncratic flows; $\E_A$ averages aggregate states. A currency superscript is unnecessary. The voluntary buffer is always $u$; the historical deferral variable and reserve-usability parameter are absent.
 
-\paragraph{Institutional motivation.}
-The foreign-currency general regime in \citet[arts.~7--8, pp.~3--4]{bcrp2026} distinguishes an entity's historical Base and Base rate from the 35 percent rate above Base. Article~8 also caps the general-regime average rate. The model below stylizes the Base distinction; it omits that cap, deductions, special cases, and additional requirements. The circular's monthly averaging and reserve composition do not identify intraperiod usability. Thus neither $\phi$ nor the modeled eligibility rule is inferred from it. Institutional motivation is not a complete empirical description of Peru.
+\begin{assumption}[Population and units]\label{ass:units}
+Types $k=1,2$ have masses $\mu_k>0$, deposits per bank $d_k>0$, and aggregate deposits $D=\sum_k\mu_kd_k$. The bank chooses a per-deposit buffer $u_k\in[0,\bar u_k]$, with fixed $\bar u_k>0$. Its buffer amount is $d_ku_k$. Required reserves have ratio $\rho\geq0$ and are not individually usable during the episode. All amounts use one currency and one episode horizon.
+\end{assumption}
+The compact interval is a course restriction, not a derived balance-sheet identity. The November~4 relation among equity, reserves and earning assets is not retained. A full portfolio balance sheet is outside this benchmark.
 
-\section{Model}
-All quantities below are per deposit unless an amount is explicitly identified. The tags \Vtag\ and \Ctag\ distinguish proposed joint V5.1 architecture from additional course restrictions or closure. Neither tag denotes advisor approval. The two banks solve separate private problems in the analytical core; the model does not jointly clear an interbank market.
+\begin{assumption}[Signed flows]\label{ass:flows}
+Aggregate states $A_j$, $j=1,\ldots,m$, have probabilities $w_j>0$ summing to one. Conditional on $A_j$, $\epsilon_k$ has an atomless distribution with finite first moment. Its conditional law is given before buffer choice. Exposure is $\beta_k$.
+\end{assumption}
+Finite aggregate states are a course specialization. Densities are required only for second derivatives and the IFT. Cross-bank independence is not needed for conditional-moment accounting, and no law of large numbers is proved.
 
-\subsection{Environment, timing, and information}
-\begin{assumption}[Environment and reserve treatment \Vtag]\label{ass:environment}
-One currency is studied at a time. There are two types $k\in\{1,2\}$, with exogenous deposits $d_k>0$, historical Base $B_k\ge0$, Base rate $\tau_k^B\in[0,1]$, and marginal rate $\rho_m\in[0,1]$. During the episode these inputs are predetermined. The stylized required-reserve amount and average burden are
-\begin{equation}\label{eq:reserve}
-R_k(d_k)=\tau_k^B\min\{d_k,B_k\}+\rho_m(d_k-B_k)^+,
-\qquad r_k=R_k(d_k)/d_k.
-\end{equation}
-Types are not assigned permanent borrower/lender or large/small roles.
+\begin{assumption}[Prescribed reference allocations]\label{ass:allocation}
+Parameters $\tau_k\in[0,1]$ and a feasible reference buffer profile $u^0$ generate the schedules below. Borrowing and lending are prescribed, with explicit zero-volume conventions. They are not derived from voluntary participation, search, bargaining or outside-option constraints.
 \end{assumption}
 
-The episode has three accounting dates. At $t_0$, the bank chooses its buffer knowing the parameters and shock law. At $t_1$, the liquidity need is realized and the bank chooses assistance and deferral. At $t_2$, obligations remain payable. These dates do not specify a full dynamic maturity, deposit-supply, or default model. Realized shocks are not known at portfolio choice.
-
-\subsection{Required reserves and balance sheet}
-\begin{assumption}[Feasible portfolio \Vtag\ + \Ctag]\label{ass:balance}
-Equity per deposit is common, $E_k/d_k=\epsilon_E\ge0$, and
-\begin{equation}\label{eq:balance}
-b_k+R_k(d_k)+u_kd_k=d_k+E_k.
-\end{equation}
-Maintain $b_k\ge0$, $u_k\ge0$, and
-\begin{equation}\label{eq:feasible}
-U_k:=1+\epsilon_E-r_k>0,\qquad
-0\le u_k\le U_k,\qquad b_k/d_k=U_k-u_k.
-\end{equation}
-The accounting identity is proposed architecture; the explicit nonnegative-asset restriction and feasible-set closure are maintained in the course benchmark.
+\begin{assumption}[Common coverage]\label{ass:fund}
+A fraction $\nu_F\in[0,1]$ of required reserves contributes to common capacity, with external backing $R\geq0$. Coverage of residual deficits is proportional and capacity-limited. The public fee is zero; uncovered need has private unit cost $\kappa$.
 \end{assumption}
+NU excludes personal reserve use but permits the stipulated contribution to a common facility. This does not specify fiscal incidence, repayment losses or replenishment.
 
-When $d_k>B_k$, equation~\eqref{eq:reserve} gives
-\begin{equation}\label{eq:average}
-r_k=\rho_m-\frac{B_k}{d_k}(\rho_m-\tau_k^B).
-\end{equation}
-When $B_k\ge d_k$, $r_k=\tau_k^B$. At fixed deposits and $B_k<d_k$, the derivatives are $(\tau_k^B-\rho_m)/d_k$ with respect to Base and $B_k/d_k$ with respect to Base rate. Larger Base lowers burden only if the Base rate is below the marginal rate. At $B_k=d_k$ the branches join, but a Base derivative may change. Because deposits are fixed, these relations do not establish a distortion of a deposit-choice margin.
-
-\subsection{Liquidity need and usable reserves}
-\begin{assumption}[Liquidity convention and eligibility \Vtag\ + \Ctag]\label{ass:liquidity}
-The liquidity need is $e_k=\beta_kA+\varepsilon_k$, where $A$ is the aggregate state and $\varepsilon_k$ is idiosyncratic. Larger positive realizations worsen liquidity; $e_k$ need not always be positive. Usable liquidity and the assistance limit are
-\begin{equation}\label{eq:liquidity}
-\widetilde u_k=u_k+\phi r_k,\qquad H_k(u_k)=\chi(U_k-u_k),
-\end{equation}
-with fixed $0\le\phi\le1$ and $0\le\chi<1$. Usability $\phi$ and asset-linked eligibility are provisional modeling interpretations. The restriction $\chi<1$ is additional to the joint memo and matches the implemented course domain.
+\begin{assumption}[Costs and frozen schedules]\label{ass:frozen}
+Costs satisfy $r\geq0$ and $\kappa>i\geq0$, where $i$ is both the borrowing and lending rate. An individual deviation holds fixed conditional laws, $r,i,\kappa$, the domain, and reference schedules $\psi_k(A),\ell_k(A),\Delta(A)$. At fixed capacity, $\varphi(A)$ is therefore fixed as well.
 \end{assumption}
+This is a measure-zero bank's deviation in a population grouped into two types. If an entire positive-mass type changes buffers, freezing the population aggregates is no longer justified.
 
-Here $\phi$ means reserve usability, not the October public-coverage fraction. Eligibility is not a statement that all earning assets constitute usable collateral. A buffer is a ratio: raising $u_k$ by one raises voluntary reserves by $d_k$ in amounts. With deposits fixed, that change lowers $b_k/d_k$ by one and $H_k$ by $\chi$.
+\subsection{Timing and the seven equations}
+Before shocks, primitives and a reference population profile determine state-contingent schedules. The bank knows the schedules and distributions, not realized $A$ or $\epsilon_k$, when choosing $u_k$. Flows then occur, prescribed interbank transactions apply, common coverage follows, and uncovered needs incur the penalty. There is no participation decision at that stage.
 
-\subsection{Direct public support and deferral}
-\begin{assumption}[Direct-support restriction \Vtag\ + \Ctag]\label{ass:direct}
-There is no interbank financing in the analytical core. Gross shortfall is
-\begin{equation}\label{eq:shortfall}
-q_k=(e_k-u_k-\phi r_k)^+.
+The signed liquidity position in currency per bank is
+\begin{equation}\label{eq:flow}
+ \omega_k=\beta_kA+\epsilon_k,\qquad s_k=d_k(\omega_k+u_k).
 \end{equation}
-Given $q_k,H_k$, the bank chooses $(W_k,v_k)$ satisfying
-\begin{equation}\label{eq:continuation-constraints}
-W_k+v_k=q_k,\qquad 0\le W_k\le\min\{q_k,H_k\},\qquad v_k\ge0.
+A positive $\omega_k$ improves liquidity; it is not an always-positive withdrawal. Conditional deficit and surplus amounts are
+\begin{equation}\label{eq:moments}
+ D_k(A)=\E[(-s_k)^+\mid A],\qquad X_k(A)=\E[(s_k)^+\mid A].
 \end{equation}
-This is a restriction of the proposed wider architecture, not a decision to eliminate the OTC extension permanently.
-\end{assumption}
+The unsubscripted $D$ denotes aggregate deposits; $D_k(A)$ always denotes a liquidity deficit. To form schedules evaluate these moments at $u^0$.
 
-\begin{assumption}[Incremental private costs \Ctag]\label{ass:cost}
-Continuation cost is $pW_k+\Gamma(v_k)$ with $\Gamma(v)=gv$, where $g>p\ge0$. Reserve opportunity cost is $c(r_k+u_k)$ with $c>0$. These coefficients are fixed common primitives within each pure experiment, expressed in comparable episode units. Assistance and deferred principal remain liabilities; the criterion measures incremental private liquidity-management costs.
-\end{assumption}
-
-The criterion is maintained rather than derived from a complete terminal net-worth model. It does not say that deferred principal disappears or that public assistance is a gift. Neither $p$ nor $g$ is identified as an observed annual rate. Treating required and voluntary reserves as having a common net carrying cost is a deliberate simplification. A different remuneration or repayment specification would require a new objective, not a reinterpretation of these results.
-
-\subsection{Ex ante voluntary-buffer problem}
-\begin{assumption}[Analytical shock law \Ctag]\label{ass:law}
-The aggregate state has a finite distribution. The induced liquidity need $e_k$ has $\E|e_k|<\infty$ and a continuous CDF $F_k$. The law is independent of the bank's buffer. Conditional shock laws need not be uniform for the general analytical characterization.
-\end{assumption}
-
-The bank minimizes reserve carrying cost plus optimized expected continuation cost over~\eqref{eq:feasible}. Proposition~\ref{prop:buffer} derives its explicit objective. No cross-bank idiosyncratic independence assumption is required for these separate problems. The aggregate-state decomposition gives economic meaning to exposure; the proof uses the induced marginal distribution of $e_k$.
-
-\begin{assumption}[Finite-uniform implementation \Ctag]\label{ass:uniform}
-For closed forms, simulation, and the planned finite algebraic formalization, $\Prb(A=A_j)=w_j$, with $w_j\ge0$ and $\sum_jw_j=1$, and
-\begin{equation}\label{eq:uniform}
-\varepsilon_k\mid A=A_j\sim U[-\sigma_{kj},\sigma_{kj}],\qquad \sigma_{kj}>0.
+Effective interbank supply and demand, with their allocation fractions, are
+\begin{equation}\label{eq:market}
+\begin{gathered}
+ P(A)=\sum_k\mu_k\tau_kX_k(A),\quad Q(A)=\sum_k\mu_k\tau_kD_k(A),\\
+ \psi_k(A)=\tau_k\min\{1,P(A)/Q(A)\},\quad
+ \ell_k(A)=\tau_k\min\{1,Q(A)/P(A)\}.
+\end{gathered}
 \end{equation}
-This specialization implies Assumption~\ref{ass:law}; it is not required by the general Proposition~\ref{prop:buffer}.
-\end{assumption}
-
-\begin{assumption}[Local regularity and reserve variation \Ctag]\label{ass:regular}
-At a point $(u_0,r_0)$, the CDF has a continuous nonnegative density in open neighborhoods of the two thresholds defined below. For the reserve response, $r_0$ is interior to an admissible burden interval, $0<u_0<U(r_0)$, the interior FOC holds, and $J_{uu}(u_0,r_0)>0$. Vary $r$ locally with $U(r)=1+\epsilon_E-r>0$, holding $c,p,g,\phi,\chi,\epsilon_E,\beta$ and the shock law fixed. In the finite-uniform implementation, exclude positive-weight support endpoints at either threshold.
-\end{assumption}
-
-This local density condition is stronger than atomlessness. It is needed for a regular second-derivative and implicit-function argument, not for existence or the first-order constrained characterization. Reserve variation means variation of average burden. Its implementation through Base or a reserve rate must be stated separately.
-
-\section{Analytical results}
-\subsection{Proposition 1: eligibility-aware optimal-buffer characterization}
-Suppress the type index. Write $\overline F(t)=1-F(t)=\Prb(e>t)$ and define
-\begin{equation}\label{eq:thresholds}
-t_1(u)=u+\phi r,\qquad
-t_2(u)=\phi r+\chi U+(1-\chi)u=t_1(u)+H(u).
+These ratios apply when $P,Q>0$. If either is zero, set both fractions to zero. No trade occurs without both sides; division by zero is never used. The resulting accounting is
+\begin{equation}\label{eq:conservation}
+ \sum_k\mu_k\psi_kD_k=\sum_k\mu_k\ell_kX_k=\min\{P,Q\}.
 \end{equation}
-Thus $t_2\ge t_1$ on the feasible interval. The first threshold identifies any gross shortfall; the second identifies deferral after eligible assistance.
+For positive volumes the first total is $Q\min(1,P/Q)$ and the second is $P\min(1,Q/P)$; the zero convention handles the remaining cases. Interest transfers also cancel when both sides pay $i$. This is conservation of conditional expected amounts. It is not feasibility in every realized finite network; a network implementation or aggregation theorem requires more structure.
 
-\begin{proposition}[Eligibility-aware optimal-buffer characterization]\label{prop:buffer}
-Under Assumptions~\ref{ass:environment}--\ref{ass:law}, the continuation problem has the unique solution
-\begin{equation}\label{eq:recourse}
-W^*=\min\{q,H\},\qquad v^*=(q-H)^+.
+Common coverage is defined by
+\begin{equation}\label{eq:capacity}
+\begin{gathered}
+ F=\nu_F\rho D+R,\qquad \Delta(A)=\sum_k\mu_k(1-\psi_k(A))D_k(A),\\
+ \varphi(A)=
+ \begin{cases}\min\{1,F/\Delta(A)\},&\Delta(A)>0,\\0,&\Delta(A)=0,\end{cases}\\
+ C_k=\E_A[\varphi(A)(1-\psi_k(A))D_k(A)].
+\end{gathered}
 \end{equation}
-The ex ante problem is $\min_{u\in[0,U]}J(u)$, where
+At each reference state total coverage is $\min(F,\Delta)$, and uncovered need is $\Delta-\min(F,\Delta)$. The zero-demand convention leaves both zero. Personal reserves $\rho d_k$ are not added to $s_k$.
+
+Define $\bar C=\sum_k\mu_k C_k$. When $\bar C>0$, relative coverage per deposit is
+\begin{equation}\label{eq:incidence}
+ I_k=\frac{C_k/d_k}{\bar C/D}.
+\end{equation}
+Hence $\sum_k(\mu_kd_k/D)I_k=1$. If aggregate coverage is zero the index is undefined, not zero. Amounts and per-deposit ratios cannot be interchanged when deposits differ.
+
+Taking schedules as given, the bank solves
 \begin{equation}\label{eq:objective}
 \begin{split}
-J(u)={}&c(r+u)+p\E\pos{e-t_1(u)}\\
-&+(g-p)\E\pos{e-t_2(u)}.
+ \min_{0\leq u_k\leq\bar u_k}J_k(u_k;F)=ru_k+\E_A\bigg[
+ &i\psi_k\frac{D_k(u_k,A)}{d_k}-i\ell_k\frac{X_k(u_k,A)}{d_k}\\
+ &+\kappa(1-\varphi)(1-\psi_k)\frac{D_k(u_k,A)}{d_k}\bigg].
 \end{split}
 \end{equation}
-It is finite, continuous, and convex, and has a nonempty compact minimizer set $M$. Its first derivative is continuous, with feasible one-sided endpoint values, and
+This is expected private net cost per deposit, with lending income subtracted. It can be negative in other admissible parameterizations. There is no old asset-eligibility coefficient, deferral rule or $R_D$ proposition in this objective.
+
+\section{Private buffer choice}
+\subsection{Derivatives, curvature and optimality}
+Suppress $k$ and write $L_j=D_k(u,A_j)/d_k$, $M_j=X_k(u,A_j)/d_k$. Since $d_k>0$,
+\[
+ L_j=\E[(-\omega_k-u)^+\mid A_j],\qquad
+ M_j=\E[(\omega_k+u)^+\mid A_j].
+\]
+The pointwise identity $x^+-(-x)^+=x$ implies
+\begin{equation}\label{eq:momentidentity}
+ M_j-L_j=\E[\omega_k\mid A_j]+u.
+\end{equation}
+Let $\pi^-_j=\Prb(\omega_k+u<0\mid A_j)$ and $\pi^+_j=\Prb(\omega_k+u>0\mid A_j)$. Atomlessness gives $\pi^-_j+\pi^+_j=1$. Define frozen coefficients
+\begin{equation}\label{eq:ab}
+ a_j=i\psi_j+\kappa(1-\varphi_j)(1-\psi_j),\qquad b_j=i\ell_j .
+\end{equation}
+Then $J=ru+\sum_jw_j(a_jL_j-b_jM_j)$. Each coefficient is nonnegative; their difference need not be.
+
+\begin{proposition}[Private choice]\label{prop:choice}
+Under Assumptions~\ref{ass:units}--\ref{ass:frozen}, $J$ is finite and continuously differentiable, with one-sided derivatives at choice endpoints. A global minimizer exists, and
+\begin{equation}\label{eq:derivatives}
+ L'_j=-\pi^-_j,\quad M'_j=\pi^+_j,\qquad
+ J'=r-\sum_jw_j(a_j\pi^-_j+b_j\pi^+_j).
+\end{equation}
+An interior optimum satisfies
 \begin{equation}\label{eq:foc}
-J'(u)=c-p\overline F(t_1(u))-(g-p)(1-\chi)\overline F(t_2(u)).
+ r=\E_A[\{i\psi_k+\kappa(1-\varphi)(1-\psi_k)\}\pi_k^-+i\ell_k\pi_k^+].
 \end{equation}
-The exact constrained optimality conditions are
-\begin{equation}\label{eq:corners}
-\begin{aligned}
-0\in M&\ \Longleftrightarrow\ J'(0)\ge0,\\
-u\in M\quad(0<u<U)&\ \Longleftrightarrow\ J'(u)=0,\\
-U\in M&\ \Longleftrightarrow\ J'(U)\le0.
-\end{aligned}
-\end{equation}
-Endpoint membership does not assert that the endpoint is the only minimizer. Where the local density condition in Assumption~\ref{ass:regular} holds,
+If the density $f_j$ of $\omega_k\mid A_j$ is continuous near $-u$, then
 \begin{equation}\label{eq:curvature}
-J''(u)=pf(t_1(u))+(g-p)(1-\chi)^2f(t_2(u))\ge0.
+ J''(u)=\sum_jw_j(a_j-b_j)f_j(-u).
 \end{equation}
-An interior stationary point with strictly positive local curvature is the unique global minimizer. The strict inequalities $J'(0)>0$ or $J'(U)<0$ also give uniqueness of the respective endpoint. Otherwise uniqueness is not asserted; nonunique minima can occur. Uniformity in Assumption~\ref{ass:uniform} is unnecessary for these general claims.
+A sufficient condition for global convexity is $a_j\geq b_j$ in every positive-weight state. Whenever $J$ is convex, $0$ is optimal iff $J'(0)\geq0$, an interior point is optimal iff $J'=0$, and $\bar u$ is optimal iff $J'(\bar u)\leq0$. A strict endpoint inequality implies uniqueness. A stationary interior point with $J''>0$ is the unique global optimum if $J$ is convex. Without convexity these first-order conditions are only necessary.
 \end{proposition}
 
 \begin{proof}
-\emph{Continuation and positive-part reduction.}
-For feasible $q,H\ge0$, substitute $v=q-W$ into the continuation cost:
-\[
-pW+g(q-W)=gq-(g-p)W.
-\]
-Since $g-p>0$, this cost is strictly decreasing over the nonempty feasible interval $[0,\min(q,H)]$. Its unique minimizing assistance is its upper endpoint. The associated deferral is $q-\min(q,H)=(q-H)^+$, proving~\eqref{eq:recourse}, including $q=0$ or $H=0$.
+The two positive-part functions are 1-Lipschitz in $u$. Their difference quotients are bounded by one. Outside the zero-probability event $\omega=-u$, their derivatives are respectively $-\mathbf1_{\{\omega+u<0\}}$ and $\mathbf1_{\{\omega+u>0\}}$. Dominated convergence proves the moment derivatives. Atomlessness makes these probabilities continuous. Finite first moments ensure finite cost; continuity on a compact interval gives a minimizer. Differentiating the frozen finite sum proves $J'$ and the necessary interior FOC.
 
-For $H\ge0$, $(a^+-H)^+=(a-H)^+$. If $a\le0$, both sides are zero; if $a>0$, replace $a^+$ by $a$. Applying this identity with $a=e-u-\phi r$ gives
-\begin{align*}
-v^*&=\pos{e-u-\phi r-\chi(U-u)}\\
-&=\pos{e-\phi r-\chi U-(1-\chi)u}=\pos{e-t_2(u)}.
-\end{align*}
-Also $q=\pos{e-t_1(u)}$ and $W=q-v$. Therefore
-\[
-pW+gv=p(q-v)+gv=pq+(g-p)v.
-\]
-Adding carrying cost and taking expectations proves~\eqref{eq:objective}. The reduction relies on $H\ge0$, which follows from feasibility.
+Where densities are continuous, $(\pi^-_j)'=-f_j(-u)$ and $(\pi^+_j)'=f_j(-u)$, giving the curvature formula. This is a local statement and does not assert a second derivative at a uniform-support endpoint.
 
-\emph{Finiteness, continuity, convexity, and existence.}
-Define $L(t)=\E\pos{e-t}$. The bound $(e-t)^+\le|e|+|t|$ ensures finiteness. Moreover,
-\[
-|(e-t)^+-(e-s)^+|\le|t-s|,
-\]
-so $L$ is Lipschitz and hence continuous. For each realization of $e$, the positive part of an affine function of $u$ is convex. Expectations and nonnegative weighted sums preserve convexity. Since $p\ge0$, $g-p>0$, and carrying cost is affine, $J$ is convex and continuous. The interval $[0,U]$ is nonempty and compact. The extreme-value theorem gives existence; continuity makes the minimizer set closed, and convexity makes it convex. It is consequently a nonempty compact interval, possibly a singleton.
-
-\emph{First and second derivatives.}
-For $h\ne0$, the absolute difference quotient of $(e-t)^+$ with respect to $t$ is at most one. Its limit is $-\mathbf1_{\{e>t\}}$ unless $e=t$. Atomlessness gives $\Prb(e=t)=0$. Dominated convergence therefore yields
-\[
-L'(t)=-\Prb(e>t)=-\overline F(t).
-\]
-The CDF is continuous, so this derivative is continuous. As $t_{1,u}=1$ and $t_{2,u}=1-\chi$, the chain rule gives~\eqref{eq:foc}. At feasible endpoints the same calculation gives the appropriate one-sided derivative. Where $F$ has the local continuous density specified in Assumption~\ref{ass:regular}, differentiating $\overline F(t_i)$ gives $-f(t_i)t_{i,u}$, which proves~\eqref{eq:curvature}. No derivative of a density is required.
-
-\emph{Constrained optimality.}
-For differentiable convex $J$, a feasible point minimizes cost exactly when
-\begin{equation}\label{eq:variational}
-J'(u^*)(z-u^*)\ge0\qquad\text{for every }z\in[0,U].
+For global convexity, use \eqref{eq:momentidentity} to obtain
+\begin{equation}\label{eq:convexdecomposition}
+ J(u)=\left(r-\sum_jw_jb_j\right)u+
+ \sum_jw_j(a_j-b_j)L_j(u)-\sum_jw_jb_j\E[\omega_k\mid A_j].
 \end{equation}
-Sufficiency follows from the convex tangent inequality. Necessity follows by taking feasible directional difference quotients at a minimum. At zero all feasible directions are nonnegative, giving $J'(0)\ge0$. At $U$ they are nonpositive, giving $J'(U)\le0$. At an interior point both signs of direction are feasible, forcing $J'(u^*)=0$. Conversely each listed condition implies~\eqref{eq:variational}. These are exactly~\eqref{eq:corners}.
+Every $L_j$ is convex as an expectation of a maximum of affine functions. Nonnegative weights prove convexity without global density smoothness. This sufficient condition need not be necessary because state curvatures can offset.
 
-\emph{Sufficient uniqueness.}
-If two distinct points minimize a convex function, convexity and minimality make it constant on their connecting segment. At an interior stationary point with locally continuous positive curvature, the derivative crosses zero strictly in a neighborhood, excluding such a segment. This proves unique global optimality. If $J'(0)>0$, the convex tangent inequality gives $J(z)>J(0)$ for every $z>0$; if $J'(U)<0$, it gives $J(z)>J(U)$ for every $z<U$. Non-strict endpoint inequalities alone do not decide uniqueness.
+A differentiable convex function satisfies $J(y)\geq J(x)+J'(x)(y-x)$. The condition $J'(x)(y-x)\geq0$ for every feasible $y$ is sufficient, and directional derivatives show necessity. This gives all endpoint and interior conditions. Strict endpoint inequalities make the supporting bound strict elsewhere. Two distinct minimizers of a convex function force the intervening segment to minimize; positive local curvature at an interior minimizer excludes such a segment. Thus the claimed uniqueness follows. In a nonconvex problem only directional necessity survives.
 \end{proof}
 
-The interior FOC is not a recommendation to discard constraints. The equivalent KKT system is
-\begin{equation}\label{eq:kkt}
-J'(u)-\mu_0+\mu_U=0,\quad
-\mu_0,\mu_U\ge0,\quad
-\mu_0u=0,\quad\mu_U(U-u)=0.
+The FOC balances carrying cost against two gains. In deficit realizations the buffer avoids prescribed borrowing costs and uncovered-need penalties. In surplus realizations it adds lending income. Deposit normalization matters: the amount derivatives are $\partial_uD_k=-d_k\pi_k^-$ and $\partial_uX_k=d_k\pi_k^+$, while normalized derivatives omit $d_k$. The program checks unequal deposits. The student also records this distinction and a numerical human unit check in handwritten manuscript 02, pp.~1--2; Appendix~\ref{app:human} distinguishes that evidence from program verification.
+
+\subsection{Nonconvexity, corners and global solution}
+Even $\kappa>i$ does not ensure convexity. With full coverage $a_j-b_j=i(\psi_j-\ell_j)$, which can be negative. Lending income is subtracted from cost and contributes negative curvature.
+
+For an explicit counterexample use the type~1 baseline schedules in Section~\ref{sec:numerics}, freeze them, and set $F=10$. Both states are fully covered. In the adverse state $\psi_1=0.041202615$ and $\ell_1=0.65$. At $u=0.65$ its density is one and the normal-state density at $-u$ is zero. Consequently
+\[
+ J''(0.65)=0.4(0.015)(0.041202615-0.65)=-0.0036527843<0.
+\]
+All signs remain admissible, including $\kappa=0.25>i=0.015$. This refutes automatic convexity, not convexity of the actual baseline at $F=0.015$.
+
+Under finite conditional uniforms, support knots partition the domain into quadratic regions. Evaluating every boundary and interior stationary point, and retaining flat minimizing intervals, solves the global problem even without convexity; Appendix~\ref{app:uniform} proves completeness. The test fixtures include a lower corner at high $r$, an upper corner at $r=0$, and a flat nonunique objective with $r=i=0$ and full coverage. A selected endpoint of a flat interval must not be described as a unique solution.
+
+\section{Conditional response to capacity}
+This comparison changes $F$ with $\psi,\ell,\Delta$ and conditional laws fixed. Increasing $R$ gives the same derivative only when $\nu_F,\rho,D$ remain fixed.
+
+\begin{assumption}[Regular local capacity experiment]\label{ass:regular}
+At $(u_0,F_0)$, $F_0>0$, $u_0\in(0,\bar u)$, and $J_u(u_0,F_0)=0$. For each positive-weight state with $\Delta_j>0$, $F_0\ne\Delta_j$. Conditional densities are continuous near $-u_0$. Costs, schedules $\psi_j,\ell_j,\Delta_j$, probabilities, conditional laws and domain stay fixed across capacity values. Finally $J_{uu}(u_0,F_0)>0$.
+\end{assumption}
+The assumption does not posit a differentiable optimizer or encode the comparative-static equation. Positive curvature is a local regularity condition; global convexity is not required for the local result.
+
+\begin{proposition}[Conditional capacity response]\label{prop:capacity}
+Under Assumptions~\ref{ass:units}--\ref{ass:frozen} and \ref{ass:regular}, a continuously differentiable branch $u(F)$ of strict interior local minima exists near $F_0$, through $u_0$. Its derivative is
+\begin{equation}\label{eq:capacityderivative}
+ \frac{du}{dF}=
+ -\frac{\displaystyle\kappa\sum_{\{j:\,0<F<\Delta_j\}}
+  w_j(1-\psi_j)\pi^-_j(u)/\Delta_j}{J_{uu}(u,F)}
+ \leq0.
 \end{equation}
-At an interior solution both multipliers vanish. At zero, $\mu_0=J'(0)$; at $U$, $\mu_U=-J'(U)$. This also checks the signs in~\eqref{eq:corners}.
-
-In economic terms the first probability in~\eqref{eq:foc} values gross-shortfall reduction at the public unit cost $p$. It does not mean every shortfall unit is publicly funded. The second probability adds the deferral premium where eligibility is exhausted. In a deferral realization, $q_u=-1$ but $H_u=-\chi$, so $v_u=-(1-\chi)$ and $W_u=-\chi$. Another buffer unit replaces $\chi$ units of assistance and $1-\chi$ units of deferral. The saving is $p\chi+g(1-\chi)$, which equals $p+(g-p)(1-\chi)$.
-
-Positive shortfall probability does not ensure curvature: if both thresholds remain below the shock support, the expected shortfalls are affine and local curvature is zero. Flat minima are possible if marginal carrying cost exactly equals the constant marginal saving. In the existing verification fixture with $A=3$, uniform width $0.1$, $\chi=0$, $c=g=0.4$, and other baseline settings, all $u\in[0,0.9]$ minimize cost. This fixture checks nonuniqueness; it is not a representative banking scenario. Nor does a zero endpoint derivative necessarily imply nonuniqueness.
-
-\subsection{Proposition 2: conditional reserve-burden response}
-Write $U(r)=1+\epsilon_E-r$ and regard $J$ as a function of $(u,r)$. A change in $r$ is an average-burden comparison with the listed primitives fixed. It is not a claim about endogenous deposits or the full statutory rule.
-
-\begin{proposition}[Local conditional reserve-burden response]\label{prop:reserve}
-Under Assumptions~\ref{ass:environment}--\ref{ass:law} and~\ref{ass:regular}, let $(u_0,r_0)$ satisfy the regular interior conditions. There is a neighborhood of $r_0$ with a continuously differentiable, feasible interior optimal choice $u^*(r)$, unique there as a global minimizer, and
-\begin{equation}\label{eq:response}
-\frac{du^*}{dr}
-=-\frac{p\phi f(t_1)+(g-p)(1-\chi)(\phi-\chi)f(t_2)}
-{pf(t_1)+(g-p)(1-\chi)^2f(t_2)}.
-\end{equation}
-All thresholds are evaluated at $(u^*(r),r)$. If $\phi\ge\chi$, the response is weakly negative; strict negativity requires a strictly positive numerator. If $\phi<\chi$, the sign is generally ambiguous. The claim excludes corners, nonunique optima, zero curvature, and unsupported density-boundary evaluations. It does not extend to endogenous shock laws or OTC/search/matching/pricing feedback, and has no welfare or optimal-policy interpretation.
+The inequality is strict iff a positive-probability state has $0<F<\Delta_j$, $\psi_j<1$ and $\pi^-_j(u)>0$. Otherwise the derivative is zero. If $u_0$ is additionally the unique global minimizer at $F_0$, the branch is the unique global best response for sufficiently nearby $F$. The two-sided formula is not asserted at zero capacity, coverage kinks, corners or nonunique optima.
 \end{proposition}
 
 \begin{proof}
-Let $G(u,r)=J_u(u,r)$. By Proposition~\ref{prop:buffer}, the interior optimality equation is
-\begin{equation}\label{eq:G}
-G(u^*(r),r)=c-p\overline F(t_1)-(g-p)(1-\chi)\overline F(t_2)=0.
-\end{equation}
-The relevant partial derivatives of the feasible bound and thresholds are
-\begin{equation}\label{eq:threshold-partials}
-U_r=-1,\quad t_{1,r}=\phi,\quad t_{2,r}=\phi-\chi,
-\quad t_{1,u}=1,\quad t_{2,u}=1-\chi.
-\end{equation}
-In particular, $t_{2,r}=\phi+\chi U_r=\phi-\chi$; ignoring the balance-sheet dependence of eligibility would miss this term. Since the distribution is fixed and $\overline F'=-f$ locally,
-\begin{align}
-G_u&=pf(t_1)+(g-p)(1-\chi)^2f(t_2)=J_{uu}>0,
-\label{eq:Gu}\\
-G_r&=p\phi f(t_1)+(g-p)(1-\chi)(\phi-\chi)f(t_2).
-\label{eq:Gr}
-\end{align}
-Although carrying cost includes $cr$, its derivative with respect to $u$ is the fixed constant $c$, so it contributes no additional term to $G_r$.
-
-The continuous-density assumption makes $G$ continuously differentiable in an open neighborhood of the interior point. Equation~\eqref{eq:Gu} allows the implicit-function theorem to produce a continuously differentiable local root. Shrink the neighborhood so that $0<u^*(r)<U(r)$ and positive curvature persist. Convexity and the sufficient uniqueness part of Proposition~\ref{prop:buffer} then make this root the unique global minimizer locally in $r$.
-
-Differentiate~\eqref{eq:G} along the root:
+For each $\Delta_j>0$, the strict inequality $F_0\ne\Delta_j$ fixes its rationing status locally. Finitely many states permit a common capacity neighborhood excluding all kinks and keeping $F>0$. In it,
 \[
-0=G_u\frac{du^*}{dr}+G_r.
+ \partial_F\varphi_j=
+ \begin{cases}1/\Delta_j,&0<F<\Delta_j,\\0,&F>\Delta_j,\end{cases}
 \]
-Division by $G_u>0$ gives~\eqref{eq:response}. If $\phi\ge\chi$, both terms in~\eqref{eq:Gr} are nonnegative, establishing the weak sign and its strictness qualification. If $\phi<\chi$, the numerator instead is
+and the derivative is zero for $\Delta_j=0$ by convention. There is no division by zero. Let $G(u,F)=J_u(u,F)$. Continuous local densities make $G$ continuously differentiable near $(u_0,F_0)$, with
 \[
-\underbrace{p\phi f(t_1)}_{\ge0}
--\underbrace{(g-p)(1-\chi)(\chi-\phi)f(t_2)}_{\ge0}.
+ G_u=J_{uu}>0,\qquad
+ G_F=\kappa\sum_{\{j:\,0<F<\Delta_j\}}w_j(1-\psi_j)\pi^-_j(u)/\Delta_j\geq0.
 \]
-The assumptions impose no universal ordering between these quantities. A positive first term with $f(t_2)=0$ gives a negative response; a positive second term with a zero first term gives a positive response. Their equality gives zero. These density configurations are compatible with the maintained shock class.
+The IFT constructs a unique local continuously differentiable solution of $G(u(F),F)=0$. It stays interior and has positive curvature locally, hence is a strict local minimum. Differentiating this constructed identity gives $u_F=-G_F/G_u$. Nonnegative numerator terms imply the exact strictness condition.
+
+For the global claim suppose $u_0$ is the unique global minimizer at $F_0$. Choose a small closed interval around it on which $J_{uu}>0$ in a capacity neighborhood. Outside its interior, compactness and uniqueness give a positive objective gap relative to $J(u_0,F_0)$. Joint continuity on a compact neighborhood preserves that gap under sufficiently small capacity changes. Every global minimizer is therefore localized in the small interval. There strict convexity and the stationary branch imply that the minimum is unique and equals $u(F)$. This proves local continuation of the global solution without assuming a differentiable optimizer or an aggregate equilibrium.
 \end{proof}
 
-Usable required reserves substitute for voluntary liquidity through the first threshold. They also displace earning assets and hence reduce eligibility. The severe-shortfall threshold rises with burden only if usability exceeds that eligibility displacement. At $\phi=\chi$ the second channel cancels, but the first can still give a strictly negative response when $p\phi f(t_1)>0$.
+More capacity reduces the penalty on residual deficits and therefore the marginal benefit of self-insurance. Lending income remains in the FOC and denominator. Positive curvature prevents using the formula at a maximum or dividing by zero. Complete saturation of relevant states yields zero, not a strictly negative response.
 
-The statement is local for substantive reasons. A larger change can move the optimum to a constraint or change the active support regions. For uniform mixtures, $J$ is globally $C^1$ but generally not globally $C^2$. At a support knot the theorem is not applied; a separate one-sided or case analysis would be necessary. The result also changes if prices, eligibility coefficients, usability, equity, or the shock law move with $r$. A Base comparison must additionally use the relevant branch of~\eqref{eq:reserve}; the kink at $B=d$ is not a regular two-sided Base derivative.
+At a coverage kink the one-sided slopes may differ; no ordinary two-sided derivative is guaranteed. At uniform-support knots the density-based second derivative may fail. A strict corner may persist with zero response, while a global optimizer can switch in a nonconvex problem. These cases are outside the proposition's formula.
 
-\section[Numerical illustrations and heterogeneous private-cost incidence]{Numerical illustrations and heterogeneous\\private-cost incidence}
-\subsection*{Constructed parameters and reproducibility}
-Only existing Phase~1 outputs are used. The code checkpoint is \texttt{7406387}; it is not a paper-formalization checkpoint. Table~\ref{tab:parameters} lists all baseline economic inputs. Expectations use exact uniform positive-part formulas and deterministic finite-state sums. Independent midpoint integration and objective-only grid comparisons check these calculations. There is no primary Monte Carlo calculation.
+If a positive mass of banks adjusts, $P,Q,\psi,\ell,\Delta$ generally change, adding feedback terms with no sign established here. A change in $\rho$ can also alter economic primitives beyond capacity. This is not a reserve-policy, aggregate-incidence or general-equilibrium theorem.
+
+\section{Constructed numerical illustrations}\label{sec:numerics}
+\subsection{Design and reference schedules}
+All illustrations use existing outputs in \texttt{code/output/post\_marco/}. Conditional idiosyncratic flows are uniform on $[-0.5,0.5]$ in both states and types. Aggregate $A=-0.4$ has probability $0.4$; $A=0$ has probability $0.6$. Finite states, uniform shocks and the compact choice cap are course restrictions. All numerical values are constructed; no parameters are estimates for Peru.
 
 \begin{table}[htbp]
-\centering\small
-\caption{Illustrative constructed baseline parameters, not estimates for Peruvian banks. Symbols and architecture do not imply advisor approval.}\label{tab:parameters}
-\begin{tabular}{@{}P{.18\linewidth}P{.18\linewidth}P{.58\linewidth}@{}}
-\toprule Input & Value & Interpretation and comparison\\\midrule
-$c$ & $0.035$ & Common opportunity cost of required and voluntary reserves\\
-$p,g$ & $0.04,0.40$ & Public funding cost and linear deferral penalty\\
-$\phi,\chi$ & $0.50,0.20$ & Common usability and eligibility coefficients\\
-$\epsilon_E$ & $0.10$ & Common equity per deposit\\
-$d_k,B_k$ & $1.00,0.60$ & Fixed deposits and historical Base\\
-$\tau_k^B,\rho_m$ & $0.10,0.35$ & Common baseline reserve rates\\
-$\beta_1,\beta_2$ & $1.00,1.35$ & Exposure difference in the baseline cost figure\\
-$A_j$ & $0,0.45$ & Normal and adverse aggregate states\\
-$w_j$ & $0.70,0.30$ & Corresponding state probabilities\\
-$\sigma_{kj}$ & $0.20$ & Conditional uniform support half-width in every state\\
+\centering
+\caption{Constructed primitives and reference population}\label{tab:params}
+\begin{tabular}{lccc}
+\toprule
+Object & Type 1 & Type 2 & Interpretation\\
+\midrule
+$\mu_k$ & 0.6 & 0.4 & Population mass\\
+$d_k$ & 1.0 & 1.6 & Deposits per bank\\
+$\beta_k$ & 0.8 & 1.2 & Signed-flow exposure\\
+$\tau_k$ & 0.65 & 0.8 & Prescribed access\\
+$\bar u_k$ & 0.8 & 0.8 & Course choice cap\\
+$u_k^0$ & 0.1 & 0.1 & Reference buffer\\
+\midrule
+$r,\ i,\ \kappa$ & \multicolumn{2}{c}{0.045,\ 0.015,\ 0.25} & Private unit costs\\
+$\rho,\ \nu_F,\ R$ & \multicolumn{2}{c}{0.1,\ 0.05,\ 0.0088} & Capacity inputs\\
+$D,\ F$ & \multicolumn{2}{c}{1.24,\ 0.015} & Aggregate amounts\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The coefficients are in comparable episode units, not estimated annual rates. The large deferral premium $g-p=0.36$ makes severe shortfalls important. A larger $\beta$ raises adverse-state needs and the unconditional mean, so the exposure comparison is not a mean-preserving spread. No claim of robustness to every cost, shock, or equity choice is made.
+At the reference profile, $(P,Q,\Delta)=(0.0189744,0.2993344,0.3843536)$ in the adverse state and $(0.16236,0.07216,0.02704)$ in the normal state. Baseline coverage fractions are $0.03902656$ and $0.55473373$. In the adverse state $\psi=(0.041202615,0.050710911)$ and $\ell=(0.65,0.8)$; in the normal state $\psi=(0.65,0.8)$ and $\ell=(0.288888889,0.355555556)$.
 
-\subsection*{Baseline buffers and the private trade-off}
-Table~\ref{tab:outcomes} and Figure~\ref{fig:cost} show unique interior optima for the two baseline exposure types. Normal-state needs are fully absorbed at both optima. More exposed Type~2 chooses more liquidity, reduces its earning asset, and faces a smaller eligibility limit. It consequently uses less expected public assistance even though exposure is higher; expected deferral is slightly higher. Funding usage cannot be inferred from exposure alone without accounting for the endogenous portfolio.
+These schedules are not recomputed at the individual optima. Deterministic closed forms compute expectations. Independent midpoint integration, finite differences and dense grids check them. The optimizer enumerates all support intervals; positive curvature at one point is not treated as proof of global convexity.
 
+\subsection{Baseline optima}
 \begin{table}[htbp]
-\centering\small
-\caption{Baseline outcomes under illustrative constructed parameters, not estimates for Peruvian banks. All quantities are per deposit. Source: existing \texttt{buffer\_type\_optima.csv}.}\label{tab:outcomes}
-\begin{tabular}{@{}lrr@{}}
-\toprule Outcome & Type 1 & Type 2\\\midrule
-Required-reserve burden $r_k$ & 0.200000 & 0.200000\\
-Feasible upper bound $U_k$ & 0.900000 & 0.900000\\
-Voluntary buffer $u_k^*$ & 0.302860 & 0.493910\\
-Earning asset $b_k/d_k$ & 0.597140 & 0.406090\\
-Expected assistance $\E W_k$ & 0.016788 & 0.010537\\
-Expected deferral $\E v_k$ & 0.006116 & 0.006571\\
-Expected private cost $J_k^*$ & 0.020718 & 0.027337\\
-Classification & Unique interior & Unique interior\\
+\centering
+\caption{Conditional optima, per deposit unless indicated}\label{tab:optima}
+\begin{tabular}{lrr}
+\toprule
+Quantity & Type 1 & Type 2\\
+\midrule
+$u_k^*$ & 0.411523 & 0.553381\\
+Buffer amount $d_ku_k^*$ & 0.411523 & 0.885409\\
+Expected deficit $L$ & 0.035719 & 0.036401\\
+Expected surplus $M$ & 0.319242 & 0.397782\\
+Opportunity cost $ru$ & 0.018519 & 0.024902\\
+Borrowing cost & 0.000044 & 0.000028\\
+Lending income (subtracted) & 0.001762 & 0.002560\\
+Coverage forecast per deposit & 0.001705 & 0.001349\\
+Uncovered need per deposit & 0.031113 & 0.033206\\
+Expected private net cost $J$ & 0.024578 & 0.030672\\
+Local response $du^*/dF$ & $-2.377540$ & $-1.214916$\\
+Classification & Interior, unique & Interior, unique\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-These are quantitatively large voluntary buffers: about 30 and 49 percent of deposits. Including required reserves, total reserves are about 50 and 69 percent. This feature must remain visible; the constructed shock magnitudes and costs were not selected to match observed banks. The baseline private-cost difference is $0.006618506$ per deposit. Reserve carrying costs account for most of that difference, rather than higher assistance usage.
+Both baseline objectives pass the interval convexity check, with positive curvature at their minima. Type~2 has greater adverse exposure and different access, so the baseline comparison cannot isolate either mechanism. Its larger normalized buffer entails greater opportunity cost, and its private net cost exceeds type~1's by about $0.006094$ per deposit. This is heterogeneous private-cost incidence in the constructed conditional comparison, not a subsidy, transfer or welfare loss.
+
+Coverage forecasts in Table~\ref{tab:optima} are individual expectations under frozen schedules. Aggregating them at the two optima would not describe a consistent population allocation. Actual population incidence below is calculated separately at $u^0=(0.1,0.1)$. The type labels do not automatically mean small versus large banks.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=.86\linewidth]{../code/figures/buffer_cost.png}
-\caption{Private cost against the chosen buffer for the two exposure types; dots identify optima. Illustrative constructed parameters, not estimates for Peruvian banks. This illustrates Proposition~\ref{prop:buffer}, not universal interiority. Above $u=0.7075$ both types have no shortfall and their costs coincide. The vertical axis is truncated.}\label{fig:cost}
+\includegraphics[width=0.86\linewidth]{../code/figures/post_marco/cost_and_optima.png}
+\caption{Private cost $J(u)$ against buffer $u$, with conditional minima marked. The vertical range is truncated. Constructed parameters and fixed reference schedules.}\label{fig:cost}
 \end{figure}
+Figure~\ref{fig:cost} illustrates global choice. Uniform-support regions change slopes without discontinuity in $J$. Type~2's normal-state deficit vanishes above $u=0.5$. The graph does not establish convexity or uniqueness for other parameters. Both minima lie below the maintained, uncalibrated cap of $0.8$; the large ratios illustrate a mechanism rather than observed portfolios.
 
-\subsection*{Usability and the reserve response}
-Figure~\ref{fig:usability} varies $r$ from $0.04$ to $0.44$ for Type~1 with $\chi=0.2$, using $\phi=0.6,0.2,0$. The helper realizes each burden through $B=d=1$ and $\tau^B=r$; this is an abstract burden path, not a sweep of the marginal rate. Other primitives and the shock law stay fixed. At $r=0.2$, the respective buffers are $0.278600$, $0.375641$, and $0.424162$, with local slopes $-0.514793$, $-0.029586$, and $+0.213018$.
-
-Every saved point in these three panels is interior and remains in the same support configuration, producing straight lines. The equality case $\phi=\chi$ is not flat because the ordinary-shortfall channel remains. The positive response at $\phi=0$ illustrates eligibility displacement without immediate usable-reserve protection. It does not prove a positive response for every $\phi<\chi$ case. The three panels share a vertical scale, but their levels depend on the constructed parameter choices.
+\subsection{Capacity and exposure}
+The capacity sweep uses 45 values from $F=0.007$ to $0.024$. Since $\nu_F\rho D=0.0062$, this corresponds to $R$ from $0.0008$ to $0.0178$. Both reference residual demands exceed the grid, so all displayed states remain rationed. Schedules and flow laws are fixed.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\linewidth]{../code/figures/buffer_reserve_usability.png}
-\caption{Optimal buffer against average reserve burden for three fixed usability values. Illustrative constructed parameters, not estimates for Peruvian banks. The figure illustrates the conditional sign in Proposition~\ref{prop:reserve}; it is neither an estimate of reserve-policy effects nor an equilibrium result. All plotted solutions are unique and interior.}\label{fig:usability}
+\includegraphics[width=0.86\linewidth]{../code/figures/post_marco/capacity_response.png}
+\caption{Conditional optimal buffers against capacity $F$. Type~1 decreases from 0.428029 to 0.385701; type~2 from 0.562884 to 0.542159. The vertical range is truncated. This is not an equilibrium path.}\label{fig:capacity}
 \end{figure}
+Every displayed optimum is regular and interior; both responses are negative as Proposition~\ref{prop:capacity} predicts. The derivatives in Table~\ref{tab:optima} are per unit of aggregate capacity, not elasticities or responses to percentage reserve ratios. The normal state saturates at $F=0.02704$, beyond the plot; no formula is extrapolated through that kink.
 
-\subsection*{Regulatory counterfactuals and private-cost incidence}
-Figure~\ref{fig:regulation} isolates regulatory treatment. Both types now have $\beta=1$; Type~1 retains $B=0.6$, $\tau^B=0.1$. Type~2 varies only Base in one experiment and only Base rate in the other, with deposits fixed. The label Type~2 therefore identifies a different isolated counterfactual from Figure~\ref{fig:cost}; it is not a permanently calibrated bank.
-
-Raising Base from $0.1$ to $1$, with $\tau^B=0.1<\rho_m=0.35$, lowers burden from $0.325$ to $0.1$. The buffer rises from $0.253674$ to $0.342209$ and private cost falls from $0.023340$ to $0.018625$. Further Base increases to $1.2$ do nothing because all deposits are below Base. That flat segment is a reserve-rule feature, not an indifferent buffer choice or a buffer corner.
-
-Raising Base rate from $0.02$ to $0.40$ at $B=0.6$ instead increases burden from $0.152$ to $0.38$. Buffers fall from $0.321748$ to $0.232032$, while earning assets fall from $0.626252$ to $0.487968$. Expected assistance falls from $0.017813$ to $0.013115$, expected deferral rises from $0.006049$ to $0.006374$, and private cost rises from $0.019713$ to $0.024495$. Lower voluntary buffers do not fully offset the higher required reserves. Reduced eligibility can worsen severe remaining needs even while usable reserves reduce gross shortfall.
+The exposure experiment varies only a deviating type~2 bank's $\beta$ over 41 points from $0.6$ to $1.6$. Schedules originally formed with population $\beta_2=1.2$ remain fixed. Type~1 is unchanged. Because $A$ is adverse or zero here, higher $\beta$ worsens flows in the adverse state; this is not a mean-preserving risk increase.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\linewidth]{../code/figures/buffer_regulation.png}
-\caption{Pure Base and Base-rate comparisons at fixed deposits. Upper panels show buffers; lower panels show $J_2^*-J_1^*$. Illustrative constructed parameters, not estimates for Peruvian banks or a legally validated policy range. Panel scales differ. The Base plateau follows the reserve rule. The figure concerns private-cost incidence, not welfare, subsidies, or fiscal cost.}\label{fig:regulation}
+\includegraphics[width=0.86\linewidth]{../code/figures/post_marco/exposure_response.png}
+\caption{Individual exposure counterfactual against the deviating type~2 bank's $\beta$. Its buffer rises from 0.344502 to 0.713381; type~1 stays at 0.411523. The vertical range is truncated. Access and reference schedules remain fixed.}\label{fig:exposure}
 \end{figure}
+The monotone pattern is a numerical result on the implemented grid, not a theorem for arbitrary signed states or laws. It separates this exposure margin from access, unlike the baseline type comparison. It does not show how population-wide exposure changes would affect matching or coverage.
 
-Define heterogeneous private-cost incidence precisely as
-\begin{equation}\label{eq:incidence}
-\Delta J=\min_{[0,U_2]}J_2-\min_{[0,U_1]}J_1
+\section{Conservation and relative incidence}
+At any supplied feasible reference profile, equations~\eqref{eq:conservation} and \eqref{eq:capacity} give exact accounting. Relative incidence compares allocated coverage per deposit; it does not account for funding the facility, repayments, losses or utility.
+
+Let $B=\{j:\Delta_j>0\}$ and $p_B=\sum_{j\in B}w_j>0$. With the reference profile and allocations fixed, suppose $0<F<\min_{j\in B}\Delta_j$. Substituting proportional rationing gives
+\begin{equation}\label{eq:fixedincidence}
+ C_k(F)=F\sum_{j\in B}w_j\frac{(1-\psi_{kj})D_{kj}}{\Delta_j},
+ \qquad \bar C(F)=Fp_B.
 \end{equation}
-under a stated pair of counterfactuals. In the Base experiment this gap ranges from $+0.002622$ to $-0.002093$; in the Base-rate experiment it ranges from $-0.001005$ to $+0.003777$. Zero crossings identify equality with the fixed reference type, not a transfer between banks. A reserve-induced change in an exposure gap would require comparing that gap across reserve regimes; the single baseline exposure gap does not identify it.
+The second identity follows by summing and using the definition of $\Delta_j$. Capacity cancels from $I_k$. If any state has zero residual demand, expected aggregate coverage is $Fp_B$, not always $F$. Saturation can break the scaling; at $F=0$ the index is undefined.
 
-These differences are not subsidies, net transfers, welfare losses, fiscal costs, or empirical causal effects. There is no financing or loss-allocation rule for a public insurance pool and no social objective. The numerical reserve ranges also need not satisfy all omitted provisions of the actual circular. In particular, the low-rate and high-average-burden tails are mathematical stress comparisons, not recommended or asserted legal positions.
+In the stored example $p_B=1$. At $u^0$ every capacity point gives
+\[
+ I_1=1.091124245,\qquad I_2=0.914571020.
+\]
+Their deposit weights $0.6/1.24$ and $0.64/1.24$ yield a weighted mean of one. Type~1 receives above-average coverage per deposit at that profile. Absolute coverage increases with capacity; the relative index is constant because all deficit states scale proportionally. This is not an endogenous-buffer incidence theorem or an equitable-net-benefit finding.
 
-\section{Provisional OTC/interbank extension and limitations}
-The broader joint V5.1 proposal includes a provisional OTC, uncollateralized interbank market with heterogeneous access and bilateral Nash pricing. Access is represented by a ticket $a_k=1-e^{-\lambda_k}$, which is not effective funding probability. The analytical core sets this module aside while the search participation rule, lender outside option, effective matching, loan quantities, and Nash bargaining object await advisor validation or explicit closure. The present propositions must not be attached to that unresolved extension.
+\section{Verification and limitations}
+The single verification entry point groups 99 checks: 28 for October, 38 for the historical November~4 direct-support model, and 33 for the current post-Marco benchmark. Only the last group directly tests this implementation. The total is not 99 proofs of the new propositions. Appendix~\ref{app:verification} gives methods and discrepancies.
 
-A consistent extension would replace the direct-support continuation value with a value including both sides of each trade. Borrower gains must be compared with direct assistance and deferral, including failed search. Lender participation needs an outside option and incremental cost. Each realized loan must obey available surplus and borrower-need bounds, with equal monetary amounts lent and received under consistent population weights. Pricing cannot replace quantity conservation. Uncollateralized repayment assumptions also need to be stated before a negotiated payment is interpreted.
+The proofs establish conditional mathematical results. Symbolic identities and independent integration, differences and grids support implementation consistency; finite tests cannot prove an unrestricted claim. Simulations have no empirical identification. Existing Lean declarations concern an older paper, not the new propositions (Appendix~\ref{app:lean}). Four corrected handwritten manuscripts record student derivations; their reconciled scope is assessed in Appendix~\ref{app:human}.
 
-The public continuation cost derived here remains a useful outside option for that extension. However, a buffer would then also change borrower need, lender surplus, participation, matching, negotiated quantities, or prices. Those effects are absent from~\eqref{eq:foc} and~\eqref{eq:response}. There is no completed OTC simulation or equilibrium result in this draft. One currency at a time similarly avoids pretending that simultaneous currency markets are isolated without addressing conversion.
+Participation remains imposed. Borrowers are not shown to prefer interbank finance to free common support, and lenders are not shown to prefer lending to retaining surplus. Outside options, priority, search, matching quantities and bilateral Nash terms require further work. Free public coverage makes those choices particularly consequential. The current allocations are not an incentive-compatible OTC equilibrium.
 
-Further limitations are substantive. Deposits and the shock law are exogenous; the earning asset is residual rather than chosen through a full credit-demand problem. The reserve rule omits regulatory components. Usability is a provisional episode parameter, eligibility is reduced-form, and the linear deferral penalty limits the continuation problem's richness. Costs are private and incremental, not a full terminal solvency or welfare account. The large constructed buffers are not calibration evidence. No theorem of optimal reserve design, fiscal saving, redistribution, or empirical Peruvian incidence follows.
+Expected-amount conservation does not solve aggregate buffer consistency. A fixed point would recompute schedules from population choices and check those choices against the schedules, addressing existence and multiplicity. The individual IFT does none of this. Aggregate responses can add feedback terms that overturn its conditional sign.
+
+The fraction $\nu_F$ and backing $R$ are capacity primitives. Financing and social costs are not consolidated, and no optimal policy is chosen. NU, the zero public fee and the inability to reuse personal reserves are maintained benchmark assumptions, not empirical institutional claims. Shock supports, cap and costs are constructed. Calibration would require data on flows, portfolios, funding terms and public arrangements; the USD label alone provides no exchange-rate mechanism or empirical identification.
+
+Finally, all eight pages of the four current handwritten manuscripts have been reconciled, including the corrected upper-corner condition and the local IFT branch argument. Their demonstrated scope is recorded in Appendix~\ref{app:human}; the full global arguments remain in the typed paper. New-paper Lean formalization remains incomplete. Partial formalization is permitted by the course, but historical scalar lemmas do not verify new economic content. After this revised paper is frozen, its numbered claims require a new mapping and the supported course check.
 
 \section{Conclusion}
-In the direct-support restriction of the proposed joint V5.1 architecture, voluntary liquidity reduces shortfalls but displaces assets supporting public eligibility. The resulting private problem admits a convex constrained characterization, with uniqueness only under additional sufficient conditions. The local reserve response is weakly negative when usability is at least the eligibility coefficient and otherwise has an ambiguous sign. Existing constructed illustrations show the trade-off and its private-cost consequences without establishing empirical magnitudes. The remaining tasks are handwritten reproduction, faithful formalization, verified detailed literature positioning, and eventual closure of the provisional interbank module with advisor feedback.
+A voluntary buffer reduces deficit costs and increases prescribed lending income. The second margin changes curvature: convexity requires conditions and can fail under full coverage. Finite-uniform global enumeration solves constructed problems without assuming convexity.
+
+Additional common capacity weakly reduces a regular interior buffer when population schedules stay fixed; strictness requires rationed deficit exposure. Constructed simulations support this conditional mechanism. Fixed-buffer relative incidence can simultaneously remain invariant as absolute coverage rises. Neither result establishes voluntary participation, aggregate consistency, welfare rankings or empirical relevance for Peru. The contribution is the delimited private optimization closure within the joint architecture.
 \label{end:body}
 \clearpage
-\bibliographystyle{plainnat}
-\begingroup\raggedright
+\bibliographystyle{apalike}
 \bibliography{references}
-\endgroup
 \clearpage
 \appendix
 
-\section{Uniform shortfall formulas and the implementation bridge}\label{app:uniform}
-This appendix specializes Assumption~\ref{ass:law} using Assumption~\ref{ass:uniform}. It does not impose uniform shocks on the general proposition. For $\varepsilon\sim U[-\sigma,\sigma]$, $\sigma>0$, define $\ell_\sigma(z)=\E[(\varepsilon-z)^+]$. If $z\le-\sigma$, the positive part equals $\varepsilon-z$ almost surely, whose expectation is $-z$. If $z\ge\sigma$, it is zero. For $-\sigma<z<\sigma$,
-\begin{align*}
-\ell_\sigma(z)
-&=\frac1{2\sigma}\int_z^\sigma(\varepsilon-z)\,d\varepsilon
-=\frac1{2\sigma}\left[\frac{\varepsilon^2}{2}-z\varepsilon\right]_z^\sigma\\
-&=\frac{\sigma^2/2-z\sigma+z^2/2}{2\sigma}
-=\frac{(\sigma-z)^2}{4\sigma}.
-\end{align*}
-Thus the exact functions are
-\begin{equation}\label{eq:uniform-functions}
-\ell_\sigma(z)=\begin{cases}-z&z\le-\sigma,\\(\sigma-z)^2/(4\sigma)&-\sigma<z<\sigma,\\0&z\ge\sigma,\end{cases}
-\quad
-\Pi_\sigma(z)=\begin{cases}1&z\le-\sigma,\\(\sigma-z)/(2\sigma)&-\sigma<z<\sigma,\\0&z\ge\sigma.\end{cases}
-\end{equation}
-Here $\Pi_\sigma(z)=\Prb(\varepsilon>z)$. At the lower support join the value is $\sigma$ and slope $-1$; at the upper join the value and slope are zero. Therefore $\ell_\sigma$ is globally $C^1$ with derivative $-\Pi_\sigma$, and convex because that derivative is nondecreasing. Its second derivative is $1/(2\sigma)$ strictly inside the support and zero strictly outside. Global $C^2$ smoothness is not asserted.
-
-For the finite mixture, set $z_{ij}=t_i-\beta A_j$. Then
-\begin{align}
-L(t)&=\sum_jw_j\ell_{\sigma_j}(t-\beta A_j),&
-\overline F(t)&=\sum_jw_j\Pi_{\sigma_j}(t-\beta A_j),\label{eq:mixture}\\
-f(t)&=\sum_j\frac{w_j}{2\sigma_j}\mathbf1_{\{|t-\beta A_j|<\sigma_j\}}.
-\label{eq:mixture-density}
-\end{align}
-The density formula is used away from positive-weight support endpoints. Substitute~\eqref{eq:mixture} into~\eqref{eq:objective} to obtain the explicit finite algebraic objective $\widehat J$. This is the planned Lean implementation. Formal verification of its arithmetic and calculus alone would not verify its probabilistic interpretation without the integral bridge just derived.
-
-For the current feasible interval, support-region boundaries occur at $t_1-\beta A_j=\pm\sigma_j$ or $t_2-\beta A_j=\pm\sigma_j$. Their buffer locations are
+\section{Uniform expectations and global enumeration}\label{app:uniform}
+For $\epsilon\mid A_j\sim U[-\sigma_j,\sigma_j]$, $\sigma_j>0$, direct integration gives
 \[
-u=\beta A_j\pm\sigma_j-\phi r,
-\qquad
-u=\frac{\beta A_j\pm\sigma_j-\phi r-\chi U}{1-\chi}.
+ T_\sigma(z)=\E[(z+\epsilon)^+]=
+ \begin{cases}0,&z\leq-\sigma,\\
+ (\sigma+z)^2/(4\sigma),&-\sigma<z<\sigma,\\z,&z\geq\sigma.\end{cases}
 \]
-Only locations in $[0,U]$ with positive state weight matter. Between successive boundaries the FOC is affine, so the implementation finds its roots and tests endpoints. A flat minimizing interval is reported as nonunique with both interval endpoints; its left endpoint is only a reporting convention.
+With $z_j=\beta A_j+u$, reflection gives $L_j=T_{\sigma_j}(-z_j)$ and $M_j=T_{\sigma_j}(z_j)$. Both are continuously differentiable, including joins, with
+\[
+ \pi^-_j=\max\{0,\min\{1,(\sigma_j-z_j)/(2\sigma_j)\}\},\qquad \pi^+_j=1-\pi^-_j.
+\]
+The density at $-u$ is $1/(2\sigma_j)$ for $|z_j|<\sigma_j$ and zero outside. Its value at an endpoint is irrelevant for probabilities but cannot establish a second derivative there. The implementation's endpoint convention is not a smoothness theorem.
 
-\section{Existing exposure illustration and verification coverage}\label{app:verification}
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=.82\linewidth]{../code/figures/buffer_exposure.png}
-\caption{Additional pure exposure illustration. Illustrative constructed parameters, not estimates for Peruvian banks. Type~2's $\beta$ varies with all other primitives fixed; Type~1 stays at $\beta=1$. The strict increase on this grid is not a general theorem about increases in risk.}\label{fig:exposure}
-\end{figure}
-The existing exposure grid has 51 values from $0.6$ to $1.6$, with buffers from $0.088490$ to $0.630375$. The private-cost gap ranges from $-0.007509$ to $+0.011370$ and is zero at identical primitives, $\beta=1$. A support transition between $0.62$ and $0.64$ changes the slope as normal-state shortfalls disappear. No plotted point is a corner or a nonunique solution.
+Sort $0,\bar u$ and all feasible interior knots $-\beta A_j\pm\sigma_j$. On each intervening open interval the moments, and hence $J$, are quadratic or affine. A nonconstant quadratic minimizes on a closed interval at an endpoint or an interior stationary point; a nonconstant affine function minimizes at an endpoint. A constant polynomial minimizes throughout. Comparing every boundary, feasible stationary point and flat interval is exhaustive, including concave regions. Comparing their levels retains all global solutions.
 
-The single entry point is \texttt{python code/verify.py}. Its historical section preserves 28 October checks and labels the old coverage and backing objects as historical. The new section has 38 course-core checks. The stored verification report records a maximum expected-positive-part integration error of $2.78\times10^{-11}$, a maximum objective-derivative finite-difference error of $7.51\times10^{-9}$, and a maximum reserve-response error of $5.97\times10^{-12}$ over 27 regular interior comparisons. Thirteen optimizer scenarios include both corners and nonunique minima. These are conditional checks, not formal proofs or calibration.
+The structural argument is exact. Floating-point implementation uses $10^{-13}$ for nearly zero curvature, $10^{-12}$ for flat slope, and $2\times10^{-12}$ for equal minimum costs. Numerical uniqueness under tolerances is not an exact theorem for arbitrary inputs. Independent 40,001-point grids and integration check reported examples. A dense grid alone cannot exclude a narrow unvisited minimum in a general function; the piecewise-polynomial argument supplies the structural guarantee here.
 
-The saved economic outputs contain 537 experiment rows and 802 cost-curve rows. Every saved experiment optimum is unique and interior; corner and nonunique cases are separate verification fixtures. The closest saved optimum threshold to a support endpoint is approximately $0.003394$ away in the exposure experiment. No claim is made that every conceivable parameter value has been tested. The inherited \texttt{effort\_check.csv} and effort figure are template artifacts, not results of this banking model.
+A root can be infeasible, at a support knot, or a maximum in a concave region. The algorithm compares all costs rather than truncating a root. Endpoint derivative conditions are sufficient under convexity only.
 
-\section{Lean formalization status and correspondence}\label{app:lean}
-\textbf{Current status: NOT YET FORMALIZED.} There is no Lean verification claim, generated paper folder, paper-formalization commit, or successful paper-scoped check to report. The code checkpoint \texttt{7406387} is not a substitute for any of these. The following table identifies obligations, not accomplished proofs.
+\section{Computational evidence and reproducibility}\label{app:verification}
+The implementation is \path{code/post_marco_model.py}. Experiments are specified in \path{code/simulate_post_marco.py}, and current tests are in \path{code/verify_post_marco.py}. The normal entry point is \texttt{python code/verify.py}. It regenerates outputs as well as running assertions. This migration first replayed its assertions without writes against stored files, then ran the unmodified entry point in an isolated temporary copy of the code. Both runs passed all 99 checks. The isolated run reproduced all eight current CSV/JSON files and all three current figures byte for byte; repository outputs were not overwritten.
 
-\small
-\begin{longtable}{@{}P{.20\linewidth}P{.42\linewidth}P{.32\linewidth}@{}}
-\toprule Paper component & Planned Lean statement & Current status and boundary\\\midrule
+Six current CSV files contain 1,246 rows: baseline optima (2), cost curves (802), capacity sweep (90), exposure sweep (82), reference accounting (180), and fixed-buffer incidence (90). Two JSON files record parameters, provenance and checks. The figures are existing \texttt{cost\_and\_optima.png}, \texttt{capacity\_response.png} and \texttt{exposure\_response.png} under \texttt{code/figures/post\_marco/}. No historical figure supplies current evidence.
+
+\begin{longtable}{P{0.19\linewidth}P{0.10\linewidth}P{0.61\linewidth}}
+\caption{Scope of the 99-check record}\\
+\toprule Model & Count & Scope and limitation\\ \midrule
+\endfirsthead
+\toprule Model & Count & Scope and limitation\\ \midrule
 \endhead
-Proposition~\ref{prop:buffer}: continuation & Feasible unique minimizer $(\min(q,H),(q-H)^+)$ for $g>p$ & Open; real-order and min/max proof planned\\
-Positive-part reduction & $(a^+-H)^+=(a-H)^+$ for $H\ge0$; optimized cost identity & Open; algebraic target, no probability claim\\
-Appendix~\ref{app:uniform} calculus & Piecewise $\ell_\sigma$, joins, derivative $-\Pi_\sigma$, convexity & Open; integral interpretation is a separate bridge\\
-Proposition~\ref{prop:buffer}: finite implementation & Derivative, existence, convexity, constraints, sufficient uniqueness for $\widehat J$ & Open; not automatically the general atomless proposition\\
-Proposition~\ref{prop:reserve}: conditional identity & Chain-rule response and sign along a differentiable regular FOC branch & Open; branch existence requires an IFT proof or disclosed added hypothesis\\
-Probabilistic and IFT bridges & Expected-shortfall derivative and local optimal-branch existence & Open; needed before claiming full general propositions are formalized\\
+October & 28 & Symbolic checks of the historical closure; its backing result is not a current-model proof.\\
+November 4 & 38 & Reserve/Base and asset-eligibility direct-support benchmark: identities, derivatives, curvature, optimizer, response and output checks. Its usability mechanism is absent here.\\
+Post-Marco & 33 & Normalization, FOC and lender curvature; matching/fund accounting and zero cases; integration; global grids, corners and nonuniqueness; capacity response and guards; exported rows and incidence.\\
 \bottomrule
 \end{longtable}
-\normalsize
-The paper and Lean must use identical explicit finite-function definitions when that implementation is formalized. A successful polynomial calculation inside a support region is not a proof of global constrained optimality. Assuming an already differentiable FOC branch can be disclosed as an additional hypothesis; assuming the desired derivative formula would instead smuggle in the conclusion. Each numbered proposition will retain an explicit status until its precise statement is checked. The final appendix must report the actual pinned paper commit, declarations, files, added hypotheses, and paper-scoped check output.
 
-\section{AI collaboration and human verification}\label{app:ai}
-The AI-assisted workflow is declared. Raw October prompts and answers remain in \texttt{prompts.md}; final-stage interactions and Carlos's adjudications still need to be appended in a later authorized step. This draft distinguishes mathematical reasoning, executable checks, and unfinished formalization. The typed guide in \texttt{hand/} is not a substitute for handwritten work.
-
-\begin{center}\small
-\begin{tabular}{@{}P{.26\linewidth}P{.28\linewidth}P{.40\linewidth}@{}}
-\toprule Claim or risk & Current assessment & Evidence and remaining work\\\midrule
-Deficit derivative is minus a probability & Correct for normalized $L$; amount $S^-=dL$ has derivative $-d\pi^-$ & October provenance audit and normalization distinction; retain historical derivation\\
-Positive deficit probability ensures curvature & False without a marginal support condition & Certain-deficit region is affine; new verification includes flat and corner fixtures\\
-Old FOC transfers unchanged & Inapplicable when eligibility moves with buffers & Current proof derives $H_u=-\chi$ and the factor $1-\chi$; do not invent a past AI-rejection episode\\
-New formulas establish empirical effects & Not supported & Constructed inputs, conditional checks, no estimates\\
-Lean has verified the propositions & Not established & No formalization performed; Appendix~\ref{app:lean} records open targets\\
+Current stored maximum discrepancies, rounded upward:
+\begin{center}
+\begin{tabular}{lr}
+\toprule Comparison & Absolute discrepancy\\ \midrule
+Moments versus integration & $2.69\times10^{-11}$\\
+Moment derivatives versus differences, including joins & $2.51\times10^{-7}$\\
+Objective versus independent integration & $2.45\times10^{-12}$\\
+FOC versus objective differences & $2.73\times10^{-13}$\\
+Curvature versus derivative differences, off knots & $9.16\times10^{-13}$\\
+Exported optimizer cost versus dense grid & $3.40\times10^{-11}$\\
+Capacity response versus finite differences & $1.96\times10^{-9}$\\
 \bottomrule
 \end{tabular}
 \end{center}
-The first row is the strongest documented correction candidate for the required defense discussion: units must be checked against the inherited source rather than trusting an unqualified derivative identity. Carlos must reproduce and record his own check and verdict; the draft does not assert an undocumented history of human rejection. Final-model handwritten derivations are still to be completed. No permission to publish private joint source documents is inferred from using them for local provenance checking.
+Tests include full coverage with negative curvature, lower and upper corners, interior choice and a flat nonunique minimum. Guards reject a two-sided response at zero capacity, coverage/support kinks, corners and nonunique choices. They supplement rather than replace analytical hypotheses.
+
+Reproduction uses the repository environment and recorded parameters. The normal entry point writes historical and current outputs, so the independent full run used temporary destinations. Numerical equality of generated files is evidence for reproducibility under that environment, not empirical validation. Neither run changed the repository's simulation files.
+
+\section{Paper-to-Lean status}\label{app:lean}
+The existing \texttt{lean/} deliverable contains 31 theorem closures for the November~4 paper pinned at \texttt{cf37d3f}. Reviewed declarations have no \texttt{sorry}/\texttt{admit} proof holes; instructional comment occurrences are not declarations. Reported axiom dependencies are standard logical foundations. This migration neither changes nor rebuilds those files.
+
+The strongest present statement is: \emph{Historical scalar supporting results have been formalized in Lean; the new post-Marco economic propositions remain open in Lean.} An algebraic implication from an assumed differentiated FOC is not an IFT theorem or proof that a differentiable optimizer exists.
+
+\begin{longtable}{P{0.18\linewidth}P{0.27\linewidth}P{0.43\linewidth}}
+\caption{Current claims and reusable historical support}\\
+\toprule Claim & Status/support & Added hypotheses and remaining gap\\ \midrule
+\endfirsthead
+\toprule Claim & Status/support & Added hypotheses and remaining gap\\ \midrule
+\endhead
+Proposition 1 & \textbf{OPEN} for this paper. & No Lean proof of the current deficit/surplus bridge, lender FOC, convexity/corners, existence or global characterization.\\
+Proposition 2 & \textbf{OPEN} for this paper. Old \path{implicit_response} and \path{reserve_response_nonpos} are algebraic companions. & Old results assume a differentiated FOC and denominator/sign hypotheses for another model. They do not construct a branch. Current IFT, capacity derivative, strictness and continuation are unformalized.\\
+Uniform moment derivatives & \textbf{PARTIAL} reuse of \texttt{ell\_derivative} and regional helpers. & Positive width and off-join restrictions where required. Current reflected conditional-law interpretation is not formalized.\\
+Finite differentiation & \textbf{PARTIAL} reuse of \texttt{finiteLoss\_derivative}. & Off all component knots, including zero-weight components where present. General weights do not themselves form a probability law.\\
+Old objective & No current proof from \path{finiteObjective_derivative}. & Its two-threshold asset-eligibility function differs from \eqref{eq:objective}; it does not verify \eqref{eq:foc}.\\
+Market, fund and incidence & \textbf{OPEN} for this paper. & Historical scalar min/max facts do not formalize prescribed schedules or fixed-profile scaling.\\
+\bottomrule
+\end{longtable}
+
+After this paper is frozen and pinned, the course workflow needs a new result mapping, an honest proved/added-hypothesis/open report, and the supported fast check in AppliedModelingLib:
+\begin{quote}\small
+\texttt{python3 scripts/paper\_contribution.py check}\\
+\texttt{Gomez26EligibilityBuffers --fast}
+\end{quote}
+Generated deliverables must then be handled according to course requirements. That future workflow is not performed here. The old check cannot certify this new paper, and no new generated-folder equality is claimed. The course permits an honest partial-formalization report.
+
+\section{AI collaboration and human verification}\label{app:human}
+AI assistance inspected the benchmark and outputs, proposed derivations, checked counterexamples and drafted the paper. Four genuine student handwritten PDFs, each two pages, are incorporated in \texttt{hand/}. After the student corrected the earlier endpoint and IFT omissions and clarified the incidence notation, every page was independently reinspected against the current paper and implementation. The updated scans were preserved unchanged during this reconciliation. The scans document actual student work, not an inferred verdict from passing code. They do not constitute Lean proofs or evidence of an earlier human--AI disagreement.
+
+\begin{longtable}{P{0.22\linewidth}P{0.32\linewidth}P{0.34\linewidth}}
+\caption{Incorporated handwritten evidence and bounded assessment}\\
+\toprule Claim & Student document/pages & Assessment and remaining scope\\ \midrule
+\endfirsthead
+\toprule Claim & Student document/pages & Assessment and remaining scope\\ \midrule
+\endhead
+Signs and normalization & 02, pp.~1--2: signed-flow definitions, both positive-part derivatives and numerical unit check. & Correct. At $d=1.6$, $\pi^-=0.30$, the normalized derivative is $-0.30$ and the amount derivative $-0.48$. Page 2 records the student's human verdict that amounts require the deposit factor.\\
+FOC and curvature & 03, p.~1: frozen coefficients, lending income, FOC and density-based curvature. & Correct algebra under the paper's frozen-schedule and differentiation assumptions. This is not a standalone proof of all existence and global-enumeration claims.\\
+Convexity and corners & 03, pp.~1--2: sufficient convexity, full-coverage discussion and endpoints. & The corrected p.~2 uses $J'(\bar u)\leq0$ under global convexity. Both endpoint tests now agree. The negative-curvature discussion is understood where the conditional density at the threshold is positive.\\
+Capacity response & 04, pp.~1--2: $a_F$, $G_F\geq0$, differentiated FOC, sign conditions and fixed-schedule limits. & Page 2 now invokes the IFT from $G(u_0,F_0)=0$, $G_u(u_0,F_0)>0$ and local $C^1$ regularity, obtaining the branch before differentiating. Weak and strict signs agree. Global continuation remains proved in Proposition 2.\\
+Conservation and incidence & 05, pp.~1--2: matched totals, zero volumes, fund bounds, weighted mean and fixed-buffer scaling. & Page 2 explicitly defines $B=\{A:\Delta(A)>0\}$ and $p_B=\Prb(\Delta>0)$. It obtains $\bar C(F)=Fp_B$ while all positive-demand states are rationed; zero-demand states contribute zero. The index requires $\bar C>0$.\\
+Literature boundary & Published references and bounded comparisons. & The scans do not establish a literature-wide novelty verdict. The exact version/proposition audit remains incomplete.\\
+\bottomrule
+\end{longtable}
+
+\clearpage
+The exact files are:
+\begin{itemize}
+\item \path{hand/02-post-marco-shortfall-surplus.pdf}: signs, amount normalization and explicit human unit verdict.
+\item \path{hand/03-post-marco-buffer-optimality.pdf}: lender-inclusive choice derivation and corrected convex endpoint conditions.
+\item \path{hand/04-post-marco-capacity-response.pdf}: conditional capacity calculation and restrictions.
+\item \path{hand/05-post-marco-conservation-incidence.pdf}\par
+Interbank and common-fund accounting, relative coverage and zero-deficit states.
+\end{itemize}
+
+The requested reconciliation passes: the amount/ratio comparison is $-0.48$ versus $-0.30$; manuscript 03 uses the upper-endpoint derivative; manuscript 04 establishes a local IFT branch before differentiating; and manuscript 05 explicitly defines $p_B=\Prb(\Delta>0)$. Its zero-deficit-state accounting uses $\bar C(F)=Fp_B$ when every positive-demand state remains rationed.
+
+The student's updated manuscripts resolve the earlier upper-corner error and local IFT omission; no change to either paper proposition was required. The handwritten negative-curvature statement uses the density-weighted formula: a negative coefficient contributes strictly negative curvature only where that density is positive. This is a retained scope condition, not a claim that every state has positive density at every buffer. The scans demonstrate the core derivations and checks, while the typed paper supplies complete existence, global-enumeration and global-continuation proofs. Support and coverage kinks, local regularity, frozen schedules and the distinction between a local branch and a global optimum remain explicit.
+
+The October manuscript and November-4 typed guide are historical evidence. The current four documents replace the earlier plan for a single combined scan; no combined \path{hand/Post_marco_derivations.pdf} is claimed to exist. Recovered raw collaboration exchanges are in \texttt{prompts.md}; the actual student unit verdict is evidenced by manuscript 02 rather than a fabricated conversational quotation. The student reports having corrected the evidence, and the updated pages directly demonstrate the changes. This does not imply that the student independently executed every program check or that an unrecorded human--AI disagreement occurred. Current economic propositions remain open in Lean.
 \end{document}
