@@ -1,8 +1,8 @@
 """Single entry point: python code/verify.py.
 
-Section 1 preserves historical October symbolic checks. Section 2 verifies the
-proposed V5.1-course direct-support core. Only after all checks pass, reproduce
-Phase 1 CSV/JSON results and PNG figures. No OTC/search/Nash implementation.
+Sections 1 and 2 preserve the historical October and November-4 course cores.
+Section 3 verifies the separate post-Marco prescribed-allocation course core.
+Each model has separate outputs. No participation equilibrium/search/Nash.
 """
 
 import json
@@ -382,7 +382,7 @@ def main():
     SECTION = 'historical_october'
     print('=== HISTORICAL OCTOBER MODEL: phi=public coverage; R_D result is historical only ===')
     historical_october_checks()
-    print('\n=== V5.1-COURSE CORE: phi=reserve usability; direct support; advisor review pending ===')
+    print('\n=== HISTORICAL NOVEMBER-4 V5.1-COURSE CORE: phi=reserve usability; direct support; advisor review pending ===')
     diagnostics = v51_core_checks()
     paths = generate_outputs()
     # Validate generated machine-readable rows before declaring the run successful.
@@ -440,6 +440,17 @@ def main():
     for file in [*paths, report]:
         print('GENERATED:', file.relative_to(Path(__file__).resolve().parents[1]).as_posix())
     print('All historical and V5.1-course-core checks passed. OTC extension remains deferred.')
+
+    print('\n=== POST-MARCO COURSE CORE: prescribed allocation; phi=common coverage; atomistic best responses only ===')
+    from verify_post_marco import run_checks
+    post_checks, post_paths, _ = run_checks()
+    SECTION = 'post_marco_course_core'
+    CHECKS.extend(dict(section=SECTION, check=label, status='PASS') for label in post_checks)
+    combined = dict(counts, post_marco_course_core=len(post_checks))
+    print('\nALL-MODEL CHECK COUNTS:', combined, 'TOTAL:', sum(combined.values()))
+    for file in post_paths:
+        print('GENERATED:', file.relative_to(Path(__file__).resolve().parents[1]).as_posix())
+    print('All checks passed. Post-Marco results are conditional best responses, not an equilibrium or incidence-direction theorem.')
 
 
 if __name__ == '__main__':
