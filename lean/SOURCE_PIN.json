@@ -1,0 +1,18 @@
+{
+  "paper_commit": "cf37d3f402c04a73c832cce41f559e32348f8941",
+  "paper_url": "https://github.com/carlosgomezp28/ai-project/blob/cf37d3f402c04a73c832cce41f559e32348f8941/paper/paper.pdf",
+  "source_sha256": {
+    "paper.pdf": "626d680ea14ba74151ac43b4d50d40b2219d2eeb3ec4d29f9d38aabb8d3206e0",
+    "paper.tex": "28684469eae372e34ee4663fac1266b0cdaf585ebe9fd246c2031fdf14700701"
+  },
+  "source_text_sha256": "90b2ec63384a084898eb1f8dc68f3c97de8f7bdcaa5f7d4879e94c2762af223e",
+  "source_cache": "External temporary storage; source bytes are not included in lean/.",
+  "formalization_engine_repository": "https://github.com/nikhgarg/AppliedModelingLib",
+  "formalization_engine_commit": "2db7d108cd3a2cb10148974bb2a77856e7d87428",
+  "lean_toolchain": "leanprover/lean4:v4.30.0-rc2",
+  "mathlib_commit": "5450b53e5ddc75d46418fabb605edbf36bd0beb6",
+  "source_status": "Unpublished individual course manuscript; user-designated frozen source, no arXiv version used.",
+  "architecture_provenance": "Joint V5.1 architecture by Carlos Gómez Puicán and Fabián Méndez Suárez, supervised by Marco Ortiz; open pieces remain provisional.",
+  "course_contribution": "Optimization, verification, simulations and formalization closure by Carlos Gómez Puicán.",
+  "coverage": "Partial implementation; no full v11 semantic closeout or full Proposition 1/2 verification claimed."
+}

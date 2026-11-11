@@ -1,0 +1,154 @@
+{
+  "utc": "2026-11-04T01:14:49.277337+00:00",
+  "checks": [
+    {
+      "command": [
+        "lake",
+        "--rehash",
+        "build",
+        "+Gomez26EligibilityBuffers.BufferCore",
+        "+Gomez26EligibilityBuffers.FiniteCompanion",
+        "+Gomez26EligibilityBuffers.MainTheorems",
+        "+Gomez26EligibilityBuffers.Assumptions",
+        "+Gomez26EligibilityBuffers.PaperInterface",
+        "+Gomez26EligibilityBuffers.ProofInterface",
+        "+Gomez26EligibilityBuffers"
+      ],
+      "exit_code": 0,
+      "log": "docs/LEAN_BUILD.txt"
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/paper_contribution.py",
+        "check",
+        "Gomez26EligibilityBuffers",
+        "--fast"
+      ],
+      "exit_code": 0,
+      "log": "docs/COURSE_CHECK.txt"
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "/var/tmp/ai-project-phase3a-axioms.lean"
+      ],
+      "exit_code": 0,
+      "log": "docs/AXIOM_CHECK.txt"
+    }
+  ],
+  "python_verification": {
+    "historical_october": 28,
+    "v51_course_core": 38,
+    "all_pass": true
+  },
+  "full_semantic_closeout": false,
+  "bounded_semantic_review": {
+    "bounded_declarations_reviewed": 31,
+    "bounded_scope_mismatches": 0,
+    "semantic_review": "audit/partial_semantic_review.json",
+    "independent_adversarial_review": "docs/SEMANTIC_SCOPE_REVIEW.md",
+    "scaffold_review": "audit/scaffold_review.json",
+    "scaffolds_reviewed": 7,
+    "new_theorem_targets": 0,
+    "numbered_propositions_fully_formalized": 0,
+    "custom_axioms": 0,
+    "sorry_or_admit_proof_holes": 0,
+    "standard_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "reporting_summary_omissions_corrected": 1,
+    "outstanding_mapping_mismatches": 0,
+    "final_mapping_review": "audit/partial_semantic_review.json: mapping_addendum_review"
+  },
+  "course_cleanup": {
+    "scope": "lean/ only, authorized by user; AppliedModelingLib source unchanged",
+    "exact_generated_folder_copy": false,
+    "reason": "The original successful AML folder was subsequently modified; no untouched snapshot was located. User chose local cleanup with remaining source-folder mismatch disclosed.",
+    "required_course_check": "python3 scripts/paper_contribution.py check Gomez26EligibilityBuffers --fast",
+    "numbered_results": {
+      "Proposition 1": "open as a complete result; supporting subclaims proved",
+      "Proposition 2": "open as a complete result; algebraic companions proved under explicit premises"
+    },
+    "canonical_closeout_required_for_course": false
+  },
+  "course_cleanup_validation": {
+    "paper_commit": "cf37d3f402c04a73c832cce41f559e32348f8941",
+    "checks": [
+      {
+        "id": "required_fast",
+        "command": [
+          "python3",
+          "scripts/paper_contribution.py",
+          "check",
+          "Gomez26EligibilityBuffers",
+          "--fast"
+        ],
+        "cwd": "/var/tmp/ai-project-phase3a-aml",
+        "exit_code": 0,
+        "log": "docs/COURSE_FAST_CHECK.txt"
+      },
+      {
+        "id": "lean_build",
+        "command": [
+          "lake",
+          "--rehash",
+          "build",
+          "+Gomez26EligibilityBuffers.BufferCore",
+          "+Gomez26EligibilityBuffers.FiniteCompanion",
+          "+Gomez26EligibilityBuffers.MainTheorems",
+          "+Gomez26EligibilityBuffers.Assumptions",
+          "+Gomez26EligibilityBuffers.PaperInterface",
+          "+Gomez26EligibilityBuffers.ProofInterface",
+          "+Gomez26EligibilityBuffers"
+        ],
+        "cwd": "/var/tmp/ai-project-phase3a-aml",
+        "exit_code": 0,
+        "log": "docs/COURSE_LEAN_BUILD.txt"
+      },
+      {
+        "id": "axiom_closures",
+        "command": [
+          "lake",
+          "env",
+          "lean",
+          "/var/tmp/ai-project-phase3a-axioms.lean"
+        ],
+        "cwd": "/var/tmp/ai-project-phase3a-aml",
+        "exit_code": 0,
+        "log": "docs/COURSE_AXIOM_CHECK.txt"
+      },
+      {
+        "id": "python_verification",
+        "command": [
+          "python",
+          "code/verify.py"
+        ],
+        "exit_code": 0,
+        "historical_october": 28,
+        "v51_course_core": 38,
+        "total": 66,
+        "log": "docs/COURSE_PYTHON_VERIFY.txt"
+      },
+      {
+        "id": "git_diff_check",
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exit_code": 0,
+        "log": "docs/COURSE_GIT_DIFF_CHECK.txt"
+      }
+    ],
+    "theorem_count": 31,
+    "sorry_or_admit_proof_holes": 0,
+    "exact_generated_folder_copy": false,
+    "aml_sources_modified": false,
+    "proof_files_modified": false
+  }
+}

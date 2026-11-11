@@ -1,0 +1,3 @@
++ lake build +Gomez26EligibilityBuffers.PaperInterface
+Build completed successfully (3301 jobs).
++ git diff --check -- papers/Gomez26EligibilityBuffers papers/Gomez26EligibilityBuffers.lean lakefile.toml ':(exclude)papers/Gomez26EligibilityBuffers/source/'

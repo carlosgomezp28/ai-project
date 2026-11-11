@@ -26,3 +26,6 @@ __pycache__/
 # Never commit personal documents to a public repository
 DNI*
 *_DNI*
+
+# Local-only provenance sources; never include in the public repository
+/.private/

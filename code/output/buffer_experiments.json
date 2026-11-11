@@ -1,0 +1,69 @@
+{
+  "architecture_provenance": "Joint work: Carlos Gomez Puican and Fabian Mendez Suarez; supervisor Marco Ortiz",
+  "individual_contribution": "Carlos: course optimization, verification and simulation closure",
+  "status": "Proposed V5.1-course restriction; not advisor-approved; constructed parameters, not Peru estimates",
+  "scope": "Direct support only. OTC/interbank/search/matching/Nash deferred as a separate modular extension.",
+  "notation": {
+    "u": "voluntary buffer",
+    "v": "deferral",
+    "phi": "reserve usability",
+    "chi": "public eligibility coefficient",
+    "p": "public funding unit cost",
+    "g": "deferral unit cost",
+    "c": "reserve opportunity cost",
+    "epsilon_E": "equity ratio",
+    "eps_k": "idiosyncratic liquidity shock"
+  },
+  "assumptions": [
+    "Finite aggregate states; eps_k conditional uniform on symmetric support",
+    "Exogenous deposits; g>p>=0; c>0; 0<=phi<=1; 0<=chi<1; U>0",
+    "Incremental costs; assistance/deferral principal remains payable",
+    "No interbank encounter; no aggregate public capacity or R_D",
+    "Reserve sweep realizes r through B=d, tauB=r; other primitives fixed"
+  ],
+  "baseline": {
+    "d": 1.0,
+    "B": 0.6,
+    "tauB": 0.1,
+    "rho_m": 0.35,
+    "epsilon_E": 0.1,
+    "beta": 1.0,
+    "phi": 0.5,
+    "chi": 0.2,
+    "p": 0.04,
+    "g": 0.4,
+    "c": 0.035,
+    "states": [
+      {
+        "A": 0.0,
+        "probability": 0.7,
+        "eps_half_width": 0.2
+      },
+      {
+        "A": 0.45,
+        "probability": 0.3,
+        "eps_half_width": 0.2
+      }
+    ]
+  },
+  "row_counts": {
+    "buffer_type_optima": 2,
+    "buffer_cost_curves": 802,
+    "buffer_reserve_sweep": 243,
+    "buffer_exposure": 102,
+    "buffer_regulation": 190
+  },
+  "files": [
+    "output/buffer_type_optima.csv",
+    "output/buffer_cost_curves.csv",
+    "output/buffer_reserve_sweep.csv",
+    "output/buffer_exposure.csv",
+    "output/buffer_regulation.csv",
+    "figures/buffer_cost.png",
+    "figures/buffer_reserve_usability.png",
+    "figures/buffer_exposure.png",
+    "figures/buffer_regulation.png"
+  ],
+  "units": "Amounts normalized by deposits, except d, B and reserve amount R; type gap is J2-J1",
+  "nonunique_convention": "Report leftmost minimizer and full minimizer interval; do not claim uniqueness"
+}

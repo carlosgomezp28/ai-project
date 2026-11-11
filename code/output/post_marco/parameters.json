@@ -1,0 +1,168 @@
+{
+  "status": "constructed_course_specialization",
+  "banks": [
+    {
+      "name": "1",
+      "mu": 0.6,
+      "d": 1.0,
+      "beta": 0.8,
+      "tau": 0.65,
+      "u_max": 0.8
+    },
+    {
+      "name": "2",
+      "mu": 0.4,
+      "d": 1.6,
+      "beta": 1.2,
+      "tau": 0.8,
+      "u_max": 0.8
+    }
+  ],
+  "states": [
+    {
+      "A": -0.4,
+      "probability": 0.4,
+      "sigma": 0.5
+    },
+    {
+      "A": 0.0,
+      "probability": 0.6,
+      "sigma": 0.5
+    }
+  ],
+  "parameters": {
+    "r": 0.045,
+    "i": 0.015,
+    "kappa": 0.25,
+    "rho": 0.1,
+    "nu_F": 0.05,
+    "R": 0.0088
+  },
+  "reference_buffers": [
+    0.1,
+    0.1
+  ],
+  "aggregate_deposits": 1.2400000000000002,
+  "baseline_F": 0.015000000000000003,
+  "reference_market": [
+    {
+      "bank_type": "1",
+      "A": -0.4,
+      "probability": 0.4,
+      "sigma": 0.5,
+      "mu": 0.6,
+      "d": 1.0,
+      "beta": 0.8,
+      "tau": 0.65,
+      "reference_u": 0.1,
+      "D_k": 0.25920000000000004,
+      "X_k": 0.03919999999999998,
+      "P": 0.018974399999999995,
+      "Q": 0.2993344000000001,
+      "psi": 0.041202614868187534,
+      "ell": 0.65,
+      "Delta": 0.3843536000000001,
+      "F": 0.015000000000000003,
+      "phi": 0.03902656303986746,
+      "borrowed": 0.01067971777383421,
+      "lent": 0.025479999999999985,
+      "residual": 0.24852028222616582,
+      "coverage": 0.009698892460985112,
+      "uncovered": 0.23882138976518072
+    },
+    {
+      "bank_type": "2",
+      "A": -0.4,
+      "probability": 0.4,
+      "sigma": 0.5,
+      "mu": 0.4,
+      "d": 1.6,
+      "beta": 1.2,
+      "tau": 0.8,
+      "reference_u": 0.1,
+      "D_k": 0.6195200000000001,
+      "X_k": 0.01152,
+      "P": 0.018974399999999995,
+      "Q": 0.2993344000000001,
+      "psi": 0.05071091060700004,
+      "ell": 0.8,
+      "Delta": 0.3843536000000001,
+      "F": 0.015000000000000003,
+      "phi": 0.03902656303986746,
+      "borrowed": 0.03141642333924867,
+      "lent": 0.009216,
+      "residual": 0.5881035766607514,
+      "coverage": 0.022951661308522338,
+      "uncovered": 0.5651519153522291
+    },
+    {
+      "bank_type": "1",
+      "A": 0.0,
+      "probability": 0.6,
+      "sigma": 0.5,
+      "mu": 0.6,
+      "d": 1.0,
+      "beta": 0.8,
+      "tau": 0.65,
+      "reference_u": 0.1,
+      "D_k": 0.08000000000000002,
+      "X_k": 0.18,
+      "P": 0.16236,
+      "Q": 0.07216000000000003,
+      "psi": 0.65,
+      "ell": 0.28888888888888903,
+      "Delta": 0.02704,
+      "F": 0.015000000000000003,
+      "phi": 0.554733727810651,
+      "borrowed": 0.05200000000000001,
+      "lent": 0.052000000000000025,
+      "residual": 0.028000000000000004,
+      "coverage": 0.01553254437869823,
+      "uncovered": 0.012467455621301774
+    },
+    {
+      "bank_type": "2",
+      "A": 0.0,
+      "probability": 0.6,
+      "sigma": 0.5,
+      "mu": 0.4,
+      "d": 1.6,
+      "beta": 1.2,
+      "tau": 0.8,
+      "reference_u": 0.1,
+      "D_k": 0.12800000000000003,
+      "X_k": 0.288,
+      "P": 0.16236,
+      "Q": 0.07216000000000003,
+      "psi": 0.8,
+      "ell": 0.35555555555555574,
+      "Delta": 0.02704,
+      "F": 0.015000000000000003,
+      "phi": 0.554733727810651,
+      "borrowed": 0.10240000000000003,
+      "lent": 0.10240000000000005,
+      "residual": 0.0256,
+      "coverage": 0.014201183431952666,
+      "uncovered": 0.011398816568047336
+    }
+  ],
+  "scope": "Frozen-schedule individual best responses; no equilibrium fixed point",
+  "assumptions_added_for_course": [
+    "finite A states",
+    "conditional uniform eps",
+    "compact buffer domain [0,0.8]"
+  ],
+  "not_claimed": [
+    "Peru estimates",
+    "advisor acceptance of open decisions",
+    "voluntary participation",
+    "directional incidence theorem"
+  ],
+  "provenance": "Joint thesis: Carlos Gomez Puican and Fabian Mendez Suarez under Marco Ortiz, using his benchmark note; individual course closure: Carlos.",
+  "source": "thesis-bank-liquidity-peru/docs/ie1/post_marco/final_candidate_11nov_academic_review/sections/05_analytical_framework.tex; equations (1)-(7)",
+  "source_file_sha256": {
+    "05_analytical_framework.tex": "aa03f4507289b33f396277610cc2fce04c79114836f4c7c93a60bb0ee317357f",
+    "06_methodology.tex": "a0c49699ee872e93194ce5491b1f8c294ecdcdb722066d9ba92ab98776eb5f48"
+  },
+  "history": "October and November-4 models retained unchanged in separate modules"
+}
