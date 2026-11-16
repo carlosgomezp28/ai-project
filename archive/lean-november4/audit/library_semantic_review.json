@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "paper": "Gomez26EligibilityBuffers",
+  "prompt_version": "library-statement-match-v1-verbatim-source-anchor-expanded-definition",
+  "target_protocol": "expanded_library_definition_v1",
+  "comment": "For every material reusable AppliedModelingLib definition used by a source-facing Spec, record the exact declaration and a source-map item. Compare only that item's byte-pinned verbatim source bundle with the exact bounded library Lean definition. A name, docstring, glossary, Lean-to-TeX prose, or theorem label is not semantic input. Leave a primitive absent until an exact source connection is identified; do not manufacture a matches judgment.",
+  "items": {},
+  "bounded_scaffold_review": {
+    "reviewed_at": "2026-11-04T01:29:20.608314+00:00",
+    "disposition": "not_applicable_to_current_imports",
+    "reason": "No material reusable AppliedModelingLib/Cslib definition is used. Only paper-local definitions and pinned trusted Mathlib foundations are used. Empty items is deliberate, not an unfilled substantive library review.",
+    "canonical_acceptance": false,
+    "review_record": "audit/partial_semantic_review.json",
+    "independent_adversarial_record": "docs/SEMANTIC_SCOPE_REVIEW.md"
+  }
+}

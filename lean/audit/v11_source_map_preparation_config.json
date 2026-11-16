@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "paper": "Gomez26EligibilityBuffers",
-  "namespace": "Gomez26EligibilityBuffers",
+  "paper": "Gomez26LiquidityBuffers",
+  "namespace": "Gomez26LiquidityBuffers",
   "paper_interface_module": "",
   "semantic_route_schema": 2,
   "closeout_review_policy": {

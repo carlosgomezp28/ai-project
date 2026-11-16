@@ -1,0 +1,64 @@
+⚠ [3306/3310] Replayed Gomez26LiquidityBuffers.DensityCurvature
+warning: papers/Gomez26LiquidityBuffers/DensityCurvature.lean:64:87: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: papers/Gomez26LiquidityBuffers/DensityCurvature.lean:74:71: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [3308/3317] Built Gomez26LiquidityBuffers.PrincipalOptimization (31s)
+⚠ [3317/3317] Built Gomez26LiquidityBuffers.EconomicBranch (3.9s)
+warning: papers/Gomez26LiquidityBuffers/EconomicBranch.lean:62:54: `ext` did not consume the patterns `x`
+
+Note: This linter can be disabled with `set_option linter.unusedRCasesPattern false`
+warning: papers/Gomez26LiquidityBuffers/EconomicBranch.lean:69:54: `ext` did not consume the patterns `x`
+
+Note: This linter can be disabled with `set_option linter.unusedRCasesPattern false`
+warning: papers/Gomez26LiquidityBuffers/EconomicBranch.lean:72:17: `ext` did not consume the patterns `x`
+
+Note: This linter can be disabled with `set_option linter.unusedRCasesPattern false`
+warning: papers/Gomez26LiquidityBuffers/EconomicBranch.lean:74:17: `ext` did not consume the patterns `x`
+
+Note: This linter can be disabled with `set_option linter.unusedRCasesPattern false`
+warning: papers/Gomez26LiquidityBuffers/EconomicBranch.lean:80:8: `ext` did not consume the patterns `x`
+
+Note: This linter can be disabled with `set_option linter.unusedRCasesPattern false`
+warning: papers/Gomez26LiquidityBuffers/EconomicBranch.lean:59:76: 'ext x' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: papers/Gomez26LiquidityBuffers/EconomicBranch.lean:59:86: 'simp' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: papers/Gomez26LiquidityBuffers/EconomicBranch.lean:66:76: 'ext x' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: papers/Gomez26LiquidityBuffers/EconomicBranch.lean:66:86: 'simp' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: papers/Gomez26LiquidityBuffers/EconomicBranch.lean:59:76: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: papers/Gomez26LiquidityBuffers/EconomicBranch.lean:59:86: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: papers/Gomez26LiquidityBuffers/EconomicBranch.lean:66:76: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: papers/Gomez26LiquidityBuffers/EconomicBranch.lean:66:86: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: papers/Gomez26LiquidityBuffers/EconomicBranch.lean:62:46: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: papers/Gomez26LiquidityBuffers/EconomicBranch.lean:62:56: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: papers/Gomez26LiquidityBuffers/EconomicBranch.lean:69:46: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: papers/Gomez26LiquidityBuffers/EconomicBranch.lean:69:56: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: papers/Gomez26LiquidityBuffers/EconomicBranch.lean:83:32: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+Build completed successfully (3317 jobs).

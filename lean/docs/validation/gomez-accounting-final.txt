@@ -1,0 +1,18 @@
+✖ [3297/3297] Building Gomez26LiquidityBuffers.Accounting (30s)
+trace: .> LEAN_PATH=/home/cjuni/EconCSLib/.lake/packages/Cli/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/batteries/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/Qq/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/aesop/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/importGraph/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/plausible/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/mathlib/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/cslib/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/Vlasov/Vlasov/.lake/build/lib/lean:/home/cjuni/AppliedModelingLib-liquidity/.lake/build/lib/lean /home/cjuni/.elan/toolchains/leanprover--lean4---v4.30.0-rc2/bin/lean /home/cjuni/AppliedModelingLib-liquidity/papers/Gomez26LiquidityBuffers/Accounting.lean -o /home/cjuni/AppliedModelingLib-liquidity/.lake/build/lib/lean/Gomez26LiquidityBuffers/Accounting.olean -i /home/cjuni/AppliedModelingLib-liquidity/.lake/build/lib/lean/Gomez26LiquidityBuffers/Accounting.ilean -c /home/cjuni/AppliedModelingLib-liquidity/.lake/build/ir/Gomez26LiquidityBuffers/Accounting.c --setup /home/cjuni/AppliedModelingLib-liquidity/.lake/build/ir/Gomez26LiquidityBuffers/Accounting.setup.json --json
+error: papers/Gomez26LiquidityBuffers/Accounting.lean:138:66: Invalid field `symm`: The environment does not contain `Function.symm`, so it is not possible to project the field `symm` from an expression
+  hp
+of type `volume μ τ X = 0 → False`
+error: papers/Gomez26LiquidityBuffers/Accounting.lean:138:94: Invalid field `symm`: The environment does not contain `Function.symm`, so it is not possible to project the field `symm` from an expression
+  hq
+of type `volume μ τ D = 0 → False`
+error: papers/Gomez26LiquidityBuffers/Accounting.lean:139:59: Invalid field `symm`: The environment does not contain `Function.symm`, so it is not possible to project the field `symm` from an expression
+  hp
+of type `volume μ τ X = 0 → False`
+error: papers/Gomez26LiquidityBuffers/Accounting.lean:139:87: Invalid field `symm`: The environment does not contain `Function.symm`, so it is not possible to project the field `symm` from an expression
+  hq
+of type `volume μ τ D = 0 → False`
+error: Lean exited with code 1
+Some required targets logged failures:
+- Gomez26LiquidityBuffers.Accounting
+error: build failed

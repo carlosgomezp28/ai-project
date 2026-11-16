@@ -1,0 +1,10 @@
+✔ [3299/3305] Built Gomez26LiquidityBuffers.Moments (30s)
+✔ [3301/3305] Built Gomez26LiquidityBuffers.Capacity (3.1s)
+✔ [3303/3305] Built Gomez26LiquidityBuffers.Convexity (2.8s)
+✔ [3305/3318] Built Gomez26LiquidityBuffers.CurrentModel (2.5s)
+✔ [3314/3318] Built Gomez26LiquidityBuffers.MainTheorems (2.2s)
+✔ [3315/3318] Built Gomez26LiquidityBuffers.Assumptions (2.3s)
+✔ [3316/3318] Built Gomez26LiquidityBuffers.PaperInterface (2.3s)
+✔ [3317/3318] Built Gomez26LiquidityBuffers.ProofInterface (2.1s)
+✔ [3318/3318] Built Gomez26LiquidityBuffers (1.0s)
+Build completed successfully (3318 jobs).

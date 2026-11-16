@@ -1,34 +1,101 @@
-CREATED lean/.gitignore
-CREATED lean/Assumptions.lean
-CREATED lean/BufferCore.lean
-CREATED lean/FINAL_VALIDATION_REPORT.md
-CREATED lean/FiniteCompanion.lean
-CREATED lean/MainTheorems.lean
-CREATED lean/PaperInterface.lean
-CREATED lean/ProofInterface.lean
-MODIFIED lean/README.md
-CREATED lean/SOURCE_PIN.json
-CREATED lean/audit/assumption_match_llm.json
-CREATED lean/audit/defect_support_match_llm.json
-CREATED lean/audit/library_semantic_review.json
-CREATED lean/audit/source_proof_fidelity.json
-CREATED lean/audit/v11_raw_source_spec_screening.json
-CREATED lean/audit/v11_source_map_preparation_config.json
-CREATED lean/docs/AGENT_SOURCE_AUDIT.md
-CREATED lean/docs/AXIOM_CHECK.txt
-CREATED lean/docs/COURSE_CHECK.txt
-CREATED lean/docs/FILES_CREATED_MODIFIED.txt
-CREATED lean/docs/FORMALIZATION_NOTES.md
-CREATED lean/docs/FORMALIZATION_PLAN.md
-CREATED lean/docs/FORMALIZATION_WORKING_MEMO.md
-CREATED lean/docs/LEAN_BUILD.txt
-CREATED lean/docs/PAPER_TO_LEAN.md
-CREATED lean/docs/PHASE2_FORMALIZATION_PLAN.md
-CREATED lean/docs/PLACEHOLDER_SCAN.txt
-CREATED lean/docs/THEOREMS.json
-CREATED lean/docs/VALIDATION.json
-CREATED lean/docs/WORKFLOW_AUDIT.md
-CREATED lean/docs/lake-manifest.json
-CREATED lean/docs/lean-toolchain
-CREATED lean/review-dashboard.sh
-CREATED lean/status.json
+.gitignore
+Accounting.lean
+Assumptions.lean
+Capacity.lean
+Convexity.lean
+CurrentModel.lean
+DensityCurvature.lean
+EconomicBranch.lean
+FINAL_VALIDATION_REPORT.md
+InterfaceValidation.lean
+LocalMinimum.lean
+MainTheorems.lean
+Moments.lean
+Optimization.lean
+PROGRESS.json
+PaperInterface.lean
+PrincipalOptimization.lean
+ProofInterface.lean
+ProofInventory.lean
+README.md
+Regularity.lean
+SOURCE_REFERENCE.json
+SourceInstance.lean
+SourceResponse.lean
+StationaryBranch.lean
+Uniform.lean
+audit/assumption_match_llm.json
+audit/defect_support_match_llm.json
+audit/library_semantic_review.json
+audit/paper_statement_map.json
+audit/source_proof_fidelity.json
+audit/statement_spec.json
+audit/v11_raw_source_spec_screening.json
+audit/v11_source_map_preparation_config.json
+docs/AGENT_SOURCE_AUDIT.md
+docs/BOUNDED_REVIEW.md
+docs/FILES_CREATED_MODIFIED.txt
+docs/FOCUSED_REVIEW.md
+docs/FORMALIZATION_NOTES.md
+docs/FORMALIZATION_PLAN.md
+docs/FORMALIZATION_WORKING_MEMO.md
+docs/INTERFACE_MANIFEST.json
+docs/NEW_DECLARATIONS.md
+docs/PACKAGING_CHANGED_FILES.md
+docs/PACKAGING_MANIFEST.json
+docs/PACKAGING_REVIEW.md
+docs/PAPER_TO_LEAN.md
+docs/REPRODUCE.md
+docs/validation/gomez-accounting-final.txt
+docs/validation/gomez-build-stage1.txt
+docs/validation/gomez-build-stage2.txt
+docs/validation/gomez-build-stage3.txt
+docs/validation/gomez-build-stage4.txt
+docs/validation/gomez-cap.txt
+docs/validation/gomez-capacity-final.txt
+docs/validation/gomez-convexity.txt
+docs/validation/gomez-convexity2.txt
+docs/validation/gomez-corners.txt
+docs/validation/gomez-course-fast.txt
+docs/validation/gomez-current-model.txt
+docs/validation/gomez-focused-assembly.txt
+docs/validation/gomez-focused-axioms.txt
+docs/validation/gomez-focused-connections.txt
+docs/validation/gomez-focused-connections2.raw.json
+docs/validation/gomez-focused-connections2.txt
+docs/validation/gomez-focused-connections3.txt
+docs/validation/gomez-focused-connections4.txt
+docs/validation/gomez-focused-density.txt
+docs/validation/gomez-focused-density2.txt
+docs/validation/gomez-focused-density3.txt
+docs/validation/gomez-focused-fast.txt
+docs/validation/gomez-focused-instance.txt
+docs/validation/gomez-focused-instance2.txt
+docs/validation/gomez-focused-instance3.txt
+docs/validation/gomez-focused-instance4.txt
+docs/validation/gomez-focused-localmin.txt
+docs/validation/gomez-focused-optimization.txt
+docs/validation/gomez-focused-regularity.txt
+docs/validation/gomez-focused-response.txt
+docs/validation/gomez-focused-response2.txt
+docs/validation/gomez-focused-response3.txt
+docs/validation/gomez-focused-response4.txt
+docs/validation/gomez-focused-response5.txt
+docs/validation/gomez-focused-root.txt
+docs/validation/gomez-focused-specialized.txt
+docs/validation/gomez-moments-final.txt
+docs/validation/gomez-moments.txt
+docs/validation/gomez-opt.txt
+docs/validation/gomez-package-axioms.txt
+docs/validation/gomez-package-build.txt
+docs/validation/gomez-package-fast.txt
+docs/validation/gomez-package-interface1.txt
+docs/validation/gomez-package-interface2.txt
+docs/validation/gomez-package-registration.txt
+docs/validation/gomez-package-registration1.txt
+docs/validation/gomez-package-registration2.txt
+docs/validation/gomez-proof-inventory.txt
+docs/validation/gomez-root-build.txt
+docs/validation/gomez-root-final.txt
+review-dashboard.sh
+status.json

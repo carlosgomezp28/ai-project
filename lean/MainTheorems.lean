@@ -1,6 +1,5 @@
-import Gomez26EligibilityBuffers.BufferCore
-import Gomez26EligibilityBuffers.FiniteCompanion
+import Gomez26LiquidityBuffers.CurrentModel
+import Gomez26LiquidityBuffers.Uniform
+import Gomez26LiquidityBuffers.StationaryBranch
 
-/-! Checked subclaims of the frozen paper, not its full propositions.
-See docs/PAPER_TO_LEAN.md for every declaration's scope.
--/
+import Gomez26LiquidityBuffers.SourceResponse

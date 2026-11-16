@@ -1,32 +1,16 @@
-<!-- BEGIN GENERATED PAPER FOLDER README -->
-# Required Reserves, Public-Support Eligibility, and Voluntary Buffers
+# Gomez26LiquidityBuffers - current post-Marco contribution
 
-| Field | Value |
-|---|---|
-| Final status | Partially formalized |
-| Paper reference | Required Reserves, Public-Support Eligibility, and Voluntary Buffers by Carlos Gómez Puicán; Publication details not listed. |
-| Lines of Code | 443 |
+Immutable mathematical source: [5b2959633962f46fc59d963b92f756e06da2ff00](https://github.com/carlosgomezp28/ai-project/blob/5b2959633962f46fc59d963b92f756e06da2ff00/paper/paper.pdf). [SOURCE_REFERENCE.json](SOURCE_REFERENCE.json) records actual PDF/TeX hashes.
 
-## Key Links
+- **Proposition 1 PROVED:** `proposition1 : proposition1Spec`, complete source-instance statement.
+- **Proposition 2 PARTIAL:** full `proposition2Spec` has no proof. `proposition2LocalSupport : proposition2LocalSupportSpec` proves the economic IFT, base-point response/sign and strict-interior-local-minimum persistence.
+- **OPEN:** compact-gap/localization/identification proof for unique-global continuation, neighborhood-wide derivative/sign and exported local stationary-branch uniqueness.
+- Final-source full build, native registration, recursive axiom audit and official `--fast`: **PASS**. Four Specs, two proof endpoints, two numbered economic results. The 168 inventoried constants include projections/generated declarations; they are not 168 economic results. Zero nonstandard axioms and sorryAx.
 
-- Final validation report: [FINAL_VALIDATION_REPORT.md](FINAL_VALIDATION_REPORT.md)
-- Dependency DAG: not tracked in this folder.
-- Compact Lean interface: [PaperInterface.lean](PaperInterface.lean)
-- Source/status JSON: [status.json](status.json).
-- Additional documentation: [FORMALIZATION_NOTES.md](docs/FORMALIZATION_NOTES.md)
-<!-- END GENERATED PAPER FOLDER README -->
+[Correspondence/hypotheses](docs/PAPER_TO_LEAN.md) / [Specs](PaperInterface.lean) / [proof endpoints](ProofInterface.lean) / [validation](FINAL_VALIDATION_REPORT.md) / [reproduction](docs/REPRODUCE.md).
 
-## Course deliverable scope
+Complete generated folder copied directly into course `lean/`, preserving `.gitignore`. It builds within registered AppliedModelingLib, not standalone Lake. Earlier checkpoint reports/logs are historical; final outputs are `gomez-final-*`. Course fast validation is not canonical semantic acceptance.
 
-31 theorem closures are checked. Complete Proposition 1 and Proposition 2
-remain open; their proved supporting subclaims and explicit added restrictions
-are listed in docs/PAPER_TO_LEAN.md and FINAL_VALIDATION_REPORT.md.
+November-4 `Gomez26EligibilityBuffers` and its 31 closures are archived separately in ai-project `archive/lean-november4/` and receive no current-model proof credit.
 
-This is a locally cleaned partial-formalization folder. The AML source folder
-was later modified; no untouched original snapshot was found. At the user's
-direction, cleanup was confined to lean/, so byte-for-byte equality with that
-AML folder is not claimed. See docs/COURSE_CLEANUP.json.
-
-The required course check is paper_contribution.py check
-Gomez26EligibilityBuffers --fast. Canonical closeout is not required and is
-not being pursued. Generic generated workflow scaffolds are retained.
+Joint thesis architecture: Carlos G?mez Puic?n and Fabi?n M?ndez Su?rez under Marco Ortiz. Individual course optimization/formalization: Carlos. Genuine handwriting, numerical tests and formal proof are distinct evidence.

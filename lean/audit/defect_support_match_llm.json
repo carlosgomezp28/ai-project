@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "paper": "Gomez26EligibilityBuffers",
+  "paper": "Gomez26LiquidityBuffers",
   "prompt_version": "defect-support-v1-exact-source-defect-to-lean-semantic",
   "audit_kind": "source_defect_to_lean_llm",
   "source_grounded": true,
@@ -67,13 +67,5 @@
       "witness_or_derivation"
     ]
   },
-  "items": {},
-  "bounded_scaffold_review": {
-    "reviewed_at": "2026-11-04T01:29:20.608314+00:00",
-    "disposition": "not_applicable_no_source_defect",
-    "reason": "No source defect, corrected theorem, counterexample or refutation is claimed. Unproved bridges are formalization gaps, not source defects. Empty items is deliberate.",
-    "canonical_acceptance": false,
-    "review_record": "audit/partial_semantic_review.json",
-    "independent_adversarial_record": "docs/SEMANTIC_SCOPE_REVIEW.md"
-  }
+  "items": {}
 }

@@ -1,0 +1,75 @@
+✖ [3299/3300] Building Gomez26LiquidityBuffers.Optimization (33s)
+trace: .> LEAN_PATH=/home/cjuni/EconCSLib/.lake/packages/Cli/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/batteries/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/Qq/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/aesop/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/importGraph/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/plausible/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/mathlib/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/cslib/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/Vlasov/Vlasov/.lake/build/lib/lean:/home/cjuni/AppliedModelingLib-liquidity/.lake/build/lib/lean /home/cjuni/.elan/toolchains/leanprover--lean4---v4.30.0-rc2/bin/lean /home/cjuni/AppliedModelingLib-liquidity/papers/Gomez26LiquidityBuffers/Optimization.lean -o /home/cjuni/AppliedModelingLib-liquidity/.lake/build/lib/lean/Gomez26LiquidityBuffers/Optimization.olean -i /home/cjuni/AppliedModelingLib-liquidity/.lake/build/lib/lean/Gomez26LiquidityBuffers/Optimization.ilean -c /home/cjuni/AppliedModelingLib-liquidity/.lake/build/ir/Gomez26LiquidityBuffers/Optimization.c --setup /home/cjuni/AppliedModelingLib-liquidity/.lake/build/ir/Gomez26LiquidityBuffers/Optimization.setup.json --json
+error: papers/Gomez26LiquidityBuffers/Optimization.lean:34:2: linarith failed to find a contradiction
+J : ℝ → ℝ
+U d : ℝ
+hU : 0 ≤ U
+hJ : ConvexOn ℝ (Icc 0 U) J
+hd : HasDerivAt J d 0
+hs : 0 ≤ d
+y : ℝ
+hy : y ∈ Icc 0 U
+h : J 0 + d * (y - 0) ≤ J y
+hp : 0 ≤ d * y
+⊢ False
+failed
+error: papers/Gomez26LiquidityBuffers/Optimization.lean:42:2: linarith failed to find a contradiction
+J : ℝ → ℝ
+U d : ℝ
+hU : 0 ≤ U
+hJ : ConvexOn ℝ (Icc 0 U) J
+hd : HasDerivAt J d U
+hs : d ≤ 0
+y : ℝ
+hy : y ∈ Icc 0 U
+h : J U + d * (y - U) ≤ J y
+hp : 0 ≤ d * (y - U)
+⊢ False
+failed
+error: papers/Gomez26LiquidityBuffers/Optimization.lean:56:19: Unknown identifier `mul_nonpos_iff_of_pos_left`
+error: papers/Gomez26LiquidityBuffers/Optimization.lean:65:21: Unknown identifier `mul_nonpos_iff_of_neg_left`
+error: Lean exited with code 1
+✖ [3300/3300] Building Gomez26LiquidityBuffers.Capacity (2.7s)
+trace: .> LEAN_PATH=/home/cjuni/EconCSLib/.lake/packages/Cli/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/batteries/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/Qq/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/aesop/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/importGraph/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/plausible/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/mathlib/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/cslib/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/Vlasov/Vlasov/.lake/build/lib/lean:/home/cjuni/AppliedModelingLib-liquidity/.lake/build/lib/lean /home/cjuni/.elan/toolchains/leanprover--lean4---v4.30.0-rc2/bin/lean /home/cjuni/AppliedModelingLib-liquidity/papers/Gomez26LiquidityBuffers/Capacity.lean -o /home/cjuni/AppliedModelingLib-liquidity/.lake/build/lib/lean/Gomez26LiquidityBuffers/Capacity.olean -i /home/cjuni/AppliedModelingLib-liquidity/.lake/build/lib/lean/Gomez26LiquidityBuffers/Capacity.ilean -c /home/cjuni/AppliedModelingLib-liquidity/.lake/build/ir/Gomez26LiquidityBuffers/Capacity.c --setup /home/cjuni/AppliedModelingLib-liquidity/.lake/build/ir/Gomez26LiquidityBuffers/Capacity.setup.json --json
+warning: papers/Gomez26LiquidityBuffers/Capacity.lean:23:13: This simp argument is unused:
+  one_div_pos.mpr h.1
+
+Hint: Omit it from the simp argument list.
+  simp [h,̵ ̵o̵n̵e̵_̵d̵i̵v̵_̵p̵o̵s̵.̵m̵p̵r̵ ̵h̵.̵1̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: papers/Gomez26LiquidityBuffers/Capacity.lean:54:21: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: papers/Gomez26LiquidityBuffers/Capacity.lean:54:31: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+error: papers/Gomez26LiquidityBuffers/Capacity.lean:76:22: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  -∑ x ∈ ?m.480, ?f x
+in the target expression
+  ∑ i, κ * (w i * (1 - ψ i) * πminus i * coverageSlope F (Δ i)) =
+    0 - ∑ j, w j * (-κ * (1 - ψ j) * coverageSlope F (Δ j) * πminus j)
+
+case h.e'_9
+n : ℕ
+w ψ ℓ Δ πminus πplus : Fin n → ℝ
+r i κ F : ℝ
+hreg : ∀ (j : Fin n), 0 < Δ j → F ≠ Δ j
+hsum :
+  HasDerivAt (fun x ↦ ∑ j, w j * (deficitCoefficient i κ (ψ j) (Δ j) x * πminus j + i * ℓ j * πplus j))
+    (∑ j, w j * (-κ * (1 - ψ j) * coverageSlope F (Δ j) * πminus j)) F
+h :
+  HasDerivAt ((fun x ↦ r) - fun x ↦ ∑ j, w j * (deficitCoefficient i κ (ψ j) (Δ j) x * πminus j + i * ℓ j * πplus j))
+    (0 - ∑ j, w j * (-κ * (1 - ψ j) * coverageSlope F (Δ j) * πminus j)) F
+⊢ ∑ i, κ * (w i * (1 - ψ i) * πminus i * coverageSlope F (Δ i)) =
+    0 - ∑ j, w j * (-κ * (1 - ψ j) * coverageSlope F (Δ j) * πminus j)
+error: papers/Gomez26LiquidityBuffers/Capacity.lean:93:23: linarith failed to find a contradiction
+N H : ℝ
+hH : 0 < H
+⊢ False
+failed
+error: Lean exited with code 1
+Some required targets logged failures:
+- Gomez26LiquidityBuffers.Optimization
+- Gomez26LiquidityBuffers.Capacity
+error: build failed

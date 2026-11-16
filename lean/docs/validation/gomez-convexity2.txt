@@ -1,0 +1,9 @@
+⚠ [3298/3301] Replayed Gomez26LiquidityBuffers.Moments
+warning: papers/Gomez26LiquidityBuffers/Moments.lean:70:57: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: papers/Gomez26LiquidityBuffers/Moments.lean:70:69: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [3301/3301] Built Gomez26LiquidityBuffers.Convexity (32s)
+Build completed successfully (3301 jobs).

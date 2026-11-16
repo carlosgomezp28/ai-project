@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "paper": "Gomez26EligibilityBuffers",
+  "paper": "Gomez26LiquidityBuffers",
   "prompt_version": "assumption-provenance-v4-verbatim-source-anchor-exact-premise",
   "validator": "",
   "validator_type": "",
@@ -15,13 +15,5 @@
     "Use derived_from_source_primitives only when the Lean development derives the premise from prior source primitives.",
     "Displayed formulas, capacity equations, threshold identities, density/mass rows, source-row packages, certificates, and proof conveniences are not paper assumptions unless the source explicitly assumes them; otherwise mark partial_boundary or not_paper_assumption."
   ],
-  "items": {},
-  "bounded_scaffold_review": {
-    "reviewed_at": "2026-11-04T01:29:20.608314+00:00",
-    "disposition": "required_not_issued",
-    "reason": "All existing theorem premises were semantically reviewed in the bounded review. Canonical atom-level judgments require Lean graph claim atoms and exact source routes, which are unavailable. Chain equations remain explicit algebra-only partial boundaries.",
-    "canonical_acceptance": false,
-    "review_record": "audit/partial_semantic_review.json",
-    "independent_adversarial_record": "docs/SEMANTIC_SCOPE_REVIEW.md"
-  }
+  "items": {}
 }

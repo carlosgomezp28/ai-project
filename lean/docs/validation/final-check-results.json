@@ -1,0 +1,26 @@
+[
+  {
+    "check": "build",
+    "command": "lake build +Gomez26LiquidityBuffers",
+    "exit_code": 0,
+    "log": "docs/validation/gomez-final-build.txt"
+  },
+  {
+    "check": "registration",
+    "command": "lake env lean papers/Gomez26LiquidityBuffers/InterfaceValidation.lean",
+    "exit_code": 0,
+    "log": "docs/validation/gomez-final-registration.txt"
+  },
+  {
+    "check": "axioms",
+    "command": "lake env lean papers/Gomez26LiquidityBuffers/ProofInventory.lean",
+    "exit_code": 0,
+    "log": "docs/validation/gomez-final-axioms.txt"
+  },
+  {
+    "check": "fast",
+    "command": "python3 scripts/paper_contribution.py check Gomez26LiquidityBuffers --fast",
+    "exit_code": 0,
+    "log": "docs/validation/gomez-final-fast.txt"
+  }
+]
