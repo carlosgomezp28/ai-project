@@ -1,0 +1,18 @@
+{
+  "schema": 3,
+  "paper": "Gomez26EligibilityBuffers",
+  "audit_kind": "raw_source_to_expanded_spec_screening",
+  "prompt_version": "statement-match-v11-verbatim-source-anchor-lean-expanded-spec-claim-atoms-supporting-declarations-v4",
+  "validator": "",
+  "validated_at": "",
+  "comment": "Each row must compare only the exact byte-pinned source-anchor bundle and required source context with one direct expanded PaperInterface Spec plus Lean-emitted parameter, assumption, and terminal-conclusion atoms. The paired proof endpoint is separate Lean evidence. Reissue with scripts/reissue_v11_raw_source_spec_screening.py after an explicit reviewer decision; do not enter a map summary, theorem name, wrapper, or Lean-to-TeX paraphrase as semantic input.",
+  "items": {},
+  "bounded_scaffold_review": {
+    "reviewed_at": "2026-11-04T01:29:20.608314+00:00",
+    "disposition": "required_not_issued",
+    "reason": "No canonical builder-issued graph/queue/source-to-expanded-Spec identity exists. The 31-declaration bounded review is separate; no matches receipts are fabricated.",
+    "canonical_acceptance": false,
+    "review_record": "audit/partial_semantic_review.json",
+    "independent_adversarial_record": "docs/SEMANTIC_SCOPE_REVIEW.md"
+  }
+}

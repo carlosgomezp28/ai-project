@@ -1,0 +1,49 @@
+✖ [3306/3306] Building Gomez26LiquidityBuffers.SourceInstance (29s)
+trace: .> LEAN_PATH=/home/cjuni/EconCSLib/.lake/packages/Cli/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/batteries/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/Qq/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/aesop/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/importGraph/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/plausible/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/mathlib/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/cslib/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/Vlasov/Vlasov/.lake/build/lib/lean:/home/cjuni/AppliedModelingLib-liquidity/.lake/build/lib/lean /home/cjuni/.elan/toolchains/leanprover--lean4---v4.30.0-rc2/bin/lean /home/cjuni/AppliedModelingLib-liquidity/papers/Gomez26LiquidityBuffers/SourceInstance.lean -o /home/cjuni/AppliedModelingLib-liquidity/.lake/build/lib/lean/Gomez26LiquidityBuffers/SourceInstance.olean -i /home/cjuni/AppliedModelingLib-liquidity/.lake/build/lib/lean/Gomez26LiquidityBuffers/SourceInstance.ilean -c /home/cjuni/AppliedModelingLib-liquidity/.lake/build/ir/Gomez26LiquidityBuffers/SourceInstance.c --setup /home/cjuni/AppliedModelingLib-liquidity/.lake/build/ir/Gomez26LiquidityBuffers/SourceInstance.setup.json --json
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:53:20: Unknown identifier `isProbabilityMeasure_map`
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:58:43: Application type mismatch: The argument
+  measurableSet_singleton
+has type
+  ∀ (x : ?m.26), MeasurableSet {x}
+but is expected to have type
+  MeasurableSet ?m.25
+in the application
+  Measure.map_apply ?m.24 measurableSet_singleton
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:55:69: unsolved goals
+case measure_singleton
+m : ℕ
+s : SourceInstance m
+k : Fin 2
+j : Fin m
+x : ℝ
+⊢ (Measure.map (fun e ↦ s.β k * s.A j + e) (s.epsLaw k j)) {x} = 0
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:99:2: Tactic `apply` failed: could not unify the conclusion of `@Finset.sum_nonneg`
+  0 ≤ ∑ i ∈ ?s, ?f i
+with the goal
+  0 ≤ s.P j
+
+Note: The full type of `@Finset.sum_nonneg` is
+  ∀ {ι : Type ?u.10620.6} {N : Type ?u.10620.5} [inst : AddCommMonoid N] [inst_1 : Preorder N] {f : ι → N}
+    {s : Finset ι} [AddLeftMono N], (∀ i ∈ s, 0 ≤ f i) → 0 ≤ ∑ i ∈ s, f i
+
+m : ℕ
+s : SourceInstance m
+j : Fin m
+⊢ 0 ≤ s.P j
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:102:2: Tactic `apply` failed: could not unify the conclusion of `@Finset.sum_nonneg`
+  0 ≤ ∑ i ∈ ?s, ?f i
+with the goal
+  0 ≤ s.Q j
+
+Note: The full type of `@Finset.sum_nonneg` is
+  ∀ {ι : Type ?u.10693.6} {N : Type ?u.10693.5} [inst : AddCommMonoid N] [inst_1 : Preorder N] {f : ι → N}
+    {s : Finset ι} [AddLeftMono N], (∀ i ∈ s, 0 ≤ f i) → 0 ≤ ∑ i ∈ s, f i
+
+m : ℕ
+s : SourceInstance m
+j : Fin m
+⊢ 0 ≤ s.Q j
+error: Lean exited with code 1
+Some required targets logged failures:
+- Gomez26LiquidityBuffers.SourceInstance
+error: build failed

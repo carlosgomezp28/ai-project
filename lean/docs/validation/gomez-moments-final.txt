@@ -1,0 +1,6 @@
+✔ [3298/3299] Built Gomez26LiquidityBuffers.Accounting (30s)
+⚠ [3299/3299] Built Gomez26LiquidityBuffers.Moments (3.4s)
+warning: papers/Gomez26LiquidityBuffers/Moments.lean:202:72: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+Build completed successfully (3299 jobs).

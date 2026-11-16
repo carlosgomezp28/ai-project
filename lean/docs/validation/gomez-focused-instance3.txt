@@ -1,0 +1,32 @@
+✖ [3306/3306] Building Gomez26LiquidityBuffers.SourceInstance (30s)
+trace: .> LEAN_PATH=/home/cjuni/EconCSLib/.lake/packages/Cli/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/batteries/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/Qq/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/aesop/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/importGraph/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/plausible/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/mathlib/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/cslib/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/Vlasov/Vlasov/.lake/build/lib/lean:/home/cjuni/AppliedModelingLib-liquidity/.lake/build/lib/lean /home/cjuni/.elan/toolchains/leanprover--lean4---v4.30.0-rc2/bin/lean /home/cjuni/AppliedModelingLib-liquidity/papers/Gomez26LiquidityBuffers/SourceInstance.lean -o /home/cjuni/AppliedModelingLib-liquidity/.lake/build/lib/lean/Gomez26LiquidityBuffers/SourceInstance.olean -i /home/cjuni/AppliedModelingLib-liquidity/.lake/build/lib/lean/Gomez26LiquidityBuffers/SourceInstance.ilean -c /home/cjuni/AppliedModelingLib-liquidity/.lake/build/ir/Gomez26LiquidityBuffers/SourceInstance.c --setup /home/cjuni/AppliedModelingLib-liquidity/.lake/build/ir/Gomez26LiquidityBuffers/SourceInstance.setup.json --json
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:99:2: Tactic `apply` failed: could not unify the conclusion of `@Finset.sum_nonneg`
+  0 ≤ ∑ i ∈ ?s, ?f i
+with the goal
+  0 ≤ s.P j
+
+Note: The full type of `@Finset.sum_nonneg` is
+  ∀ {ι : Type ?u.12315.6} {N : Type ?u.12315.5} [inst : AddCommMonoid N] [inst_1 : Preorder N] {f : ι → N}
+    {s : Finset ι} [AddLeftMono N], (∀ i ∈ s, 0 ≤ f i) → 0 ≤ ∑ i ∈ s, f i
+
+m : ℕ
+s : SourceInstance m
+j : Fin m
+⊢ 0 ≤ s.P j
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:102:2: Tactic `apply` failed: could not unify the conclusion of `@Finset.sum_nonneg`
+  0 ≤ ∑ i ∈ ?s, ?f i
+with the goal
+  0 ≤ s.Q j
+
+Note: The full type of `@Finset.sum_nonneg` is
+  ∀ {ι : Type ?u.12388.6} {N : Type ?u.12388.5} [inst : AddCommMonoid N] [inst_1 : Preorder N] {f : ι → N}
+    {s : Finset ι} [AddLeftMono N], (∀ i ∈ s, 0 ≤ f i) → 0 ≤ ∑ i ∈ s, f i
+
+m : ℕ
+s : SourceInstance m
+j : Fin m
+⊢ 0 ≤ s.Q j
+error: Lean exited with code 1
+Some required targets logged failures:
+- Gomez26LiquidityBuffers.SourceInstance
+error: build failed

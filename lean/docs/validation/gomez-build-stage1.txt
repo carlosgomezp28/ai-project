@@ -1,0 +1,17 @@
+⚠ [3297/3298] Built Gomez26LiquidityBuffers.Uniform (28s)
+warning: papers/Gomez26LiquidityBuffers/Uniform.lean:36:23: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: papers/Gomez26LiquidityBuffers/Uniform.lean:36:33: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: papers/Gomez26LiquidityBuffers/Uniform.lean:36:48: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✖ [3298/3298] Building Gomez26LiquidityBuffers.Accounting (2.9s)
+trace: .> LEAN_PATH=/home/cjuni/EconCSLib/.lake/packages/Cli/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/batteries/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/Qq/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/aesop/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/importGraph/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/plausible/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/mathlib/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/cslib/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/Vlasov/Vlasov/.lake/build/lib/lean:/home/cjuni/AppliedModelingLib-liquidity/.lake/build/lib/lean /home/cjuni/.elan/toolchains/leanprover--lean4---v4.30.0-rc2/bin/lean /home/cjuni/AppliedModelingLib-liquidity/papers/Gomez26LiquidityBuffers/Accounting.lean -o /home/cjuni/AppliedModelingLib-liquidity/.lake/build/lib/lean/Gomez26LiquidityBuffers/Accounting.olean -i /home/cjuni/AppliedModelingLib-liquidity/.lake/build/lib/lean/Gomez26LiquidityBuffers/Accounting.ilean -c /home/cjuni/AppliedModelingLib-liquidity/.lake/build/ir/Gomez26LiquidityBuffers/Accounting.c --setup /home/cjuni/AppliedModelingLib-liquidity/.lake/build/ir/Gomez26LiquidityBuffers/Accounting.setup.json --json
+error: papers/Gomez26LiquidityBuffers/Accounting.lean:106:61: No goals to be solved
+error: Lean exited with code 1
+Some required targets logged failures:
+- Gomez26LiquidityBuffers.Accounting
+error: build failed

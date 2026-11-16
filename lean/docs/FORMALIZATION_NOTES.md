@@ -1,17 +1,19 @@
+> Initial scaffold notes; source fields refreshed to the final immutable paper. For final proof scope/check results, see PAPER_TO_LEAN.md and ../FINAL_VALIDATION_REPORT.md.
+
 # Formalization Notes
 
 This file preserves the previous hand-written paper-folder README content.
 The paper-folder `README.md` is now a generated status overview.
 
-# Required Reserves, Public-Support Eligibility, and Voluntary Buffers
+# Voluntary Liquidity Buffers under Finite Common Coverage
 
 ## Source Version
 
-- Paper: *Required Reserves, Public-Support Eligibility, and Voluntary Buffers*
+- Paper: *Voluntary Liquidity Buffers under Finite Common Coverage*
 - Authors: Carlos Gomez Puican
-- Version formalized: cf37d3f402c04a73c832cce41f559e32348f8941
-- Official URL: https://github.com/carlosgomezp28/ai-project/blob/cf37d3f402c04a73c832cce41f559e32348f8941/paper/paper.pdf
-- Public PDF: https://github.com/carlosgomezp28/ai-project/blob/cf37d3f402c04a73c832cce41f559e32348f8941/paper/paper.pdf
+- Version formalized: post-Marco-final-5b2959633962f46fc59d963b92f756e06da2ff00
+- Official URL: https://github.com/carlosgomezp28/ai-project/blob/5b2959633962f46fc59d963b92f756e06da2ff00/paper/paper.pdf
+- Public PDF: https://github.com/carlosgomezp28/ai-project/blob/5b2959633962f46fc59d963b92f756e06da2ff00/paper/paper.pdf
 
 Without a statement spec, a downloaded PDF is cached as `source.pdf` and ignored
 by Git. A statement spec's SHA-256-verified source bytes are copied to a stable
@@ -25,15 +27,15 @@ checked separately.
 
 ## Paper-Facing Ledger
 
-- Implementation theorem file: `Gomez26EligibilityBuffers/MainTheorems.lean`
-- Source-semantic interface: `Gomez26EligibilityBuffers/PaperInterface.lean`
-- Proof-endpoint interface: `Gomez26EligibilityBuffers/ProofInterface.lean`
-- Machine-readable status source: `Gomez26EligibilityBuffers/status.json`
-- Private outside-Lean proof plan: `Gomez26EligibilityBuffers/docs/FORMALIZATION_PLAN.md`
-- Final validation report: `Gomez26EligibilityBuffers/FINAL_VALIDATION_REPORT.md`
-- Dependency DAG: `Gomez26EligibilityBuffers/docs/DependencyDAG.tex`
-- Rendered DAG: `Gomez26EligibilityBuffers/docs/DependencyDAG.pdf`
-- LLM/source audit sidecars: `Gomez26EligibilityBuffers/audit/*.json`
+- Implementation theorem file: `Gomez26LiquidityBuffers/MainTheorems.lean`
+- Source-semantic interface: `Gomez26LiquidityBuffers/PaperInterface.lean`
+- Proof-endpoint interface: `Gomez26LiquidityBuffers/ProofInterface.lean`
+- Machine-readable status source: `Gomez26LiquidityBuffers/status.json`
+- Private outside-Lean proof plan: `Gomez26LiquidityBuffers/docs/FORMALIZATION_PLAN.md`
+- Final validation report: `Gomez26LiquidityBuffers/FINAL_VALIDATION_REPORT.md`
+- Dependency DAG: `Gomez26LiquidityBuffers/docs/DependencyDAG.tex`
+- Rendered DAG: `Gomez26LiquidityBuffers/docs/DependencyDAG.pdf`
+- LLM/source audit sidecars: `Gomez26LiquidityBuffers/audit/*.json`
 
 `PaperInterface.lean` should be readable on its own: expose actual source
 definitions/models and one transparent statement specification for each
@@ -81,7 +83,7 @@ rows, artifact paths, and the paper's top-level public status.
    clarifications, genuine additional assumptions, and proof deviations in the
    working memo; it is a lead log, not evidence.
 5. Begin or resume audit and closeout with
-   `python3 scripts/closeout_reuse_plan.py --paper Gomez26EligibilityBuffers` and execute only
+   `python3 scripts/closeout_reuse_plan.py --paper Gomez26LiquidityBuffers` and execute only
    its `next_action`.
 
 The current semantic judge compares the ordered byte-pinned source-anchor
@@ -129,7 +131,7 @@ not block Lean closeout.
 
 ## Closeout Checklist
 
-- [ ] Start with `python3 scripts/closeout_reuse_plan.py --paper Gomez26EligibilityBuffers` and
+- [ ] Start with `python3 scripts/closeout_reuse_plan.py --paper Gomez26LiquidityBuffers` and
       execute only its current `next_action`.
 - [ ] Resolve every raw-source-to-expanded-Spec, material-prerequisite,
       assumption, proof-route, axiom, realization, and source-coverage finding.

@@ -1,0 +1,101 @@
+✖ [3306/3306] Building Gomez26LiquidityBuffers.DensityCurvature (34s)
+trace: .> LEAN_PATH=/home/cjuni/EconCSLib/.lake/packages/Cli/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/batteries/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/Qq/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/aesop/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/importGraph/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/plausible/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/mathlib/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/cslib/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/Vlasov/Vlasov/.lake/build/lib/lean:/home/cjuni/AppliedModelingLib-liquidity/.lake/build/lib/lean /home/cjuni/.elan/toolchains/leanprover--lean4---v4.30.0-rc2/bin/lean /home/cjuni/AppliedModelingLib-liquidity/papers/Gomez26LiquidityBuffers/DensityCurvature.lean -o /home/cjuni/AppliedModelingLib-liquidity/.lake/build/lib/lean/Gomez26LiquidityBuffers/DensityCurvature.olean -i /home/cjuni/AppliedModelingLib-liquidity/.lake/build/lib/lean/Gomez26LiquidityBuffers/DensityCurvature.ilean -c /home/cjuni/AppliedModelingLib-liquidity/.lake/build/ir/Gomez26LiquidityBuffers/DensityCurvature.c --setup /home/cjuni/AppliedModelingLib-liquidity/.lake/build/ir/Gomez26LiquidityBuffers/DensityCurvature.setup.json --json
+error: papers/Gomez26LiquidityBuffers/DensityCurvature.lean:14:14: Unknown constant `Gomez26LiquidityBuffers.volume.withDensity`
+error: papers/Gomez26LiquidityBuffers/DensityCurvature.lean:15:23: Application type mismatch: The argument
+  volume
+has type
+  (Fin ?m.10 → ℝ) → (Fin ?m.10 → ℝ) → (Fin ?m.10 → ℝ) → ℝ
+but is expected to have type
+  autoParam (Measure ℝ) Integrable._auto_1
+in the application
+  Integrable f volume
+error: papers/Gomez26LiquidityBuffers/DensityCurvature.lean:19:10: Unknown constant `MeasureTheory.Measure.withDensity_apply`
+error: papers/Gomez26LiquidityBuffers/DensityCurvature.lean:16:43: unsolved goals
+μ : Measure ℝ
+f : ℝ → ℝ
+hμ : μ = sorry
+hf : Integrable f sorry
+hn : ∀ (x : ℝ), 0 ≤ f x
+a b : ℝ
+hab : a ≤ b
+⊢ (sorry (Ioc a b)).toReal = ∫ (x : ℝ) in Ioc a b, f x ∂MeasureTheory.volume
+error: papers/Gomez26LiquidityBuffers/DensityCurvature.lean:24:14: Unknown constant `Gomez26LiquidityBuffers.volume.withDensity`
+error: papers/Gomez26LiquidityBuffers/DensityCurvature.lean:25:23: Application type mismatch: The argument
+  volume
+has type
+  (Fin ?m.12 → ℝ) → (Fin ?m.12 → ℝ) → (Fin ?m.12 → ℝ) → ℝ
+but is expected to have type
+  autoParam (Measure ℝ) Integrable._auto_1
+in the application
+  Integrable f volume
+error: papers/Gomez26LiquidityBuffers/DensityCurvature.lean:29:57: No goals to be solved
+error: papers/Gomez26LiquidityBuffers/DensityCurvature.lean:31:10: could not synthesize default value for parameter 'h₁' using tactics
+error: papers/Gomez26LiquidityBuffers/DensityCurvature.lean:31:10: tactic 'aesop' failed, failed to prove the goal after exhaustive search.
+Initial goal:
+  μ : Measure ℝ
+  inst✝ : IsProbabilityMeasure μ
+  f : ℝ → ℝ
+  hμ : μ = sorry
+  hf : Integrable f sorry
+  hn : ∀ (x : ℝ), 0 ≤ f x
+  a✝ b✝ a b : ℝ
+  hab : a ≤ b
+  he : Iic b \ Iic a = Ioc a b
+  ⊢ μ (Iic b) ≠ ⊤
+Remaining goals after safe rules:
+  μ : Measure ℝ
+  inst : IsProbabilityMeasure μ
+  f : ℝ → ℝ
+  hμ : μ = sorry
+  ⊢ MeasurableSpace ℝ
+error: papers/Gomez26LiquidityBuffers/DensityCurvature.lean:32:10: Unknown identifier `density_interval`
+error: papers/Gomez26LiquidityBuffers/DensityCurvature.lean:40:14: Unknown constant `Gomez26LiquidityBuffers.volume.withDensity`
+error: papers/Gomez26LiquidityBuffers/DensityCurvature.lean:41:23: Application type mismatch: The argument
+  volume
+has type
+  (Fin ?m.12 → ℝ) → (Fin ?m.12 → ℝ) → (Fin ?m.12 → ℝ) → ℝ
+but is expected to have type
+  autoParam (Measure ℝ) Integrable._auto_1
+in the application
+  Integrable f volume
+error: papers/Gomez26LiquidityBuffers/DensityCurvature.lean:44:24: Unknown identifier `cumulative_difference`
+error: papers/Gomez26LiquidityBuffers/DensityCurvature.lean:58:26: Unknown constant `Gomez26LiquidityBuffers.volume.withDensity`
+error: papers/Gomez26LiquidityBuffers/DensityCurvature.lean:59:23: Application type mismatch: The argument
+  volume
+has type
+  (Fin ?m.14 → ℝ) → (Fin ?m.14 → ℝ) → (Fin ?m.14 → ℝ) → ℝ
+but is expected to have type
+  autoParam (Measure ℝ) Integrable._auto_1
+in the application
+  Integrable f volume
+error: papers/Gomez26LiquidityBuffers/DensityCurvature.lean:67:26: Unknown constant `Gomez26LiquidityBuffers.volume.withDensity`
+error: papers/Gomez26LiquidityBuffers/DensityCurvature.lean:68:23: Application type mismatch: The argument
+  volume
+has type
+  (Fin ?m.14 → ℝ) → (Fin ?m.14 → ℝ) → (Fin ?m.14 → ℝ) → ℝ
+but is expected to have type
+  autoParam (Measure ℝ) Integrable._auto_1
+in the application
+  Integrable f volume
+error: papers/Gomez26LiquidityBuffers/DensityCurvature.lean:83:23: Unknown constant `Gomez26LiquidityBuffers.volume.withDensity`
+error: papers/Gomez26LiquidityBuffers/DensityCurvature.lean:84:32: Application type mismatch: The argument
+  volume
+has type
+  (Fin ?m.18 → ℝ) → (Fin ?m.18 → ℝ) → (Fin ?m.18 → ℝ) → ℝ
+but is expected to have type
+  autoParam (Measure ℝ) Integrable._auto_1
+in the application
+  Integrable (f j) volume
+error: papers/Gomez26LiquidityBuffers/DensityCurvature.lean:106:23: Unknown constant `Gomez26LiquidityBuffers.volume.withDensity`
+error: papers/Gomez26LiquidityBuffers/DensityCurvature.lean:107:32: Application type mismatch: The argument
+  volume
+has type
+  (Fin ?m.24 → ℝ) → (Fin ?m.24 → ℝ) → (Fin ?m.24 → ℝ) → ℝ
+but is expected to have type
+  autoParam (Measure ℝ) Integrable._auto_1
+in the application
+  Integrable (f j) volume
+error: Lean exited with code 1
+Some required targets logged failures:
+- Gomez26LiquidityBuffers.DensityCurvature
+error: build failed

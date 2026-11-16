@@ -1,0 +1,264 @@
+✖ [3306/3306] Building Gomez26LiquidityBuffers.SourceInstance (29s)
+trace: .> LEAN_PATH=/home/cjuni/EconCSLib/.lake/packages/Cli/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/batteries/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/Qq/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/aesop/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/importGraph/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/plausible/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/mathlib/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/cslib/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/Vlasov/Vlasov/.lake/build/lib/lean:/home/cjuni/AppliedModelingLib-liquidity/.lake/build/lib/lean /home/cjuni/.elan/toolchains/leanprover--lean4---v4.30.0-rc2/bin/lean /home/cjuni/AppliedModelingLib-liquidity/papers/Gomez26LiquidityBuffers/SourceInstance.lean -o /home/cjuni/AppliedModelingLib-liquidity/.lake/build/lib/lean/Gomez26LiquidityBuffers/SourceInstance.olean -i /home/cjuni/AppliedModelingLib-liquidity/.lake/build/lib/lean/Gomez26LiquidityBuffers/SourceInstance.ilean -c /home/cjuni/AppliedModelingLib-liquidity/.lake/build/ir/Gomez26LiquidityBuffers/SourceInstance.c --setup /home/cjuni/AppliedModelingLib-liquidity/.lake/build/ir/Gomez26LiquidityBuffers/SourceInstance.setup.json --json
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:15:19: Function expected at
+  d
+but this term has type
+  ?m.22
+
+Note: Expected a function because this term is being applied to the argument
+  k
+
+Hint: The identifier `d` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:16:22: Function expected at
+  τ
+but this term has type
+  ?m.39
+
+Note: Expected a function because this term is being applied to the argument
+  k
+
+Hint: The identifier `τ` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:16:28: Function expected at
+  τ
+but this term has type
+  ?m.39
+
+Note: Expected a function because this term is being applied to the argument
+  k
+
+Hint: The identifier `τ` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:17:19: Function expected at
+  U
+but this term has type
+  ?m.70
+
+Note: Expected a function because this term is being applied to the argument
+  k
+
+Hint: The identifier `U` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:18:27: Unknown identifier `uref`
+
+Note: It is not possible to treat `uref` as an implicitly bound variable here because it has multiple characters while the `relaxedAutoImplicit` option is set to `false`.
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:18:36: Unknown identifier `uref`
+
+Note: It is not possible to treat `uref` as an implicitly bound variable here because it has multiple characters while the `relaxedAutoImplicit` option is set to `false`.
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:18:45: Function expected at
+  U
+but this term has type
+  ?m.87
+
+Note: Expected a function because this term is being applied to the argument
+  k
+
+Hint: The identifier `U` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:19:19: Function expected at
+  w
+but this term has type
+  ?m.112
+
+Note: Expected a function because this term is being applied to the argument
+  j
+
+Hint: The identifier `w` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:20:15: Function expected at
+  w
+but this term has type
+  ?m.129
+
+Note: Expected a function because this term is being applied to the argument
+  j
+
+Hint: The identifier `w` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:33:22: Unknown identifier `SourceInstance`
+
+Note: It is not possible to treat `SourceInstance` as an implicitly bound variable here because it has multiple characters while the `relaxedAutoImplicit` option is set to `false`.
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:38:18: declaration uses `sorry`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:42:2: 'unfold law' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:42:14: 'exact isProbabilityMeasure_map (by fun_prop)' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:42:14: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:47:6: Failed to rewrite using equation theorems for `law`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:47:6: declaration uses `sorry`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:55:2: 'unfold law' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:56:2: 'apply (integrable_map_measure (by fun_prop) (by fun_prop)).mpr' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:57:2: 'exact (integrable_const (s.β k * s.A j)).add (s.eps_first_moment k j)' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:56:2: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:57:2: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:59:36: typeclass instance problem is stuck
+  Fintype ?m.4
+
+Note: Lean will not try to resolve this typeclass instance problem because the type argument to `Fintype` is a metavariable. This argument must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:60:18: declaration uses `sorry`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:61:18: declaration uses `sorry`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:62:18: declaration uses `sorry`
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:63:59: Failed to infer type of binder `k`
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:64:59: Failed to infer type of binder `k`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:65:18: declaration uses `sorry`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:66:18: declaration uses `sorry`
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:67:41: typeclass instance problem is stuck
+  Fintype ?m.4
+
+Note: Lean will not try to resolve this typeclass instance problem because the type argument to `Fintype` is a metavariable. This argument must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:68:18: declaration uses `sorry`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:69:18: declaration uses `sorry`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:70:18: declaration uses `sorry`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:72:18: declaration uses `sorry`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:75:9: declaration uses `sorry`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:76:2: 'apply Finset.sum_pos' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:77:2: '· intro k _; exact mul_pos (s.μ_pos k) (s.d_pos k)' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:78:2: '· exact Finset.univ_nonempty' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:77:2: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:78:2: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:81:37: Unknown identifier `s.ν_bounds`
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:81:50: Unknown identifier `s.ρ_nonneg`
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:81:62: Unknown identifier `s.deposits_pos.le`
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:81:81: Unknown identifier `s.R_nonneg`
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:84:33: typeclass instance problem is stuck
+  LinearOrder ((fun a ↦ ?m.11) x✝)
+
+Note: Lean will not try to resolve this typeclass instance problem because the type argument to `LinearOrder` contains metavariables. This argument must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:86:33: typeclass instance problem is stuck
+  LinearOrder ((fun a ↦ ?m.11) x✝)
+
+Note: Lean will not try to resolve this typeclass instance problem because the type argument to `LinearOrder` contains metavariables. This argument must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:87:9: declaration uses `sorry`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:88:2: 'apply Finset.sum_nonneg' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:88:27: 'intro k _' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:89:2: 'exact mul_nonneg (mul_nonneg (s.μ_pos k).le (s.τ_bounds k).1) (s.Xref_nonneg k j)' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:88:27: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:89:2: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:90:9: declaration uses `sorry`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:91:2: 'apply Finset.sum_nonneg' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:91:27: 'intro k _' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:92:2: 'exact mul_nonneg (mul_nonneg (s.μ_pos k).le (s.τ_bounds k).1) (s.Dref_nonneg k j)' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:91:27: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:92:2: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:94:9: declaration uses `sorry`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:95:2: 'unfold ψ borrowFraction' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:96:2: 'split_ifs with h' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:97:2: '· exact ⟨le_rfl, by norm_num⟩' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:98:2: '·
+  have hfrac : 0 ≤ min 1 (s.P j / s.Q j) := le_min (by norm_num) (div_nonneg (s.P_nonneg j) (s.Q_nonneg j))
+  refine ⟨mul_nonneg (s.τ_bounds k).1 hfrac, ?_⟩
+  exact (mul_le_of_le_one_right (s.τ_bounds k).1 (min_le_left _ _)).trans (s.τ_bounds k).2' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:96:2: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:97:2: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:98:2: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:102:9: declaration uses `sorry`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:103:2: 'apply Finset.sum_nonneg' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:103:27: 'intro k _' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:104:2: 'exact
+  mul_nonneg (mul_nonneg (s.μ_pos k).le (sub_nonneg.mpr (s.ψ_bounds k j).2)) (s.Dref_nonneg k j)' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:103:27: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: papers/Gomez26LiquidityBuffers/SourceInstance.lean:104:2: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:107:7: typeclass instance problem is stuck
+  Fintype ?m.4
+
+Note: Lean will not try to resolve this typeclass instance problem because the type argument to `Fintype` is a metavariable. This argument must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:112:4: typeclass instance problem is stuck
+  ContinuousSMul ℝ ?m.5
+
+Note: Lean will not try to resolve this typeclass instance problem because the second, third, and fifth type arguments to `ContinuousSMul` contain metavariables. These arguments must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:115:44: typeclass instance problem is stuck
+  NormedSpace ℝ ?m.7
+
+Note: Lean will not try to resolve this typeclass instance problem because the second and fourth type arguments to `NormedSpace` contain metavariables. These arguments must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:119:25: typeclass instance problem is stuck
+  Preorder (?m.22 u)
+
+Note: Lean will not try to resolve this typeclass instance problem because the type argument to `Preorder` contains metavariables. This argument must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+error: papers/Gomez26LiquidityBuffers/SourceInstance.lean:123:12: typeclass instance problem is stuck
+  Preorder ?m.11
+
+Note: Lean will not try to resolve this typeclass instance problem because the type argument to `Preorder` is a metavariable. This argument must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+error: Lean exited with code 1
+Some required targets logged failures:
+- Gomez26LiquidityBuffers.SourceInstance
+error: build failed

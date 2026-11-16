@@ -1,6 +1,32 @@
-# Partial-formalization boundary
+> Historical proof-development/checkpoint record. Its provisional/pending descriptions refer to that stage. Current immutable source and final status are in ../SOURCE_REFERENCE.json and PAPER_TO_LEAN.md.
 
-No mathematical source correction was found. Scope differences and open bridges
-are listed in PAPER_TO_LEAN.md. No full semantic closeout is claimed. The
-stronger all-component knot exclusion is a current proof restriction; it is
-not a claim that the paper's weaker condition is invalid.
+# Formalization Working Memo: Voluntary Liquidity Buffers under Finite Common Coverage
+
+This is a working lead log, not audit evidence and not a final validation
+report. Record possible issues while reading and proving; independently verify
+each retained item against the pinned source and final Lean surface during
+closeout.
+
+For every item, record the exact source location, current mathematical reading,
+Lean treatment, and review state. Prefer “clarification” unless the printed
+formula or statement is actually false.
+
+## Possible Source Clarifications
+
+- None recorded.
+
+## Possible Printed Typos Or Errors
+
+- None recorded.
+
+## Possible Proof-Strategy Deviations
+
+- None recorded.
+
+## Possible Model Conventions Or Extra Assumptions
+
+- None recorded.
+
+## Deferred Formalization Or Library Work
+
+- None recorded.

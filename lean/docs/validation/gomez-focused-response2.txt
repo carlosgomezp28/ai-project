@@ -1,0 +1,111 @@
+⚠ [3306/3319] Replayed Gomez26LiquidityBuffers.DensityCurvature
+warning: papers/Gomez26LiquidityBuffers/DensityCurvature.lean:64:87: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: papers/Gomez26LiquidityBuffers/DensityCurvature.lean:74:71: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [3317/3319] Replayed Gomez26LiquidityBuffers.EconomicBranch
+warning: papers/Gomez26LiquidityBuffers/EconomicBranch.lean:62:46: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: papers/Gomez26LiquidityBuffers/EconomicBranch.lean:62:54: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: papers/Gomez26LiquidityBuffers/EconomicBranch.lean:69:46: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: papers/Gomez26LiquidityBuffers/EconomicBranch.lean:69:54: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: papers/Gomez26LiquidityBuffers/EconomicBranch.lean:83:32: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [3318/3319] Built Gomez26LiquidityBuffers.LocalMinimum (30s)
+✖ [3319/3319] Building Gomez26LiquidityBuffers.SourceResponse (2.3s)
+trace: .> LEAN_PATH=/home/cjuni/EconCSLib/.lake/packages/Cli/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/batteries/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/Qq/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/aesop/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/importGraph/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/plausible/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/mathlib/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/cslib/.lake/build/lib/lean:/home/cjuni/EconCSLib/.lake/packages/Vlasov/Vlasov/.lake/build/lib/lean:/home/cjuni/AppliedModelingLib-liquidity/.lake/build/lib/lean /home/cjuni/.elan/toolchains/leanprover--lean4---v4.30.0-rc2/bin/lean /home/cjuni/AppliedModelingLib-liquidity/papers/Gomez26LiquidityBuffers/SourceResponse.lean -o /home/cjuni/AppliedModelingLib-liquidity/.lake/build/lib/lean/Gomez26LiquidityBuffers/SourceResponse.olean -i /home/cjuni/AppliedModelingLib-liquidity/.lake/build/lib/lean/Gomez26LiquidityBuffers/SourceResponse.ilean -c /home/cjuni/AppliedModelingLib-liquidity/.lake/build/ir/Gomez26LiquidityBuffers/SourceResponse.c --setup /home/cjuni/AppliedModelingLib-liquidity/.lake/build/ir/Gomez26LiquidityBuffers/SourceResponse.setup.json --json
+error: papers/Gomez26LiquidityBuffers/SourceResponse.lean:14:13: Application type mismatch: The argument
+  ContDiffAt.continuousAt (deficitCoefficient_C1_at i κ (ψ j) (Δ j) F (hreg j))
+has type
+  ContinuousAt (deficitCoefficient i κ (ψ j) (Δ j)) F
+but is expected to have type
+  ContinuousAt ?m.62 ?m.68.1
+in the application
+  ContinuousAt.comp (ContDiffAt.continuousAt (deficitCoefficient_C1_at i κ (ψ j) (Δ j) F (hreg j)))
+error: papers/Gomez26LiquidityBuffers/SourceResponse.lean:45:13: don't know how to synthesize implicit argument `F`
+  @capacityNumerator_nonneg m s.w (s.ψ k) s.Δ (fun j ↦ shortfallProbability (s.law k j) u) s.κ ?m.275 (LT.lt.le hκ)
+    (fun j ↦ LT.lt.le (s.w_pos j)) (fun j ↦ (ψ_bounds s k j).right) hπ
+context:
+m : ℕ
+s : SourceInstance m
+k : Fin 2
+F u : ℝ
+f : Fin m → ℝ → ℝ
+hμ : ∀ (j : Fin m), s.law k j = MeasureTheory.volume.withDensity fun x ↦ ENNReal.ofReal (f j x)
+hf : ∀ (j : Fin m), Integrable (f j) MeasureTheory.volume
+hn : ∀ (j : Fin m) (x : ℝ), 0 ≤ f j x
+hc : ∀ (j : Fin m), ContinuousAt (f j) (-u)
+hloc : ∀ (j : Fin m), ∀ᶠ (v : ℝ) in 𝓝 u, ContinuousAt (f j) (-v)
+hreg : ∀ (j : Fin m), 0 < s.Δ j → F ≠ s.Δ j
+hF : 0 < F
+hu : 0 < u ∧ u < s.U k
+hz : s.marginal k F u = 0
+hH : 0 < currentCurvature s.w (s.ψ k) (s.ℓ k) s.Δ f s.i s.κ F u
+b : ℝ → ℝ
+hb : b F = u
+hbc : ContDiffAt ℝ 1 b F
+hbz : ∀ᶠ (x : ℝ) in 𝓝 F, currentMarginal (s.law k) s.w (s.ψ k) (s.ℓ k) s.Δ s.r s.i s.κ x (b x) = 0
+hbd :
+  HasDerivAt b
+    (-capacityNumerator s.w (s.ψ k) s.Δ (fun j ↦ shortfallProbability (s.law k j) u) s.κ F /
+      currentCurvature s.w (s.ψ k) (s.ℓ k) s.Δ f s.i s.κ F u)
+    F
+hκ : 0 < s.κ
+hπ : ∀ (j : Fin m), 0 ≤ shortfallProbability (s.law k j) u
+⊢ ℝ
+error: papers/Gomez26LiquidityBuffers/SourceResponse.lean:45:7: failed to infer `have` declaration type
+error: papers/Gomez26LiquidityBuffers/SourceResponse.lean:40:56: unsolved goals
+m : ℕ
+s : SourceInstance m
+k : Fin 2
+F u : ℝ
+f : Fin m → ℝ → ℝ
+hμ : ∀ (j : Fin m), s.law k j = MeasureTheory.volume.withDensity fun x ↦ ENNReal.ofReal (f j x)
+hf : ∀ (j : Fin m), Integrable (f j) MeasureTheory.volume
+hn : ∀ (j : Fin m) (x : ℝ), 0 ≤ f j x
+hc : ∀ (j : Fin m), ContinuousAt (f j) (-u)
+hloc : ∀ (j : Fin m), ∀ᶠ (v : ℝ) in 𝓝 u, ContinuousAt (f j) (-v)
+hreg : ∀ (j : Fin m), 0 < s.Δ j → F ≠ s.Δ j
+hF : 0 < F
+hu : 0 < u ∧ u < s.U k
+hz : s.marginal k F u = 0
+hH : 0 < currentCurvature s.w (s.ψ k) (s.ℓ k) s.Δ f s.i s.κ F u
+b : ℝ → ℝ
+hb : b F = u
+hbc : ContDiffAt ℝ 1 b F
+hbz : ∀ᶠ (x : ℝ) in 𝓝 F, currentMarginal (s.law k) s.w (s.ψ k) (s.ℓ k) s.Δ s.r s.i s.κ x (b x) = 0
+hbd :
+  HasDerivAt b
+    (-capacityNumerator s.w (s.ψ k) s.Δ (fun j ↦ shortfallProbability (s.law k j) u) s.κ F /
+      currentCurvature s.w (s.ψ k) (s.ℓ k) s.Δ f s.i s.κ F u)
+    F
+hκ : 0 < s.κ
+hπ : ∀ (j : Fin m), 0 ≤ shortfallProbability (s.law k j) u
+⊢ ∃ b,
+    b F = u ∧
+      ContDiffAt ℝ 1 b F ∧
+        (∀ᶠ (x : ℝ) in 𝓝 F, s.marginal k x (b x) = 0) ∧
+          HasDerivAt b
+              (-capacityNumerator s.w (s.ψ k) s.Δ (fun j ↦ shortfallProbability (s.law k j) u) s.κ F /
+                currentCurvature s.w (s.ψ k) (s.ℓ k) s.Δ f s.i s.κ F u)
+              F ∧
+            deriv b F ≤ 0 ∧
+              (deriv b F < 0 ↔ ∃ j, 0 < F ∧ F < s.Δ j ∧ s.ψ k j < 1 ∧ 0 < shortfallProbability (s.law k j) u) ∧
+                ∀ᶠ (x : ℝ) in 𝓝 F,
+                  0 < b x ∧
+                    b x < s.U k ∧
+                      ∃ δ > 0, ∀ v ∈ Ioo (b x - δ) (b x + δ), v ≠ b x → s.objective k x (b x) < s.objective k x v
+error: Lean exited with code 1
+Some required targets logged failures:
+- Gomez26LiquidityBuffers.SourceResponse
+error: build failed

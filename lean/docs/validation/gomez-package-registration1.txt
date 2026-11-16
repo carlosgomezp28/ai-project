@@ -1,0 +1,8 @@
+papers/Gomez26LiquidityBuffers/InterfaceValidation.lean:6:0: error: Unknown option `pp.width`
+papers/Gomez26LiquidityBuffers/InterfaceValidation.lean:37:4: error: Type mismatch
+  Lean.Elab.Command.liftIO
+    (IO.FS.writeFile { toString := "papers/Gomez26LiquidityBuffers/docs/INTERFACE_MANIFEST.json" } (out.pretty ++ "\n"))
+has type
+  Lean.Elab.Command.CommandElabM Unit
+but is expected to have type
+  Lean.Elab.Term.TermElabM PUnit.{1}

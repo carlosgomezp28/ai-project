@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "paper": "Gomez26LiquidityBuffers",
+  "source_url": "https://github.com/carlosgomezp28/ai-project/blob/5b2959633962f46fc59d963b92f756e06da2ff00/paper/paper.pdf",
+  "source_version": "post-Marco-final-5b2959633962f46fc59d963b92f756e06da2ff00",
+  "source_artifact_path": "/home/cjuni/liquidity-buffers-source-cache/5b2959633962f46fc59d963b92f756e06da2ff00/paper.tex",
+  "source_artifact_sha256": "b226f2590089c2f85bc55dabde1eb9ab5a6d719125a8e463ab692245fdf6f904",
+  "source_inventory_kind": "pinned_statement_target_scaffold",
+  "source_curated": false,
+  "seed_scaffold": true,
+  "source_coverage_mode": "named_theoretical_statements",
+  "semantic_contract_policy": {
+    "schema": 1,
+    "activation": "Before Lean drafting, independently inventory every material source atom against exact pinned source quote bytes; do not infer that inventory from declaration, binder, field, or function names. After a source item has an audited paper-local specification and a theorem/lemma proving or refuting it, add top-level semantic_contract_schema: 1 and semantic_route_schema: 2, classify every item with an explicit claim_bearing Boolean, and record a semantic_contract for each source result. Route a source definition, algorithm, model, assumption, or condition as source_semantic_declaration to the actual paper/library prerequisite used by the result Specs; never manufacture a theorem that merely restates a definition. At formalized closeout, also add source_claim_atoms_schema: 1 and complete the current raw-source-to-expanded-Spec review. Do not add a separate source_spec_correspondence worksheet, atom-to-component bridge ledger, or terminal-node disposition ledger: the builder-issued Lean graph owns the exact Spec/proof relation and complete recursive semantic and axiom closure, including proof and instance arguments. Each statement-first row supplies an inactive semantic_contract_template pairing its transparent `...Spec : Prop` with its theorem/lemma. Promote that exact template only after the independent source audit passes, the theorem has exactly the transparent Spec type, the closure record passes, and the proof hole is replaced. Do not manufacture a contract from the temporary by-sorry statement skeleton alone. Historical receipts remain readable records but cannot replace the current accepted obligation graph. For a source-game result whose feasible-action equilibrium comparison uses a conditional/posterior or observation-contingent value, add the separately byte-pinned `semantic_context_requirements` kind `strategic_observation_totality`; it requires an explicit off-path/zero-probability totality audit and cannot be satisfied by a Lean-only default value.",
+    "required_fields": [
+      "spec_declaration",
+      "evidence_declaration",
+      "evidence_mode",
+      "semantic_shape"
+    ],
+    "evidence_modes": [
+      "proves",
+      "refutes"
+    ],
+    "semantic_shapes": [
+      "plain"
+    ],
+    "shape_policy": "Only plain exact-proposition contracts are currently enforced. Do not record a specialized runtime, preprocessing, or refinement shape until the audit implements its structural check.",
+    "source_defect_routing": "Every repaired_in_lean source-proof defect must be linked from a successfully checked contract item through source_defect_ids."
+  },
+  "items": {
+    "proposition1": {
+      "statement": "\\begin{proposition}[Private choice]\\label{prop:choice}\nUnder Assumptions~\\ref{ass:units}--\\ref{ass:frozen}, $J$ is finite and continuously differentiable, with one-sided derivatives at choice endpoints. A global minimizer exists, and\n\\begin{equation}\\label{eq:derivatives}\n L'_j=-\\pi^-_j,\\quad M'_j=\\pi^+_j,\\qquad\n J'=r-\\sum_jw_j(a_j\\pi^-_j+b_j\\pi^+_j).\n\\end{equation}\nAn interior optimum satisfies\n\\begin{equation}\\label{eq:foc}\n r=\\E_A[\\{i\\psi_k+\\kappa(1-\\varphi)(1-\\psi_k)\\}\\pi_k^-+i\\ell_k\\pi_k^+].\n\\end{equation}\nIf the density $f_j$ of $\\omega_k\\mid A_j$ is continuous near $-u$, then\n\\begin{equation}\\label{eq:curvature}\n J''(u)=\\sum_jw_j(a_j-b_j)f_j(-u).\n\\end{equation}\nA sufficient condition for global convexity is $a_j\\geq b_j$ in every positive-weight state. Whenever $J$ is convex, $0$ is optimal iff $J'(0)\\geq0$, an interior point is optimal iff $J'=0$, and $\\bar u$ is optimal iff $J'(\\bar u)\\leq0$. A strict endpoint inequality implies uniqueness. A stationary interior point with $J''>0$ is the unique global optimum if $J$ is convex. Without convexity these first-order conditions are only necessary.\n\\end{proposition}",
+      "source_item": "Proposition 1 (Private choice)",
+      "source_kind": "proposition",
+      "source_location": "paper.tex label prop:choice, lines 148-163",
+      "source_url": "https://github.com/carlosgomezp28/ai-project/blob/5b2959633962f46fc59d963b92f756e06da2ff00/paper/paper.pdf",
+      "source_status": "pinned statement-spec transcription; independent source audit pending",
+      "spec_lean_declarations": [
+        "proposition1Spec"
+      ],
+      "proof_lean_declarations": [
+        "proposition1"
+      ],
+      "semantic_contract_template": {
+        "spec_declaration": "proposition1Spec",
+        "evidence_declaration": "proposition1",
+        "evidence_mode": "proves",
+        "semantic_shape": "plain"
+      }
+    },
+    "proposition2": {
+      "statement": "\\begin{proposition}[Conditional capacity response]\\label{prop:capacity}\nUnder Assumptions~\\ref{ass:units}--\\ref{ass:frozen} and \\ref{ass:regular}, a continuously differentiable branch $u(F)$ of strict interior local minima exists near $F_0$, through $u_0$. Its derivative is\n\\begin{equation}\\label{eq:capacityderivative}\n \\frac{du}{dF}=\n -\\frac{\\displaystyle\\kappa\\sum_{\\{j:\\,0<F<\\Delta_j\\}}\n  w_j(1-\\psi_j)\\pi^-_j(u)/\\Delta_j}{J_{uu}(u,F)}\n \\leq0.\n\\end{equation}\nThe inequality is strict iff a positive-probability state has $0<F<\\Delta_j$, $\\psi_j<1$ and $\\pi^-_j(u)>0$. Otherwise the derivative is zero. If $u_0$ is additionally the unique global minimizer at $F_0$, the branch is the unique global best response for sufficiently nearby $F$. The two-sided formula is not asserted at zero capacity, coverage kinks, corners or nonunique optima.\n\\end{proposition}",
+      "source_item": "Proposition 2 (Conditional capacity response)",
+      "source_kind": "proposition",
+      "source_location": "paper.tex label prop:capacity, lines 202-211",
+      "source_url": "https://github.com/carlosgomezp28/ai-project/blob/5b2959633962f46fc59d963b92f756e06da2ff00/paper/paper.pdf",
+      "source_status": "pinned statement-spec transcription; independent source audit pending",
+      "spec_lean_declarations": [
+        "proposition2Spec"
+      ],
+      "proof_lean_declarations": [],
+      "semantic_contract_template": {}
+    }
+  },
+  "course_note": "Generated with supported source loader/map generator. P2 proof route cleared because the complete numbered result is PARTIAL; no receipt or human acceptance fabricated."
+}

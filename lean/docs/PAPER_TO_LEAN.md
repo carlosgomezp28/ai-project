@@ -1,125 +1,100 @@
-# Frozen-paper correspondence
+# Current post-Marco paper-to-Lean correspondence
 
-Reference: cf37d3f402c04a73c832cce41f559e32348f8941. Equation numbers refer to that version.
-These are support declarations and one continuation-block endpoint. They do not
-create 31 separate paper-result rows: the paper has TWO numbered propositions,
-both partial. Eight named assumptions govern them. No full v11 source-to-Spec
-judgments or semantic closeout have been issued.
+## Source and proof boundary
 
-## Every proved theorem
+Final immutable source: post-Marco paper commit `5b2959633962f46fc59d963b92f756e06da2ff00` ([PDF](https://github.com/carlosgomezp28/ai-project/blob/5b2959633962f46fc59d963b92f756e06da2ff00/paper/paper.pdf)). SOURCE_REFERENCE.json records exact hashes. Two propositions, two proofs, six assumptions and seven equations match the provisional source byte-for-byte. Final-source build, registration, recursive axiom audit and --fast PASS. No mathematical declaration or proof changed during repinning.
 
-| Declaration (namespace `Gomez26EligibilityBuffers`) | File | Frozen paper | Premises / added restriction | Fully proved | Outside scope |
-|---|---|---|---|---|---|
-| `min_add_shortfall` | `BufferCore.lean` | P1 (10), proof | None; arbitrary reals | Accounting identity | No feasibility or optimization claim |
-| `continuation_feasible` | `BufferCore.lean` | P1 (10); constraints (7) | q,H>=0; no extra condition | Candidate feasible, including zero cases | No cost comparison |
-| `continuation_cost_gap` | `BufferCore.lean` | P1 proof of (10) | Feasible competitor; no extra condition | Exact cost difference | No sign without cost ordering |
-| `continuation_optimal` | `BufferCore.lean` | P1 (10) | p<g and feasible competitor | Comparison with every feasible competitor | Candidate feasibility supplied by separate theorem |
-| `continuation_unique` | `BufferCore.lean` | P1 (10) | p<g, feasibility, competitor cost <= candidate cost | Both coordinates equal candidate | No ex-ante optimum |
-| `continuation_solution` | `BufferCore.lean` | P1 (10) | q,H>=0, 0<=p<g; source assumptions | Feasibility, universal optimality, uniqueness | Rest of P1 |
-| `positive_part_reduction` | `BufferCore.lean` | P1 proof between (10) and (11) | H>=0; no extra condition | Nested positive-part reduction | No probability |
-| `optimized_cost_identity` | `BufferCore.lean` | P1 proof of (11) | None; scalar identity valid for all reals | Optimized scalar cost decomposition | Expectation bridge |
-| `deferral_threshold` | `BufferCore.lean` | P1 (9)--(11), proof | chi*(U-u)>=0; source feasibility consequence made explicit | Exact severe-shortfall threshold | Does not derive eligibility nonnegativity from feasible u |
-| `ell_lower` | `BufferCore.lean` | Appendix A (23) | sigma>0 | Lower endpoint value | Differentiability at endpoint |
-| `ell_upper` | `BufferCore.lean` | Appendix A (23) | sigma>0 | Upper endpoint value | Differentiability at endpoint |
-| `pi_lower` | `BufferCore.lean` | Appendix A (23) | None; holds for all sigma | Lower endpoint tail formula | Probability interpretation |
-| `pi_upper` | `BufferCore.lean` | Appendix A (23) | sigma>0 | Upper endpoint tail formula | Probability interpretation |
-| `uniform_joins` | `BufferCore.lean` | Appendix A after (23) | sigma>0 | Polynomial endpoint values and slope expressions coincide | Actual derivative at joins, global C1 |
-| `ell_derivative_below` | `BufferCore.lean` | Appendix A after (23) | z < -sigma; local algebra does not need sigma>0 | HasDerivAt with slope -1 | Joins and integral bridge |
-| `ell_derivative_inside` | `BufferCore.lean` | Appendix A after (23) | sigma>0 and -sigma<z<sigma | HasDerivAt with interior slope | Joins and integral bridge |
-| `ell_derivative_above` | `BufferCore.lean` | Appendix A after (23) | sigma>0 and sigma<z | HasDerivAt with slope zero | Joins and integral bridge |
-| `ell_derivative` | `BufferCore.lean` | Appendix A after (23) | sigma>0; ADDED restriction z != +/-sigma | Derivative equals -piTail off knots | Paper global derivative statement at knots |
-| `ell_second_inside` | `BufferCore.lean` | Appendix A after (23) | sigma>0 and -sigma<z<sigma | Derivative of deriv ell equals 1/(2*sigma) | No global C2 claim |
-| `ell_second_below` | `BufferCore.lean` | Appendix A after (23) | z < -sigma | Derivative of deriv ell is zero below support | Knots |
-| `ell_second_above` | `BufferCore.lean` | Appendix A after (23) | sigma>0 and sigma<z | Derivative of deriv ell is zero above support | Knots |
-| `uniform_curvature_nonneg` | `BufferCore.lean` | Appendix A after (23) | sigma>0 | Nonnegative interior curvature formula | Global convexity |
-| `implicit_response` | `BufferCore.lean` | P2 proof of (17), differentiated (18) | Gu!=0 and ASSUMED Gu*response+Gr=0 | Derives quotient; does not assume quotient | Branch existence, actual derivatives, chain-rule bridge |
-| `curvature_nonneg` | `BufferCore.lean` | P1 (14); P2 (20) | p>=0, g>=p, f1,f2>=0 | Nonnegative displayed curvature formula | Identification with a second derivative |
-| `reserve_response_nonpos` | `BufferCore.lean` | P2 (17),(20),(21) | 0<=p<g, 0<=chi<1, phi>=chi, densities>=0, curvature>0; ASSUMED differentiated FOC equation | Conditional scalar response <=0 | IFT, branch existence, identification of Gu/Gr, optimizer interpretation |
-| `finiteLoss_derivative` | `FiniteCompanion.lean` | Appendix A (23),(24) | sigma_j>0; ADDED all-component endpoint exclusions, even weight zero | Derivative of finite sum is negative finiteTail | Weights need not be probabilities; no expectation/integral bridge |
-| `finiteObjective_derivative` | `FiniteCompanion.lean` | P1 (11),(12); Appendix A (23),(24) | sigma_j>0; ADDED endpoint exclusions for every component at both thresholds; U,r fixed for u derivative | HasDerivAt for explicit finite objective with exact factor 1-chi | Knots, general law, constrained optimization |
-| `finite_foc_iff` | `FiniteCompanion.lean` | P1 (12), finite specialization | None; scalar equation equivalence | Displayed finite derivative zero iff marginal-cost equality | Does not assert optimizer or existence |
-| `finiteDensity_nonneg` | `FiniteCompanion.lean` | Appendix A (25) | w_j>=0, sigma_j>0 | Nonnegative finite density FORMULA | Probability density interpretation or normalization |
-| `finite_curvature_formula_nonneg` | `FiniteCompanion.lean` | P1 (14); Appendix A (25) | w_j>=0,sigma_j>0,p>=0,g>=p | Nonnegative weighted curvature FORMULA | Does not identify it with actual second derivative; no convexity proof |
-| `continuationBlock` | `ProofInterface.lean` | P1 (10), isolated block | Same as continuation_solution | Exact-type endpoint for continuationBlockSpec | Not a complete P1 Spec or proof |
+There are TWO numbered economic propositions. Proposition 1 now has a complete transparent `proposition1Spec` and exact-type theorem `proposition1`. Proposition 2 has a full transparent `proposition2Spec` with NO full proof endpoint; its separately labelled `proposition2LocalSupportSpec` has the exact-type proof `proposition2LocalSupport`. The open `proposition2GlobalContinuationSpec` is a definition of the missing obligation, not an axiom or proof. The two component Specs do not increase the numbered-result denominator.
 
-## Actual definitions
+`status.json` registers the four Spec names and ONLY the two actual proof routes. Lean-native InterfaceValidation checks transparent proposition definitions, exact Spec/proof types and absence of full P2/global proof endpoints. Its manifest agrees with the status routes. The source statement map is generated with the supported statement-spec loader/map generator from the two complete verbatim source propositions; the open P2 proof route is explicitly empty. It is final-byte-pinned, without canonical semantic acceptance. No non-fast closure/receipt procedure was pursued.
 
-| Declaration | Frozen correspondence | Interpretation boundary |
+The Spec includes every Proposition 1 conclusion under the original economic assumptions. It additionally exposes the proved integrability of the moment integrands and the full-real derivative of their natural mathematical extensions; these imply the source's finite cost and one-sided endpoint derivatives and impose no additional economic premise. Curvature explicitly asserts HasDerivAt as well as the derivative value, avoiding Lean's totalized-deriv ambiguity at zero curvature. Density-free positive-curvature uniqueness is assembled directly from the generic convexity proof; it does not acquire a PDF premise.
+
+Historical `Gomez26EligibilityBuffers` and its 31 closures are not imported and receive no proof credit here.
+
+## Numbered results
+
+| Paper result | Status | Exact compiled scope | Remaining gap |
+|---|---|---|---|
+| Proposition 1, Private choice | PROVED: complete registered Spec and exact-type endpoint; final source checked | Actual source instance; integrable moments and normalization; C1 objective; lender-inclusive derivative/FOC; existence; density curvature; sufficient convexity; convex endpoint/interior iff; strict endpoint uniqueness; stationary positive-curvature interior uniqueness under global convexity; nonconvex endpoint/interior necessity | No P1 mathematical clause gap identified. Final source reconciliation and all course checks PASS; no canonical acceptance is claimed. |
+| Proposition 2, Conditional capacity response | PARTIAL | Actual economic joint C1; actual native IFT with invertibility derived from positive curvature; scalar derivative and exact sign/strictness at the base capacity; eventual strict interior local-minimum persistence | Explicit local stationary-branch uniqueness is not exported. Formula/sign at every nearby capacity, rather than just the base point, is not exported. Compact-gap continuation of a unique global minimum is OPEN. |
+
+## Proposition 1 correspondence
+
+All names below are in `Gomez26LiquidityBuffers`; `SourceInstance.` denotes the source-specialized namespace.
+
+| Source reference / clause | Declaration(s) | Status and hypotheses |
 |---|---|---|
-| feasible | Constraints (7) | Exactly W+v=q, 0<=W<=min(q,H), v>=0 |
-| continuationCost | Cost assumption, P1 proof | Scalar pW+gv |
-| ell, piTail | Appendix A (23) | Piecewise real functions; integral/probability bridge open |
-| finiteLoss, finiteTail | Appendix A (24) | Finite sums; mean_j=beta*A_j, not an endogenous law |
-| finiteObjective | (11) with Appendix A (24) | Explicit finite objective, with U held fixed for u differentiation |
-| finiteDensity | Appendix A (25) | Displayed open-support formula only |
-| curvature | (14),(20) | Formula, not independently established differential identification |
-| reserveNumerator | (21) | Formula, not independently established partial derivative |
-| continuationBlockSpec | P1 (10) only | Full isolated continuation subclaim, not the complete P1 |
+| Assumptions 1–5; equations flow, moments, market, residual, fund, objective | `SourceInstance`, `SourceInstance.law`, `Dref`, `Xref`, `P`, `Q`, `ψ`, `ℓ`, `Δ`, `capacity`, `objective`, `marginal` | Source primitives only. Exactly two bank types, finite positive-weight aggregate states, conditional atomless probability laws with first moment, signed beta*A+eps, reference-profile schedules, positive deposits, NU. No optimizer or derivative is a record field. |
+| Shifted law regularity | `SourceInstance.lawProb`, `lawNoAtoms`, `law_first_moment` | Derived from the actual conditional eps law by translation. No independence premise added. |
+| Deposit normalization and amount derivatives | `shortfall_amount_normalization`, `surplus_amount_normalization`, `shortfall_amount_ratio`, `surplus_amount_ratio`, `shortfall_amount_derivative`, `surplus_amount_derivative` | Actual currency integrals; amount derivatives retain d, ratio derivatives do not. Positive d for ratios. |
+| Moment definedness and identity | Integrability lemmas in `Moments`, `expected_moment_identity` | Actual expectations under finite first moment. No totalized nonintegrable expectation is used as evidence. |
+| Eq. derivatives: L'=-piMinus and M'=piPlus | `shortfall_derivative_probability`, `surplus_moment_derivative`, `probability_partition` | Atomless probability law, actual dominated differentiation. |
+| Continuous first differentiability | `surplus_probability_continuous`, `shortfall_probability_continuous`, `current_marginal_continuous`, `current_cost_C1`, `SourceInstance.objective_C1` | Atomlessness, finite first moment; probability continuity proved by dominated convergence. No density required for C1 cost. |
+| Existence | `SourceInstance.objective_exists` | Actual objective on compact [0,U], U>0. |
+| Lender-inclusive derivative and necessary FOC | `SourceInstance.objective_derivative`, `SourceInstance.interior_foc` | Actual a=i*psi+kappa*(1-coverage)*(1-psi), b=i*ell. Frozen schedules/laws. Interior global optimum implies local Fermat condition. |
+| Eq. curvature | `density_interval`, `cumulative_derivative`, `shortfall_probability_density_derivative`, `surplus_probability_density_derivative`, `current_marginal_density_derivative`, `current_cost_density_curvature`, `SourceInstance.density_curvature` | Explicit probability-density representation, integrable nonnegative PDF, continuous at threshold. Actual CDF/FTC proof, not an assumed CDF derivative. Local statement; excludes discontinuous support joins. |
+| Sufficient global convexity | `shortfall_convex`, `bank_decomposition`, `current_sufficient_convexity`, `SourceInstance.objective_convex` | Positive state weights and a>=b; convexity derived from expectation convexity. Coefficient dominance is sufficient, not necessary. |
+| Convex corners and interior iff | `SourceInstance.lower_corner_iff`, `upper_corner_iff`, `interior_iff` | Assume actual global convexity on [0,U], not only the stronger sufficient coefficient restriction. Upper condition uses marginal at U. |
+| Strict endpoint uniqueness | `SourceInstance.strict_lower_unique`, `SourceInstance.strict_upper_unique` | Global convexity and strict correct-endpoint derivative sign. |
+| Positive-curvature interior uniqueness | `convex_positive_curvature_unique`, `SourceInstance.positive_curvature_unique` | Stationarity, interior point, actual global convexity and positive local curvature. No global strict convexity assumed. Proof rules out a convex flat segment of minima by the derivative tangent-cone inequalities. |
+| Necessity without convexity | `lower_corner_necessary`, `upper_corner_necessary`, `SourceInstance.interior_foc` | Actual derivative and feasible tangent directions. Does not assert sufficiency in a nonconvex model. |
 
-## Unproved source obligations
+The paper's separate numerical negative-curvature example has no exact Lean counterexample endpoint. This is outside the numbered Proposition 1 conclusion and remains OPEN as supporting illustration.
 
-- P1 (11)--(16): general-law finiteness/continuity/convexity, minimizer-set
-  existence and compact interval, expected-shortfall derivative, endpoint/interior
-  optimality equivalences, uniqueness qualifications, variational and KKT bridges.
-- P2 (17)--(21): U(r)=1+epsilon_E-r dependence, threshold partial derivatives,
-  identification of Gu and Gr, differentiated FOC from a differentiable root,
-  IFT branch existence, feasibility, global optimality and uniqueness locally in r.
-- Appendix A (23): derivative at knots, global C1 and convexity, integral bridge.
-- Finite implementation: actual J'' identity, convexity/existence and constrained
-  corner characterization are open. Nonnegativity of a formula alone is insufficient.
-- The scalar chain-equation premise is explicitly additional to the checked
-  algebra. Its presence does not refute the paper or establish its branch.
+## Proposition 2 correspondence
 
-## Source-only inventory
+| Source reference / clause | Declaration(s) | Status / exact scope |
+|---|---|---|
+| Assumption 6: regular coverage regimes | `coverage_derivative`, `coverage_C1_at`, `deficitCoefficient_C1_at` | Actual piecewise coverage; zero-demand derivative zero, no division by zero; exclude F=Delta for Delta>0. Source application retains F>0. |
+| Density continuity near threshold | `shortfall_probability_C1_at`, `surplus_probability_C1_at` | Explicit PDF representation with continuity in a neighborhood; no global density smoothness or smoothness across uniform support joins. |
+| Joint C1 of economic G | `current_marginal_joint_C1` | Derived from actual coverage and actual probability functions. Joint C1 is not assumed in the specialized economic theorem. |
+| Native IFT and invertibility | `scalar_stationary_branch`, `current_stationary_branch` | Invertibility derived from H>0 by explicit continuous-linear inverse; Mathlib's native IFT constructs branch before derivative conversion. No branch or differentiated-FOC identity is assumed. |
+| Scalar response at regular base | `SourceInstance.capacity_branch` | Actual source laws/schedules. HasDerivAt branch (-N/H) at base F; positive H is exactly Assumption 6. |
+| Weak sign and exact strictness at base | `SourceInstance.capacity_branch` | kappa>0 derived from kappa>i>=0; w>0; psi in [0,1] derived from source allocations. Derivative <0 iff some state has 0<F<Delta, psi<1 and positive deficit probability. No old R_D result used. |
+| Persistence of strict interior local minima | `strict_local_minimum_from_curvature`, `current_strict_local_minimum`, `current_curvature_joint_continuousAt`, `SourceInstance.capacity_branch` | Eventually 0<branch<U and an explicit punctured buffer neighborhood has strictly higher objective at every other point. Positive curvature persists by actual continuity. This is stronger than merely weak IsLocalMin. |
+| Formula/sign throughout a nearby capacity interval | No exported theorem | OPEN: obtain differentiability/eventual equation at each nearby capacity, differentiate that identity there, identify the two partials and retain positivity and regimes. Base-point formula alone is not that claim. |
+| Local branch uniqueness | No exported economic endpoint | OPEN wrapper: Mathlib's IFT local uniqueness must be exported with an explicit common neighborhood and matched to the constructed source branch. |
+| Unique-global continuation | No endpoint | OPEN: compact gap outside a strict-convex buffer neighborhood, uniform-in-capacity continuity, global-minimum localization, and identification/uniqueness of the local branch. The IFT does not prove this. No no-switch premise has been added. |
 
-Named source rows: assumptions Environment and reserve treatment; Feasible
-portfolio; Liquidity convention and eligibility; Direct-support restriction;
-Incremental private costs; Analytical shock law; Finite-uniform implementation;
-Local regularity and reserve variation; Proposition 1; Proposition 2.
-The appendix formulas, KKT display, variational inequality, partials, continuation
-helpers and numerical figures are support/context, not additional named results.
+## Density witnesses and added hypotheses
 
-An independent source-only and source-to-code diagnostic found no mathematical
-inconsistency. It did not inspect Lean's elaborated graph and is not an accepted
-semantic-match judgment. The generated v11 review ledgers remain unissued.
+`hμ` represents each conditional law as Lebesgue.withDensity(ofReal f); `hf` requires an integrable PDF; `hn` requires nonnegative PDF values. These are explicit representation witnesses, not consequences proved from the atomless-law fields of SourceInstance alone. Under the paper's ordinary meaning of a probability density, they describe the same class of distributions, not a stronger economic assumption. They must be supplied when invoking density-dependent clauses. No global continuity is imposed: local threshold continuity is sufficient. No claim about arbitrary atomless non-density laws having curvature is made.
 
-## Semantic review disposition
+Abstract helpers expose their own mathematical premises. Only source-specialized declarations receive current-model credit. No differentiable optimizer, derivative identity, no-switch certificate or conclusion-encoding hypothesis is used as a substitute for proof.
 
-All 31 existing closures were compared with the frozen source, their actual
-Lean-emitted definitions/types, and the scope descriptions above. Independent
-review records are in [partial_semantic_review.json](../audit/partial_semantic_review.json)
-and [SEMANTIC_SCOPE_REVIEW.md](SEMANTIC_SCOPE_REVIEW.md). No mathematical target,
-theorem hypothesis, proof, or source statement changed. No sign, max/min,
-strictness, normalization or variable-interpretation mismatch was found in
-the explicitly bounded claims.
+## Supporting results retained and deferred
 
-**FULL below means only the isolated mathematical claim named in that row.**
-It never denotes canonical machine closeout or all of a numbered proposition.
+| Paper reference | Compiled support | Remaining boundary |
+|---|---|---|
+| Interbank conservation / zero volumes | `interbank_conservation_all`, `SourceInstance.interbank_conservation`; `P_nonneg`, `Q_nonneg`, `ψ_bounds`, `Δ_nonneg` | Complete source-reference amount bridge for conservation; prescribed allocations, not voluntary participation or bilateral equilibrium. |
+| Common capacity | `SourceInstance.deposits_pos`, `capacity_nonneg`; `coverage_bounds`, `fund_feasible`, `aggregate_state_coverage` | Actual state accounting; no fiscal/welfare/equilibrium result. |
+| Relative incidence | `weighted_incidence`, `sourceRelative_defined`, `sourceRelative_zero_coverage` | Guarded denominator/Option support. Full sourceRelative invariance under all source guards remains OPEN. |
+| Fixed-buffer scaling | `type_coverage_scaling`, `fixed_capacity_scaling`, `relative_scaling` | F*p_B handles zero-demand states; full population/expectation assembly and guarded cancellation remain OPEN. |
+| Uniform formulas | Regional/combined `uniform_derivative`, reflection and finite-function objective results | Uniform probability/integral realization and join derivatives remain OPEN. |
+| Global enumeration | `quadratic_stationary_difference`, `quadratic_convex_stationary_min`, `quadratic_flat` | Complete finite partition/enumeration with concave/affine pieces, support knots and all ties remains OPEN. |
 
-| Paper claim/reference | Lean declaration | Status | Added hypotheses / restrictions | Exact remaining gap |
-|---|---|---|---|---|
-| P1 (10), unique scalar continuation optimum | continuation_solution; continuationBlock | FULL | None beyond q,H>=0 and g>p>=0 | None within the scalar optimum; deriving q,H>=0 from feasible economic primitives is not a separate checked bridge |
-| P1 proof of (11), scalar reduction | positive_part_reduction; optimized_cost_identity; deferral_threshold | FULL | H>=0 or chi*(U-u)>=0 supplied explicitly as source feasibility consequence | Expectations, integrability and ex-ante optimization remain outside these identities |
-| Appendix A (23), endpoint values and slope-expression joins | ell_lower; ell_upper; pi_lower; pi_upper; uniform_joins | FULL | sigma>0 where needed; pi_lower is a broader scalar identity | Actual endpoint derivatives and global C1 are not consequences of this endpoint algebra alone |
-| Appendix A (23), open-region first/second derivatives | ell_derivative_below/inside/above; ell_second_below/inside/above | FULL | Strict open-region inequalities; positive sigma for the source domain | No integral/probability interpretation or global join theorem |
-| Appendix A (23), global derivative/C1/convexity | ell_derivative (off knots only) | PARTIAL | Both knots excluded from the checked first derivative | Derivative at both joins, continuity of derivative, global convexity |
-| P1 (11)-(12), Appendix A (24), finite derivative/FOC companion | finiteLoss_derivative; finiteObjective_derivative; finite_foc_iff | PARTIAL | sigma_j>0; every component knot excluded, including zero-weight knots; U,r fixed for u differentiation (the standalone FOC iff needs none of these) | Global knot coverage; probability bridge; constrained optimality is not proved by stationarity algebra |
-| P1 (14), Appendix A (25), formula nonnegativity | curvature_nonneg; finiteDensity_nonneg; finite_curvature_formula_nonneg | FULL | p>=0 and g>=p for curvature; nonnegative density inputs, or nonnegative weights and sigma_j>0 for the finite formulas; no weight normalization needed for formula sign | Identification with actual J'' and global convexity are OPEN |
-| P2 (17), scalar rearrangement | implicit_response | FULL | Gu!=0 and assumed Gu*response+Gr=0 | Chain equation is algebraically equivalent to the quotient here; no independent differential/optimizer content is supplied |
-| P2 conditional reserve sign | reserve_response_nonpos | PARTIAL | 0<=p<g, 0<=chi<1, phi>=chi, nonnegative density inputs, positive curvature, and assumed scalar chain equation | Actual Gu/Gr identification, U(r) dependence, differentiable branch and optimizer connection |
-| Complete P1 (10)-(16) | Continuation and finite-function support only | PARTIAL | Current support restrictions remain explicit | General-law probability/regularity, convexity, minimizer existence, all corner/KKT/uniqueness clauses |
-| P2 optimal-branch existence, feasibility and uniqueness | No existing declaration | OPEN | No substitute conclusion-bearing assumption added | IFT, branch construction and optimality/uniqueness locally in r |
-| Complete P2 (17)-(21) | Scalar support only | PARTIAL | Differentiated equation remains a premise of scalar companions | Full probability/differential/IFT and optimal-branch bridges |
+No lower-priority infrastructure was expanded after closing the feasible high-priority connections. No sorry/admit/axiom placeholders stand in for the open results.
 
-The premise in `continuation_unique` is a competitor cost comparison used to
-prove coordinate equality, the standard uniqueness condition; it does not
-assume coordinate equality. Conversely, `implicit_response` is deliberately
-only a rearrangement of an algebraically equivalent equation. Claiming it proves
-an optimizer derivative would implicitly assume all missing differential content.
 
-## Strongest truthful Lean-slide sentence
+## Registered interface and assumption audit
 
-Lean verifies the unique direct-support continuation optimum, positive-part
-reduction, off-knot finite-uniform calculus, and reserve-response sign algebra
-conditional on a differentiated FOC equation; the full probabilistic propositions
-and optimal-branch existence remain open.
+| Registered target | Exact proof endpoint | Status | Source scope |
+|---|---|---|---|
+| proposition1Spec | proposition1 | PROVED | Entire numbered Proposition 1, including density-free convex uniqueness and nonconvex necessity. |
+| proposition2Spec | NONE | PARTIAL / full target OPEN | Entire numbered Proposition 2, including neighborhood-wide derivative and conditional unique-global continuation. |
+| proposition2LocalSupportSpec | proposition2LocalSupport | PROVED COMPONENT | Source economic IFT, base-point derivative/sign and persistence of strict local interior minima. Not full P2. |
+| proposition2GlobalContinuationSpec | NONE | OPEN OBLIGATION | Source regularity plus unique global minimum at base imply a C1 branch of unique nearby global minima. No no-switch or optimizer-branch premise. |
+
+| Antecedent | Actual Lean form / audit | Additional assumption? |
+|---|---|---|
+| Assumption 1 | SourceInstance positive type masses, deposits and U; rho>=0; reference normalization. | No. Exactly two types; the finite state specialization is in the paper. |
+| Assumption 2 | eps_probability, eps_atomless, eps_first_moment; beta*A+eps mapped law. | No. No independence, symmetry or uniform-law assumption. |
+| Assumption 3 | tau in [0,1], feasible uref; actual reference P,Q,psi,ell,Delta. | No. Prescribed allocations and zero-volume conventions remain source model assumptions, not market equilibrium. |
+| Assumptions 4–5 | nu in [0,1], R>=0, rho>=0; r>=0,kappa>i>=0; immutable source instance across deviations/capacity scenarios. | No. No personal reserve usability is introduced. |
+| Conditional density clause | ConditionalDensities explicitly binds a nonnegative, Lebesgue-integrable PDF to the actual law. | Explicit PDF representation witnesses; equivalent to the ordinary source density meaning. Not derived from atomlessness. No density premise on base C1/FOC/convex uniqueness. |
+| Density continuity near threshold | DensityContinuousNear: point continuity and continuity at points of a neighborhood of -u. | No global continuity/smoothness added; uniform support joins are not silently covered. The point clause is redundant but explicit. |
+| Assumption 6 | RegularCapacityPoint: F>0, interior buffer, actual marginal zero, kink exclusion, local density continuity, actual positive curvature. | No. Marginal/curvature identities are proved, and no differentiable branch/response formula is assumed. |
+| Global continuation antecedent | Unique GLOBAL optimum at F0, plus original regularity. | Source antecedent only; no conclusion-encoding certificate. The Spec is unproved. |
+
+The generated assumption review ledgers remain unaccepted scaffolds; no human or canonical review annotation was manufactured. The bounded context-isolated AI reading found no substantive mismatch and its zero-curvature expressiveness observation was repaired using an already-proved derivative. See docs/PACKAGING_REVIEW.md.

@@ -1,91 +1,110 @@
-import Gomez26EligibilityBuffers.MainTheorems
-import Gomez26EligibilityBuffers.Assumptions
+import Gomez26LiquidityBuffers.MainTheorems
+import Gomez26LiquidityBuffers.Assumptions
 
-/-!
-# Human-Facing Paper Interface: Required Reserves, Public-Support Eligibility, and Voluntary Buffers
+/-! Source-facing interface for the CURRENT post-Marco paper (final immutable source in SOURCE_REFERENCE.json).
+There are exactly TWO numbered economic propositions. One complete Spec is
+registered for each. The local-support and global-obligation Specs are explicitly
+scoped components of Proposition 2, not extra paper results. An unproved Spec is
+a transparent proposition definition, not an axiom or a proof placeholder.
 
-This is the compact Lean file a human should read after formalization to check
-whether the paper's definitions and named theorem statements were represented
-correctly. Keep the row-level dashboard and LLM audit statements in this file
-for every paper. Move implementation details, proof aliases, and bulky helper
-lemmas behind imported modules such as `AuditInterface.lean`, but expose the
-audited paper-facing statements directly here; do not use
-`paper_interface.audit_surface_path`.
+Actual primitives and equations (1)-(7) are SourceInstance and its transparent
+law, Dref/Xref, P/Q, ψ/ℓ/Δ, capacity, a/b, objective and marginal definitions.
+They use signed β*A+eps, currency moments, the reference profile, correct zero
+volumes, NU and frozen schedules. No historical eligibility model is imported.
+Read SourceInstance.lean and Assumptions.lean to expand every model premise.
+Proof endpoints live only in ProofInterface.lean. -/
+namespace Gomez26LiquidityBuffers
+open MeasureTheory Filter Set
+open scoped Topology BigOperators
 
-Rules for completing this file:
+/-- COMPLETE Proposition 1, including density-free convex uniqueness and
+nonconvex necessary conditions. The density hypothesis is conditional, not
+imposed on the base atomless model. -/
+def proposition1Spec : Prop :=
+  ∀ (m : ℕ) (s : SourceInstance m) (k : Fin 2) (F : ℝ), 0 ≤ F →
+  (∀ u j, Integrable (fun ω : ℝ => max (-ω-u) 0) (s.law k j) ∧
+    Integrable (fun ω : ℝ => max (ω+u) 0) (s.law k j)) ∧
+  ContDiff ℝ 1 (s.objective k F) ∧
+  (∃ u ∈ Icc 0 (s.U k), IsMinOn (s.objective k F) (Icc 0 (s.U k)) u) ∧
+  (∀ u, (∀ j, HasDerivAt (shortfallMoment (s.law k j))
+      (-shortfallProbability (s.law k j) u) u ∧
+    HasDerivAt (surplusMoment (s.law k j)) (surplusProbability (s.law k j) u) u) ∧
+    HasDerivAt (s.objective k F) (s.r - ∑ j, s.w j *
+      (s.a k j F * shortfallProbability (s.law k j) u +
+       s.b k j * surplusProbability (s.law k j) u)) u) ∧
+  (∀ u, (0 < u ∧ u < s.U k) → IsMinOn (s.objective k F) (Icc 0 (s.U k)) u →
+    s.r = ∑ j, s.w j * (s.a k j F * shortfallProbability (s.law k j) u +
+      s.b k j * surplusProbability (s.law k j) u)) ∧
+  (∀ (f : Fin m → ℝ → ℝ), ConditionalDensities s k f → ∀ u,
+    DensityContinuousNear f u →
+      HasDerivAt (deriv (s.objective k F))
+        (∑ j, s.w j * (s.a k j F-s.b k j) * f j (-u)) u ∧
+      deriv (deriv (s.objective k F)) u = ∑ j, s.w j * (s.a k j F-s.b k j) * f j (-u)) ∧
+  ((∀ j, s.b k j ≤ s.a k j F) → ConvexOn ℝ (Icc 0 (s.U k)) (s.objective k F)) ∧
+  (ConvexOn ℝ (Icc 0 (s.U k)) (s.objective k F) →
+    (IsMinOn (s.objective k F) (Icc 0 (s.U k)) 0 ↔ 0 ≤ s.marginal k F 0) ∧
+    (IsMinOn (s.objective k F) (Icc 0 (s.U k)) (s.U k) ↔ s.marginal k F (s.U k) ≤ 0) ∧
+    (∀ u, (0 < u ∧ u < s.U k) →
+      (IsMinOn (s.objective k F) (Icc 0 (s.U k)) u ↔ s.marginal k F u = 0)) ∧
+    (0 < s.marginal k F 0 → ∀ y ∈ Icc 0 (s.U k),
+      s.objective k F y = s.objective k F 0 → y = 0) ∧
+    (s.marginal k F (s.U k) < 0 → ∀ y ∈ Icc 0 (s.U k),
+      s.objective k F y = s.objective k F (s.U k) → y = s.U k) ∧
+    (∀ u, (0 < u ∧ u < s.U k) → s.marginal k F u = 0 →
+      0 < deriv (deriv (s.objective k F)) u →
+      IsMinOn (s.objective k F) (Icc 0 (s.U k)) u ∧
+      ∀ y ∈ Icc 0 (s.U k), s.objective k F y = s.objective k F u → y = u)) ∧
+  (IsMinOn (s.objective k F) (Icc 0 (s.U k)) 0 → 0 ≤ s.marginal k F 0) ∧
+  (IsMinOn (s.objective k F) (Icc 0 (s.U k)) (s.U k) → s.marginal k F (s.U k) ≤ 0)
 
-- Keep the paper's definitions/formatted objects first, in source order.
-- Expose the actual paper formulas here; do not only point to generic library
-  definitions or implementation witnesses.
-- A material reusable `AppliedModelingLib` primitive may remain a reference here only
-  after `audit/library_semantic_review.json` records its exact bounded library
-  declaration and an explicit byte-pinned paper-source connection. The
-  dashboard and human-review packet show and source-check that declaration
-  before the dependent Spec; a library name, docstring, or glossary is not a
-  semantic bridge. Do not add a duplicate paper claim merely to restate it.
-- If a named theorem needs a hypothesis that is not derived from earlier Lean
-  declarations, declare that hypothesis in `Assumptions.lean` and list it in
-  `status.json` `review_surface.assumption_names`.
-- Then state the named results directly, with assumptions visible in each
-  theorem signature by referencing named paper assumptions imported from
-  `Assumptions.lean`.
-- In the statement-first phase, write every complete source-facing statement as
-  a transparent `<name>Spec : Prop` here, exactly once. Put the paired
-  theorem/lemma of that exact type in `ProofInterface.lean`; its temporary
-  proof body may be `by sorry` only in a private draft. This separation keeps
-  the human semantic surface free of thin wrapper declarations.
-- Before drafting that Lean surface, independently inventory every material
-  source atom from exact pinned source quote bytes. Do not infer source atoms
-  from declaration, binder, field, function, or source-map names.
-- Run raw-source-to-expanded-Spec statement matching plus Lean-emitted
-  premise/conclusion claim-atom review on the skeleton. The semantic comparison uses
-  only byte-pinned source quotes (and separately pinned source context) against
-  the expanded transparent Spec; map summaries and proof wrappers are not
-  semantic inputs. Then freeze each canonical Lean declaration-manifest digest.
-- In the proof phase, replace the `ProofInterface.lean` `sorry` with a short
-  proof that calls into `MainTheorems.lean` or lower proof files without
-  changing the specification or theorem type. Any specification/type change
-  invalidates the freeze and requires a fresh statement audit.
-- At formalized closeout, complete the v11 realization receipt: Lean Meta checks
-  the theorem has exactly the transparent Spec type; each source atom is bound
-  to the elaborated Spec surface; closure traversal includes proof and instance
-  arguments; and every material terminal has a source, approved correction or
-  additional assumption, checked derivation, or version-pinned foundation
-  disposition. No data, container, or identifier-based exemption is allowed.
-- The transparent `...Spec` is the sole semantic-review target for its source
-  claim. The paired theorem/lemma is a proof endpoint whose exact Spec type is
-  verified by Lean Meta, not a duplicate source-to-Lean comparison row.
-- Keep proof endpoints, exhaustive endpoint aliases, and proof-seam checks in
-  `ProofInterface.lean`, implementation modules, or `ProofLedger.lean`, not
-  here. Do not create new `PostPaperAudit.lean` or `AuditLedger.lean` files;
-  those names are legacy.
+/-- FULL Proposition 2 target. Deliberately has NO paired proof endpoint.
+The response/sign is required throughout a neighborhood, and unique-global
+continuation is included. It is not replaced by the weaker local support below. -/
+def proposition2Spec : Prop :=
+  ∀ (m : ℕ) (s : SourceInstance m) (k : Fin 2) (F₀ u₀ : ℝ) (f : Fin m → ℝ → ℝ),
+    ConditionalDensities s k f → RegularCapacityPoint s k f F₀ u₀ →
+    ∃ b : ℝ → ℝ, b F₀ = u₀ ∧ ContDiffAt ℝ 1 b F₀ ∧
+      (∀ᶠ F in 𝓝 F₀, 0 < F ∧ (0 < b F ∧ b F < s.U k) ∧
+        s.marginal k F (b F) = 0 ∧
+        HasDerivAt b (-capacityNumerator s.w (s.ψ k) s.Δ
+          (fun j => shortfallProbability (s.law k j) (b F)) s.κ F /
+          currentCurvature s.w (s.ψ k) (s.ℓ k) s.Δ f s.i s.κ F (b F)) F ∧
+        deriv b F ≤ 0 ∧
+        (deriv b F < 0 ↔ ∃ j, 0 < F ∧ F < s.Δ j ∧ s.ψ k j < 1 ∧
+          0 < shortfallProbability (s.law k j) (b F)) ∧
+        ∃ δ > 0, ∀ v ∈ Ioo (b F-δ) (b F+δ), v ≠ b F →
+          s.objective k F (b F) < s.objective k F v) ∧
+      ((IsMinOn (s.objective k F₀) (Icc 0 (s.U k)) u₀ ∧
+        ∀ y ∈ Icc 0 (s.U k), s.objective k F₀ y = s.objective k F₀ u₀ → y = u₀) →
+        ∀ᶠ F in 𝓝 F₀, IsMinOn (s.objective k F) (Icc 0 (s.U k)) (b F) ∧
+          ∀ y ∈ Icc 0 (s.U k), s.objective k F y = s.objective k F (b F) → y = b F)
 
-## Named Results
+/-- PROVED COMPONENT only: source IFT, base-point formula/sign/strictness,
+and persistence of strict interior local minima. Not full Proposition 2. -/
+def proposition2LocalSupportSpec : Prop :=
+  ∀ (m : ℕ) (s : SourceInstance m) (k : Fin 2) (F u : ℝ) (f : Fin m → ℝ → ℝ),
+    ConditionalDensities s k f → RegularCapacityPoint s k f F u →
+    ∃ b : ℝ → ℝ, b F = u ∧ ContDiffAt ℝ 1 b F ∧
+      (∀ᶠ x in 𝓝 F, s.marginal k x (b x)=0) ∧
+      HasDerivAt b (-capacityNumerator s.w (s.ψ k) s.Δ
+        (fun j => shortfallProbability (s.law k j) u) s.κ F /
+        currentCurvature s.w (s.ψ k) (s.ℓ k) s.Δ f s.i s.κ F u) F ∧
+      deriv b F ≤ 0 ∧
+      (deriv b F < 0 ↔ ∃ j, 0 < F ∧ F < s.Δ j ∧ s.ψ k j < 1 ∧
+        0 < shortfallProbability (s.law k j) u) ∧
+      (∀ᶠ x in 𝓝 F, 0 < b x ∧ b x < s.U k ∧
+        ∃ δ > 0, ∀ v ∈ Ioo (b x-δ) (b x+δ), v ≠ b x →
+          s.objective k x (b x) < s.objective k x v)
 
-Each entry has one semantic-review target (`Spec`) and one proof endpoint (the
-paired theorem/lemma). The human dashboard and review packet present that pair
-once rather than treating the two declarations as duplicate paper claims.
+/-- Exact missing compact-gap/global-continuation obligation. NO proof endpoint.
+No assumed no-switch certificate or global optimizer branch is supplied. -/
+def proposition2GlobalContinuationSpec : Prop :=
+  ∀ (m : ℕ) (s : SourceInstance m) (k : Fin 2) (F₀ u₀ : ℝ) (f : Fin m → ℝ → ℝ),
+    ConditionalDensities s k f → RegularCapacityPoint s k f F₀ u₀ →
+    IsMinOn (s.objective k F₀) (Icc 0 (s.U k)) u₀ →
+    (∀ y ∈ Icc 0 (s.U k), s.objective k F₀ y = s.objective k F₀ u₀ → y = u₀) →
+    ∃ b : ℝ → ℝ, b F₀ = u₀ ∧ ContDiffAt ℝ 1 b F₀ ∧
+      ∀ᶠ F in 𝓝 F₀, IsMinOn (s.objective k F) (Icc 0 (s.U k)) (b F) ∧
+        ∀ y ∈ Icc 0 (s.U k), s.objective k F y = s.objective k F (b F) → y = b F
 
-- Only the continuation block of Proposition 1 is represented below.
-- This is a partial implementation, not a complete source-facing interface
-  for either Proposition 1 or Proposition 2. Neither full proposition is closed.
-- The remaining functions and helpers are in the imported implementation
-  modules; the generated v11 review ledgers remain unissued.
--/
-
-namespace Gomez26EligibilityBuffers
-
-/-- Proposition 1, equation (10), continuation block ONLY.
-No extra mathematical assumption; q,H>=0 and g>p>=0 are the source domain.
-This does not state the probabilistic/ex-ante parts of Proposition 1. -/
-def continuationBlockSpec : Prop :=
-  ∀ q H p g : ℝ, 0 ≤ q → 0 ≤ H → 0 ≤ p → p < g →
-    feasible q H (min q H) (max (q-H) 0) ∧
-    (∀ W v, feasible q H W v →
-      continuationCost p g (min q H) (max (q-H) 0) ≤ continuationCost p g W v) ∧
-    (∀ W v, feasible q H W v →
-      continuationCost p g W v ≤ continuationCost p g (min q H) (max (q-H) 0) →
-      W = min q H ∧ v = max (q-H) 0)
-
-
-end Gomez26EligibilityBuffers
+end Gomez26LiquidityBuffers

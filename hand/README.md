@@ -43,6 +43,6 @@ The [four typed guides](guides/) are preserved unchanged as AI-assisted preparat
 
 - [Hand_derivation.pdf](Hand_derivation.pdf): historical October public-dollar-backing manuscript (6 pages).
 - [FINAL_DERIVATION_GUIDE.md](FINAL_DERIVATION_GUIDE.md): historical typed November-4 eligibility/deferral guide for paper commit `cf37d3f`.
-- The existing [lean/](../lean/README.md) is historical. A separate provisional post-Marco package has proved Proposition 1 and local support for Proposition 2; global continuation remains open in Lean. Its final source pin/revalidation and integration are separate tasks, not performed by adding these scans.
+- The integrated [current Lean contribution](../lean/README.md) proves Proposition 1 and local support for Proposition 2 against the immutable final paper source; global continuation remains open. [Historical November-4 closures](../archive/lean-november4/README.md) remain separate. Handwritten derivations, independent Codex auditing and Lean proofs are distinct evidence.
 
 Only **33 of the 99** Python checks concern the current model; handwritten reasoning, program checks and Lean proofs have distinct scopes.

@@ -1,28 +1,48 @@
 # Voluntary Liquidity Buffers under Finite Common Coverage
 
-**Carlos Gómez Puicán · AI & Economic Modeling · Universidad del Pacífico · Track B: thesis model**
+**Carlos Gómez Puicán · Universidad del Pacífico**
 
-**Question and provenance.** How does finite common coverage affect an individual bank's optimal voluntary liquidity buffer under prescribed interbank allocation? The thesis architecture is joint work by **Carlos Gómez Puicán and Fabián Méndez Suárez**, supervised by **Marco Ortiz**, incorporating his benchmark note. Carlos's individual course contribution is the private buffer-choice closure, proofs, verification and constructed simulations. Prescribed participation and added course restrictions are maintained assumptions, not claims of advisor approval.
+AI & Economic Modeling · **Track B: thesis model**
 
-**Current model.** The post-Marco seven-equation benchmark covers (1) signed liquidity flows and buffer positions, (2) deficit/surplus amounts, (3) prescribed interbank allocations, (4) conservation, (5) finite common capacity and proportional rationing, (6) relative coverage incidence, and (7) individual buffer optimization. It has one currency interpreted as USD, two bank types, ex ante voluntary buffers, and NU required reserves (no personal reuse). Positive flows improve liquidity. Capacity is $F=\nu_F\rho D+R$. At a reference population profile, schedules are formed and then frozen for a measure-zero bank's deviation.
+[Paper](paper/paper.pdf) · [Presentation](slides/final.pdf) · [Model](code/post_marco_model.py) · [Evidence](hand/README.md) · [Replication guide](docs/REPLICATION.md)
 
-**Results and conditions.** With normalized deficit $L=D_k/d_k$, surplus $M=X_k/d_k$, $a=i\psi+\kappa(1-\varphi)(1-\psi)$, and $b=i\ell$, private cost is $J(u)=ru+\mathbb E[aL-bM]$. The interior FOC is $r=\mathbb E[a\pi^-+b\pi^+]$; lending income prevents automatic convexity. Proposition 1 gives sufficient convexity/corner conditions, a nonconvexity counterexample and exhaustive finite-uniform global optimization.
+Banks pay to hold liquidity before shocks arrive. Common protection can reduce subsequent shortfalls, while a larger buffer can also earn interbank lending income. These competing incentives make private liquidity choice depend on exposure, access and available coverage.
 
-Proposition 2 gives $du^*/dF\le0$ locally for a **unique global interior optimum with positive curvature**, $F>0$, continuous local conditional densities, no coverage kink $F=\Delta(A)>0$, and fixed prices, shock laws, domain and population schedules $P,Q,\psi,\ell,\Delta$. The maintained environment has integrable atomless flows, finite aggregate states, a compact buffer interval, $r\ge0$, and $\kappa>i\ge0$. Strict negativity requires a positive-probability state with $0<F<\Delta$, $\psi<1$, and positive deficit probability. Corners/nonunique optima are excluded. This is a conditional best response, **not general equilibrium**; participation, aggregate consistency, calibration and welfare remain open.
+**Research question:** How does finite common coverage affect an individual bank’s optimal voluntary buffer under prescribed interbank allocation?
 
-| Current deliverable | Status |
-|---|---|
-| [Final paper](paper/paper.pdf) · [source](paper/paper.tex) | Current mathematical draft; 18 pages (12 body); full ordinary proofs of both propositions |
-| [Final presentation](slides/final.pdf) · [source](slides/final.tex) | Built and inspected: 13 main slides, 9 backups, one divider |
-| [Computational audit](code/POST_MARCO_AUDIT.md) · [outputs](code/output/post_marco/) | Constructed examples, not Peruvian estimates |
-| [Lean record](lean/README.md) | 31 historical supporting closures pinned to November-4 paper `cf37d3f`; new post-Marco propositions open in Lean |
-| [Hand evidence and checklist](hand/README.md) | Four genuine PDFs (8 pages) incorporated; explicit human unit verdict present; corrected corners, local IFT branch and zero-state accounting reconciled |
-| [Raw AI collaboration log](prompts.md) | October record preserved; recovered later exchanges distinguish AI claims, student verdicts and outstanding verification |
+## Contribution
 
-**Student handwritten evidence:** [02](hand/02-post-marco-shortfall-surplus.pdf): signed flows and the −0.48 versus −0.30 unit verdict; [03](hand/03-post-marco-buffer-optimality.pdf): FOC/curvature and corrected corners; [04](hand/04-post-marco-capacity-response.pdf): conditional capacity calculation; [05](hand/05-post-marco-conservation-incidence.pdf): conservation and zero-deficit incidence. Original scans are unchanged; see the [page-level review](hand/README.md).
+The current **post-Marco benchmark** has one currency (USD), two bank types, signed liquidity flows and required reserves unavailable for personal use. A bank chooses its buffer before shocks, taking population allocation schedules as given.
 
-**Current figures:** [cost and optima](code/figures/post_marco/cost_and_optima.png), [capacity response](code/figures/post_marco/capacity_response.png), [exposure response](code/figures/post_marco/exposure_response.png).
+- **Proposition 1 — Private choice.** Establishes existence, the lender-inclusive first-order condition, and convexity, corner and uniqueness conditions. Lending income means convexity is not automatic.
+- **Proposition 2 — Conditional capacity response.** More capacity weakly reduces buffers along a regular interior branch of local minima: positive capacity and curvature, locally continuous densities, no coverage kink, and fixed prices, laws, domain and population schedules. Strict decrease requires a positive-probability state with rationing, incomplete interbank coverage and a positive deficit probability. A unique global optimum at the base continues locally.
 
-**Reproduce.** From the repository root, install `python -m pip install -r code/requirements.txt`, then run `python code/verify.py`. It runs **28 October + 38 November-4 + 33 post-Marco = 99 checks** and regenerates outputs/figures in their separate model directories. Only 33 checks concern the current benchmark; finite tests and historical Lean support are not proofs of its new economic propositions. Build PDFs from their own directories with `latexmk -pdf paper.tex` or `latexmk -pdf final.tex`.
+## Selected simulations
 
-**Historical provenance:** [October proposal](proposal/proposal.pdf), [topic deck](slides/topic.pdf), [October manuscript](hand/Hand_derivation.pdf), [November-4 typed guide](hand/FINAL_DERIVATION_GUIDE.md), older code/outputs, and the paper at Git commit `cf37d3f` remain historical. The local `.private/` provenance source is excluded from Git. [Course requirements: Issue #7](https://github.com/alexanderquispe/AI-Econ-Modeling/issues/7).
+**Constructed examples, not estimates for Peru.** Select a figure title for the full-size plot; [parameters and exported results](code/output/post_marco/) accompany every experiment.
+
+| [Buffer choice](code/figures/post_marco/cost_and_optima.png) | [Common capacity](code/figures/post_marco/capacity_response.png) | [Individual exposure](code/figures/post_marco/exposure_response.png) |
+|:---|:---|:---|
+| ![Private-cost curves and interior optima for two bank types](code/figures/post_marco/cost_and_optima.png) | ![Both bank types reduce buffers as common capacity rises on the rationed grid](code/figures/post_marco/capacity_response.png) | ![Type 2 buffers rise with exposure while type 1 stays fixed in the constructed experiment](code/figures/post_marco/exposure_response.png) |
+| Both types have interior optima; their exposure and access differ. | Buffers fall while reference states remain rationed and schedules stay fixed. | Type 2’s buffer rises on this grid; type 1 stays fixed. This is not a universal exposure theorem. |
+
+## Evidence and reproduction
+
+**99 checks in total; 33 concern the current model.** The other 28 October and 38 November-4 checks preserve historical verification. Inspect the [verification entry point](code/verify.py), [current check report](code/output/post_marco/verification.json) and [computational audit](code/POST_MARCO_AUDIT.md).
+
+```sh
+python -m pip install -r code/requirements.txt
+python code/verify.py
+```
+
+The verifier regenerates outputs and figures. The [replication guide](docs/REPLICATION.md) covers an isolated environment, PDF builds, file navigation and model versions.
+
+**Handwritten evidence complete:** [02](hand/02-post-marco-shortfall-surplus.pdf) / [03](hand/03-post-marco-buffer-optimality.pdf) / [04](hand/04-post-marco-capacity-response.pdf) / [05](hand/05-post-marco-conservation-incidence.pdf) / [06](hand/06-post-marco-differentiation-existence.pdf) / [07](hand/07-post-marco-convexity-optimality.pdf) / [08](hand/08-post-marco-uniform-enumeration.pdf) / [09](hand/09-post-marco-optimizer-continuation-incidence.pdf). These are 23 genuine student-written pages. Manuscript 07 p. 3 qualifies manuscript 03 p. 2; the original scan is unchanged. See the [evidence inventory](hand/README.md) and [authentic AI record](prompts.md).
+
+**Lean:** [Proposition 1 proved; Proposition 2 partial](lean/docs/PAPER_TO_LEAN.md). Its economic IFT, base-point response and strict local-minimum persistence are proved; global continuation, the neighborhood-wide formula and exported local uniqueness remain open. The integrated [Spec/proof interface](lean/ProofInterface.lean) formalizes the [immutable paper source](https://github.com/carlosgomezp28/ai-project/blob/5b2959633962f46fc59d963b92f756e06da2ff00/paper/paper.pdf). Build, registration, recursive axiom audit and course `--fast` pass; [reproduction and logs](lean/docs/REPRODUCE.md) state their scope. The [31 historical closures](archive/lean-november4/README.md) receive no current-model proof credit.
+
+## Scope and provenance
+
+The thesis architecture is joint work by **Carlos Gómez Puicán and Fabián Méndez Suárez**, supervised by **Marco Ortiz**. Carlos’s individual course contribution is the buffer-choice closure, proofs, verification and constructed simulations.
+
+Results concern individual conditional best responses. Aggregate equilibrium, endogenous interbank participation, welfare effects and empirical calibration are outside the current contribution. Prescribed allocations and course specializations are maintained assumptions. [Historical milestones](docs/REPLICATION.md) remain preserved; [course requirements](https://github.com/alexanderquispe/AI-Econ-Modeling/issues/7) govern the final submission.

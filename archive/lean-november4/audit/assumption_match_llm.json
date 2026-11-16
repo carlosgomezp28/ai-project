@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "paper": "Gomez26EligibilityBuffers",
+  "prompt_version": "assumption-provenance-v4-verbatim-source-anchor-exact-premise",
+  "validator": "",
+  "validator_type": "",
+  "validated_at": "",
+  "comment": "Validate every assumption declaration and every Lean-emitted proposition-valued claim atom against source text or a Lean derivation.",
+  "prompt_summary": [
+    "For each Assumptions.lean declaration, decide semantically whether it is an explicit paper/model assumption, a source theorem condition, a documented caveat, a partial-formalization boundary, not a paper assumption, or uncertain.",
+    "For every proposition-valued assumption atom emitted by Lean for a source-facing claim, give an independent premise_judgments entry. Group-level approval is insufficient, and comments or pretty-printed Lean text are not premise-discovery authority.",
+    "Scrutinize each premise against the source model, not by declaration name, theorem label, or phrase overlap. Expand named predicates/wrappers enough to identify the actual mathematical assumption.",
+    "Certificate, replay, process, bridge, source-row, or broad package premises need a specific source primitive or a Lean-checked instantiation path from paper primitives; otherwise mark partial_boundary/not_paper_assumption.",
+    "Use source_text_model_primitive, source_text, or paper_condition only for premises explicitly stated by the source. Supply the exact byte-pinned source-anchor quote bundle, cite source_location, and record source_anchor_quote_identity_sha256; do not use a paraphrase, map statement, or reconstructed context as source evidence.",
+    "Use derived_from_source_primitives only when the Lean development derives the premise from prior source primitives.",
+    "Displayed formulas, capacity equations, threshold identities, density/mass rows, source-row packages, certificates, and proof conveniences are not paper assumptions unless the source explicitly assumes them; otherwise mark partial_boundary or not_paper_assumption."
+  ],
+  "items": {},
+  "bounded_scaffold_review": {
+    "reviewed_at": "2026-11-04T01:29:20.608314+00:00",
+    "disposition": "required_not_issued",
+    "reason": "All existing theorem premises were semantically reviewed in the bounded review. Canonical atom-level judgments require Lean graph claim atoms and exact source routes, which are unavailable. Chain equations remain explicit algebra-only partial boundaries.",
+    "canonical_acceptance": false,
+    "review_record": "audit/partial_semantic_review.json",
+    "independent_adversarial_record": "docs/SEMANTIC_SCOPE_REVIEW.md"
+  }
+}

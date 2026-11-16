@@ -1,0 +1,3 @@
++ lake build +Gomez26LiquidityBuffers.PaperInterface
+Build completed successfully (3316 jobs).
++ git diff --check -- papers/Gomez26LiquidityBuffers papers/Gomez26LiquidityBuffers.lean lakefile.toml ':(exclude)papers/Gomez26LiquidityBuffers/source/'

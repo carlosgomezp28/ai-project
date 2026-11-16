@@ -1,0 +1,21 @@
+{
+  "status": "FINAL_IMMUTABLE_COURSE_SOURCE_PIN",
+  "final_paper_commit": "5b2959633962f46fc59d963b92f756e06da2ff00",
+  "paper_url": "https://github.com/carlosgomezp28/ai-project/blob/5b2959633962f46fc59d963b92f756e06da2ff00/paper/paper.pdf",
+  "source_tex_url": "https://github.com/carlosgomezp28/ai-project/blob/5b2959633962f46fc59d963b92f756e06da2ff00/paper/paper.tex",
+  "source_sha256": {
+    "paper.tex": "b226f2590089c2f85bc55dabde1eb9ab5a6d719125a8e463ab692245fdf6f904",
+    "paper.pdf": "2e950381369ff2696270bbed3e25f174b4608f9b1391d2fdd9a8bb9c35c8b125"
+  },
+  "source_cache": "/home/cjuni/liquidity-buffers-source-cache/5b2959633962f46fc59d963b92f756e06da2ff00",
+  "engine_commit": "194edcc95df74806a39b961d10dedddc6e730cce",
+  "previous_provisional_paper_commit": "583e8b8cbb310d8b935d4b52ff85c304039a9677",
+  "mathematical_blocks_checked_identical": [
+    "2 propositions",
+    "2 proofs",
+    "6 assumptions",
+    "first 7 equations"
+  ],
+  "source_equivalence_check": "Exact blocks identical to provisional source; final PDF differs only in editorial/evidence documentation. The subsequent course PDF may update the formalization appendix without changing these blocks.",
+  "source_pin_scope": "Mathematics in the immutable PR #4 paper. Later formalization/evidence appendix documentation is not a source repin."
+}

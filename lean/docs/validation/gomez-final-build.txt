@@ -1,0 +1,39 @@
+✔ [3297/3304] Built Gomez26LiquidityBuffers.Accounting (30s)
+✔ [3299/3304] Built Gomez26LiquidityBuffers.Moments (3.5s)
+✔ [3301/3305] Built Gomez26LiquidityBuffers.Capacity (3.1s)
+✔ [3303/3305] Built Gomez26LiquidityBuffers.Convexity (2.8s)
+✔ [3304/3317] Built Gomez26LiquidityBuffers.CurrentModel (2.6s)
+✔ [3313/3321] Built Gomez26LiquidityBuffers.Regularity (2.9s)
+✔ [3314/3321] Built Gomez26LiquidityBuffers.SourceInstance (3.1s)
+⚠ [3316/3325] Built Gomez26LiquidityBuffers.DensityCurvature (3.3s)
+warning: papers/Gomez26LiquidityBuffers/DensityCurvature.lean:64:87: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: papers/Gomez26LiquidityBuffers/DensityCurvature.lean:74:71: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [3317/3325] Built Gomez26LiquidityBuffers.PrincipalOptimization (3.6s)
+⚠ [3318/3325] Built Gomez26LiquidityBuffers.EconomicBranch (3.0s)
+warning: papers/Gomez26LiquidityBuffers/EconomicBranch.lean:62:46: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: papers/Gomez26LiquidityBuffers/EconomicBranch.lean:62:54: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: papers/Gomez26LiquidityBuffers/EconomicBranch.lean:69:46: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: papers/Gomez26LiquidityBuffers/EconomicBranch.lean:69:54: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: papers/Gomez26LiquidityBuffers/EconomicBranch.lean:83:32: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [3319/3325] Built Gomez26LiquidityBuffers.LocalMinimum (2.8s)
+✔ [3320/3325] Built Gomez26LiquidityBuffers.SourceResponse (2.6s)
+✔ [3321/3325] Built Gomez26LiquidityBuffers.MainTheorems (2.2s)
+✔ [3322/3325] Built Gomez26LiquidityBuffers.Assumptions (2.5s)
+✔ [3323/3325] Built Gomez26LiquidityBuffers.PaperInterface (2.8s)
+✔ [3324/3325] Built Gomez26LiquidityBuffers.ProofInterface (2.6s)
+✔ [3325/3325] Built Gomez26LiquidityBuffers (2.3s)
+Build completed successfully (3325 jobs).
