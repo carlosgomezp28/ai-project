@@ -42,9 +42,9 @@ The closest formal baseline is the joint working benchmark in equations~\eqref{e
 
 Public support and private liquidity incentives are established research. \citet{ratnovski2009} analyzes liquidity choices and lender-of-last-resort support. \citet{farhi2012} studies public intervention and strategic private balance-sheet choices. Here policy prices and rules are given; an individual bank cannot alter aggregate schedules. \citet{freixas2011} studies liquidity uncertainty, interbank allocation and central-bank policy. \citet{rochet2004} supplies a coordination-based account of banking fragility and assistance. This paper derives neither coordination failure nor strategic intervention.
 
-\citet{bianchi2022} develops a liquidity-management model with an OTC interbank market and a lending--liquidity trade-off. This benchmark also values liquidity and financing, but replaces endogenous participation, prices and matching with prescribed fractions and a given interest rate. Its equilibrium and monetary-policy conclusions therefore cannot be imported here. Bilateral Nash pricing or endogenous search would require a different continuation problem.
+The closest published portfolio comparison is \citet{bianchi2022}. In the published version, Proposition~1, p.~398, equation~(8), characterizes deficit financing, surplus lending and the interbank rate as functions of market tightness. Section~3.1, Proposition~7(i)--(ii), pp.~403--404, equations~(15)--(16), reduces the dynamic bank problem to equity and characterizes portfolio weights.\footnote{Published-version text checked against the author-hosted journal PDF: \url{https://javierbianchi.com/research_publications/Banking_ecma.pdf}. Page references are printed journal pages.} Here deposits and the buffer domain are fixed, allocation fractions and the interest rate are prescribed, and free residual coverage is rationed through finite common capacity. Propositions~\ref{prop:choice}--\ref{prop:capacity} close this different, static conditional problem; they neither modify nor reproduce those published propositions. Endogenous pricing, portfolio aggregation and monetary-policy conclusions cannot be imported. Bilateral Nash pricing or endogenous search would require a different continuation problem.
 
-The cited works are published journal versions; no new preprint priority claim is made. No exact proposition/version comparison establishes that the literature lacks this closure. Literature-wide novelty is not claimed. Institutional references retained in the shared bibliography for the October proposal do not calibrate the present NU convention, shock law or common fund. They are not evidence that these constructed values describe Peru.
+The cited works are published journal versions; no new preprint priority claim is made. This result-level comparison identifies the maintained modeling departure, not an exhaustive priority search. Literature-wide novelty is not claimed. Institutional references retained in the shared bibliography for the October proposal do not calibrate the present NU convention, shock law or common fund. They are not evidence that these constructed values describe Peru.
 
 \section{Environment, units and timing}
 \subsection{Assumptions and provenance}
@@ -182,9 +182,10 @@ The FOC balances carrying cost against two gains. In deficit realizations the bu
 \subsection{Nonconvexity, corners and global solution}
 Even $\kappa>i$ does not ensure convexity. With full coverage $a_j-b_j=i(\psi_j-\ell_j)$, which can be negative. Lending income is subtracted from cost and contributes negative curvature.
 
-For an explicit counterexample use the type~1 baseline schedules in Section~\ref{sec:numerics}, freeze them, and set $F=10$. Both states are fully covered. In the adverse state $\psi_1=0.041202615$ and $\ell_1=0.65$. At $u=0.65$ its density is one and the normal-state density at $-u$ is zero. Consequently
+For an explicit counterexample use the type~1 baseline schedules in Section~\ref{sec:numerics}, freeze them, and set $F=10$. Both states are fully covered. In the adverse state $\psi_1=0.65(0.0189744/0.2993344)\approx0.041202615$ and $\ell_1=0.65$. At $u=0.65$ its density is one and the normal-state density at $-u$ is zero. Consequently
 \[
- J''(0.65)=0.4(0.015)(0.041202615-0.65)=-0.0036527843<0.
+ J''(0.65)=0.4(0.015)\left(0.65\frac{0.0189744}{0.2993344}-0.65\right)
+ \approx-0.0036527843<0.
 \]
 All signs remain admissible, including $\kappa=0.25>i=0.015$. This refutes automatic convexity, not convexity of the actual baseline at $F=0.015$.
 
@@ -333,7 +334,7 @@ Their deposit weights $0.6/1.24$ and $0.64/1.24$ yield a weighted mean of one. T
 \section{Verification and limitations}
 The single verification entry point groups 99 checks: 28 for October, 38 for the historical November~4 direct-support model, and 33 for the current post-Marco benchmark. Only the last group directly tests this implementation. The total is not 99 proofs of the new propositions. Appendix~\ref{app:verification} gives methods and discrepancies.
 
-The proofs establish conditional mathematical results. Symbolic identities and independent integration, differences and grids support implementation consistency; finite tests cannot prove an unrestricted claim. Simulations have no empirical identification. Existing Lean declarations concern an older paper, not the new propositions (Appendix~\ref{app:lean}). Four corrected handwritten manuscripts record student derivations; their reconciled scope is assessed in Appendix~\ref{app:human}.
+The proofs establish conditional mathematical results. Symbolic identities and independent integration, differences and grids support implementation consistency; finite tests cannot prove an unrestricted claim. Simulations have no empirical identification. The repository's existing Lean folder concerns an older paper; a separate provisional current-model package is distinguished in Appendix~\ref{app:lean}. Eight genuine handwritten manuscripts record student derivations; Appendix~\ref{app:human} assesses their scope.
 
 Participation remains imposed. Borrowers are not shown to prefer interbank finance to free common support, and lenders are not shown to prefer lending to retaining surplus. Outside options, priority, search, matching quantities and bilateral Nash terms require further work. Free public coverage makes those choices particularly consequential. The current allocations are not an incentive-compatible OTC equilibrium.
 
@@ -341,7 +342,7 @@ Expected-amount conservation does not solve aggregate buffer consistency. A fixe
 
 The fraction $\nu_F$ and backing $R$ are capacity primitives. Financing and social costs are not consolidated, and no optimal policy is chosen. NU, the zero public fee and the inability to reuse personal reserves are maintained benchmark assumptions, not empirical institutional claims. Shock supports, cap and costs are constructed. Calibration would require data on flows, portfolios, funding terms and public arrangements; the USD label alone provides no exchange-rate mechanism or empirical identification.
 
-Finally, all eight pages of the four current handwritten manuscripts have been reconciled, including the corrected upper-corner condition and the local IFT branch argument. Their demonstrated scope is recorded in Appendix~\ref{app:human}; the full global arguments remain in the typed paper. New-paper Lean formalization remains incomplete. Partial formalization is permitted by the course, but historical scalar lemmas do not verify new economic content. After this revised paper is frozen, its numbered claims require a new mapping and the supported course check.
+Finally, all 23 pages of manuscripts 02--09 have been reconciled. They include the full differentiation, convexity, uniform-enumeration, IFT, compact-gap continuation and incidence arguments. Manuscript 07, p.~3, qualifies manuscript 03, p.~2; the original scan is unchanged. Appendix~\ref{app:human} distinguishes the handwritten work, Codex audit and actual recorded human verdict. The provisional Lean package proves Proposition 1 and part of Proposition 2, but final-source revalidation and course-folder integration remain pending.
 
 \section{Conclusion}
 A voluntary buffer reduces deficit costs and increases prescribed lending income. The second margin changes curvature: convexity requires conditions and can fail under full coverage. Finite-uniform global enumeration solves constructed problems without assuming convexity.
@@ -369,7 +370,7 @@ The density at $-u$ is $1/(2\sigma_j)$ for $|z_j|<\sigma_j$ and zero outside. It
 
 Sort $0,\bar u$ and all feasible interior knots $-\beta A_j\pm\sigma_j$. On each intervening open interval the moments, and hence $J$, are quadratic or affine. A nonconstant quadratic minimizes on a closed interval at an endpoint or an interior stationary point; a nonconstant affine function minimizes at an endpoint. A constant polynomial minimizes throughout. Comparing every boundary, feasible stationary point and flat interval is exhaustive, including concave regions. Comparing their levels retains all global solutions.
 
-The structural argument is exact. Floating-point implementation uses $10^{-13}$ for nearly zero curvature, $10^{-12}$ for flat slope, and $2\times10^{-12}$ for equal minimum costs. Numerical uniqueness under tolerances is not an exact theorem for arbitrary inputs. Independent 40,001-point grids and integration check reported examples. A dense grid alone cannot exclude a narrow unvisited minimum in a general function; the piecewise-polynomial argument supplies the structural guarantee here.
+The structural argument is exact. Floating-point implementation uses $10^{-13}$ for nearly zero curvature, $10^{-12}$ for flat slope, and $2\times10^{-12}$ for equal minimum costs. Numerical uniqueness under tolerances is not an exact theorem for arbitrary inputs. Selected optimizer fixtures, including nonconvex, corner and flat cases, use independent 40,001-point grids. Exported optimum rows use the verification routine's default 16,001-point grid; exported cost-curve points are reproduced directly. Independent integration checks moments and costs. A dense grid alone cannot exclude a narrow unvisited minimum in a general function; the piecewise-polynomial argument supplies the structural guarantee here.
 
 A root can be infeasible, at a support knot, or a maximum in a concave region. The algorithm compares all costs rather than truncating a root. Endpoint derivative conditions are sufficient under convexity only.
 
@@ -409,63 +410,74 @@ Tests include full coverage with negative curvature, lower and upper corners, in
 Reproduction uses the repository environment and recorded parameters. The normal entry point writes historical and current outputs, so the independent full run used temporary destinations. Numerical equality of generated files is evidence for reproducibility under that environment, not empirical validation. Neither run changed the repository's simulation files.
 
 \section{Paper-to-Lean status}\label{app:lean}
-The existing \texttt{lean/} deliverable contains 31 theorem closures for the November~4 paper pinned at \texttt{cf37d3f}. Reviewed declarations have no \texttt{sorry}/\texttt{admit} proof holes; instructional comment occurrences are not declarations. Reported axiom dependencies are standard logical foundations. This migration neither changes nor rebuilds those files.
+The repository's existing \texttt{lean/} folder contains 31 supporting closures for the historical November~4 paper at \texttt{cf37d3f}. They do not prove the present economic propositions. A separate current-model contribution, \texttt{Gomez26LiquidityBuffers}, has been provisionally packaged in an isolated worktree; it has not yet been integrated into \texttt{lean/}.
 
-The strongest present statement is: \emph{Historical scalar supporting results have been formalized in Lean; the new post-Marco economic propositions remain open in Lean.} An algebraic implication from an assumed differentiated FOC is not an IFT theorem or proof that a differentiable optimizer exists.
+That provisional run used the post-Marco paper at commit \texttt{583e8b8cbb31}.\footnote{\raggedright\url{https://github.com/carlosgomezp28/ai-project/blob/583e8b8cbb310d8b935d4b52ff85c304039a9677/paper/paper.pdf}. Provisional source only.\par} Its two propositions, proofs, six assumptions and seven governing equations were checked unchanged against the preparation source. The full contribution build, exact Spec/proof registration, recursive axiom audit and official fast check passed. No \texttt{sorryAx} or nonstandard axioms were found. These are provisional results, not a claim that the final source pin has already been set.
 
-\begin{longtable}{P{0.18\linewidth}P{0.27\linewidth}P{0.43\linewidth}}
-\caption{Current claims and reusable historical support}\\
-\toprule Claim & Status/support & Added hypotheses and remaining gap\\ \midrule
+\begin{longtable}{P{0.16\linewidth}P{0.36\linewidth}P{0.36\linewidth}}
+\caption{Numbered results and provisional current-model Lean scope}\\
+\toprule Paper result & Declaration and file & Status, hypotheses and remaining gap\\ \midrule
 \endfirsthead
-\toprule Claim & Status/support & Added hypotheses and remaining gap\\ \midrule
+\toprule Paper result & Declaration and file & Status, hypotheses and remaining gap\\ \midrule
 \endhead
-Proposition 1 & \textbf{OPEN} for this paper. & No Lean proof of the current deficit/surplus bridge, lender FOC, convexity/corners, existence or global characterization.\\
-Proposition 2 & \textbf{OPEN} for this paper. Old \path{implicit_response} and \path{reserve_response_nonpos} are algebraic companions. & Old results assume a differentiated FOC and denominator/sign hypotheses for another model. They do not construct a branch. Current IFT, capacity derivative, strictness and continuation are unformalized.\\
-Uniform moment derivatives & \textbf{PARTIAL} reuse of \texttt{ell\_derivative} and regional helpers. & Positive width and off-join restrictions where required. Current reflected conditional-law interpretation is not formalized.\\
-Finite differentiation & \textbf{PARTIAL} reuse of \texttt{finiteLoss\_derivative}. & Off all component knots, including zero-weight components where present. General weights do not themselves form a probability law.\\
-Old objective & No current proof from \path{finiteObjective_derivative}. & Its two-threshold asset-eligibility function differs from \eqref{eq:objective}; it does not verify \eqref{eq:foc}.\\
-Market, fund and incidence & \textbf{OPEN} for this paper. & Historical scalar min/max facts do not formalize prescribed schedules or fixed-profile scaling.\\
+Proposition 1 & \texttt{proposition1}, exact type \texttt{proposition1Spec}; \path{Gomez26LiquidityBuffers/ProofInterface.lean}. & \textbf{Proved provisionally.} The complete source-instance statement is registered. Density clauses explicitly require a nonnegative integrable PDF representation and local continuity, matching the source density hypothesis; these are not inferred from atomlessness. Base differentiability and convex uniqueness require no density premise.\\
+Proposition 2 & \texttt{proposition2LocalSupport}, exact type \texttt{proposition2LocalSupportSpec}; the same proof-interface file. Full \texttt{proposition2Spec} has no proof endpoint. & \textbf{Partial.} Economic joint regularity, native IFT construction, base-point derivative/sign and persistence of strict interior local minima are proved. The compact-gap unique-global-continuation theorem is open. The formula throughout a nearby interval and explicit local stationary-branch uniqueness are not exported.\\
 \bottomrule
 \end{longtable}
 
-After this paper is frozen and pinned, the course workflow needs a new result mapping, an honest proved/added-hypothesis/open report, and the supported fast check in AppliedModelingLib:
+The open global obligation is explicitly stated as \texttt{proposition2GlobalContinuationSpec}; a proposition definition is not its proof. No optimizer branch, differentiated-FOC identity or no-switch conclusion is smuggled into the economic hypotheses. Supporting declarations and generated projections do not increase the two-result denominator.
+
+After this paper is merged, the actual immutable paper commit must replace the provisional reference, its statements and source anchors must be reconciled, and the checks rerun. The course command for the \emph{current} contribution is:
 \begin{quote}\small
 \texttt{python3 scripts/paper\_contribution.py check}\\
-\texttt{Gomez26EligibilityBuffers --fast}
+\texttt{Gomez26LiquidityBuffers --fast}
 \end{quote}
-Generated deliverables must then be handled according to course requirements. That future workflow is not performed here. The old check cannot certify this new paper, and no new generated-folder equality is claimed. The course permits an honest partial-formalization report.
+The entire generated folder must subsequently be copied exactly into \texttt{lean/}, respecting its generated \texttt{.gitignore}, through a separate authorized integration. This paper freeze does not perform that copy or claim final-source validation. The course permits an honest partial-formalization report.
 
 \section{AI collaboration and human verification}\label{app:human}
-AI assistance inspected the benchmark and outputs, proposed derivations, checked counterexamples and drafted the paper. Four genuine student handwritten PDFs, each two pages, are incorporated in \texttt{hand/}. After the student corrected the earlier endpoint and IFT omissions and clarified the incidence notation, every page was independently reinspected against the current paper and implementation. The updated scans were preserved unchanged during this reconciliation. The scans document actual student work, not an inferred verdict from passing code. They do not constitute Lean proofs or evidence of an earlier human--AI disagreement.
+AI assistance inspected the benchmark and outputs, proposed derivations, checked counterexamples and drafted text. Eight genuine student handwritten PDFs, manuscripts 02--09, supply 23 pages of mathematical work. Every page of the additional manuscripts was visually audited against the current paper and typed guides; the corrected manuscript 06 was reinspected. The scans are incorporated unchanged. Student-written work, independent Codex auditing, numerical verification and Lean proofs are distinct evidence categories.
 
-\begin{longtable}{P{0.22\linewidth}P{0.32\linewidth}P{0.34\linewidth}}
-\caption{Incorporated handwritten evidence and bounded assessment}\\
-\toprule Claim & Student document/pages & Assessment and remaining scope\\ \midrule
+\begin{longtable}{P{0.20\linewidth}P{0.22\linewidth}P{0.46\linewidth}}
+\caption{Genuine handwritten evidence and independent audit scope}\\
+\toprule Topic & Student manuscript/pages & Observed work and bounded assessment\\ \midrule
 \endfirsthead
-\toprule Claim & Student document/pages & Assessment and remaining scope\\ \midrule
+\toprule Topic & Student manuscript/pages & Observed work and bounded assessment\\ \midrule
 \endhead
-Signs and normalization & 02, pp.~1--2: signed-flow definitions, both positive-part derivatives and numerical unit check. & Correct. At $d=1.6$, $\pi^-=0.30$, the normalized derivative is $-0.30$ and the amount derivative $-0.48$. Page 2 records the student's human verdict that amounts require the deposit factor.\\
-FOC and curvature & 03, p.~1: frozen coefficients, lending income, FOC and density-based curvature. & Correct algebra under the paper's frozen-schedule and differentiation assumptions. This is not a standalone proof of all existence and global-enumeration claims.\\
-Convexity and corners & 03, pp.~1--2: sufficient convexity, full-coverage discussion and endpoints. & The corrected p.~2 uses $J'(\bar u)\leq0$ under global convexity. Both endpoint tests now agree. The negative-curvature discussion is understood where the conditional density at the threshold is positive.\\
-Capacity response & 04, pp.~1--2: $a_F$, $G_F\geq0$, differentiated FOC, sign conditions and fixed-schedule limits. & Page 2 now invokes the IFT from $G(u_0,F_0)=0$, $G_u(u_0,F_0)>0$ and local $C^1$ regularity, obtaining the branch before differentiating. Weak and strict signs agree. Global continuation remains proved in Proposition 2.\\
-Conservation and incidence & 05, pp.~1--2: matched totals, zero volumes, fund bounds, weighted mean and fixed-buffer scaling. & Page 2 explicitly defines $B=\{A:\Delta(A)>0\}$ and $p_B=\Prb(\Delta>0)$. It obtains $\bar C(F)=Fp_B$ while all positive-demand states are rationed; zero-demand states contribute zero. The index requires $\bar C>0$.\\
-Literature boundary & Published references and bounded comparisons. & The scans do not establish a literature-wide novelty verdict. The exact version/proposition audit remains incomplete.\\
+Signs and units & 02, pp.~1--2 & Signed flows and the human unit verdict: $L_u=-0.30$, $D_u=-0.48$ at $d=1.6$.\\
+Private-choice core & 03, pp.~1--2 & Lender-inclusive FOC, curvature and upper-corner test; read 07, p.~3 as the qualification to the unchanged 03 scan.\\
+Capacity core & 04, pp.~1--2 & $G_F\ge0$, strict-exposure conditions and IFT construction before differentiation.\\
+Accounting core & 05, pp.~1--2 & Conservation, fund bounds, weighted incidence and $\bar C(F)=Fp_B$ with zero-demand states.\\
+Differentiation and existence & 06, pp.~1--3 & Homogeneity, moment identity, dominated differentiation, atomlessness, continuity, FOC, compact existence and density at $-u$. The accepted export states $\E_j|\omega|<\infty$ and $D_u=-0.48$.\\
+Global optimality & 07, pp.~1--3 & Convex decomposition, supporting inequality, corners, uniqueness and a negative-curvature counterexample. Page 3 gives the positive-density qualification and notes offsetting states.\\
+Uniform integration and enumeration & 08, pp.~1--4 & Uniform integrals, reflection, tails, both joins, full partition and global enumeration with corners, stationary points, flat intervals and ties. Numerical checks are distinguished from proof.\\
+Continuation and incidence & 09, pp.~1--5 & Regular neighborhoods, joint $C^1$, IFT, local minima, strict sign, compact-gap global continuation, zero-volume conservation and restricted $Fp_B$ cancellation.\\
 \bottomrule
 \end{longtable}
 
-\clearpage
+\paragraph{Qualification to manuscript 03.}
+Manuscript 07, page 3, is a genuine handwritten qualification/addendum to manuscript 03, page 2. It establishes the positive threshold-density condition for a strictly negative state curvature contribution. Under full coverage, $w_j i(\psi_j-\ell_j)f_j(-u)<0$ requires positive weight, $i>0$, $\psi_j<\ell_j$ and $f_j(-u)>0$. Other states may offset it. The original manuscript 03 remains unchanged; the two pages must be read together.
+
+\paragraph{Editorial clarifications, not alterations to the scans.}
+In 07, p.~2, the weak corner tests are read as $0\in\arg\min J$ and $\bar u\in\arg\min J$, not uniqueness of an arbitrarily selected optimizer. In 07, p.~3, the displayed decimal $0.041202615$ for $\psi_1$ is rounded; the preceding ratio is the exact expression. In 06, p.~3, finiteness uses the stated first moment and $0\le(\pm(\omega+u))^+\le|\omega|+|u|$, while the Lipschitz bounds establish continuity. These are explicit editorial readings; the handwriting has not been digitally rewritten. No substantive mathematical blocker remained after the full audit.
+
 The exact files are:
 \begin{itemize}
-\item \path{hand/02-post-marco-shortfall-surplus.pdf}: signs, amount normalization and explicit human unit verdict.
-\item \path{hand/03-post-marco-buffer-optimality.pdf}: lender-inclusive choice derivation and corrected convex endpoint conditions.
-\item \path{hand/04-post-marco-capacity-response.pdf}: conditional capacity calculation and restrictions.
-\item \path{hand/05-post-marco-conservation-incidence.pdf}\par
-Interbank and common-fund accounting, relative coverage and zero-deficit states.
+\setlength{\itemsep}{0pt}
+\setlength{\parsep}{0pt}
+\item \path{hand/02-post-marco-shortfall-surplus.pdf} (2 pages).
+\item \path{hand/03-post-marco-buffer-optimality.pdf} (2 pages).
+\item \path{hand/04-post-marco-capacity-response.pdf} (2 pages).
+\item \path{hand/05-post-marco-conservation-incidence.pdf} (2 pages).
+\item \path{hand/06-post-marco-differentiation-existence.pdf} (3 pages).
+\item \path{hand/07-post-marco-convexity-optimality.pdf} (3 pages).
+\item \path{hand/08-post-marco-uniform-enumeration.pdf} (4 pages).
+\item \path{hand/09-post-marco-optimizer-continuation-incidence.pdf} (5 pages).
 \end{itemize}
 
-The requested reconciliation passes: the amount/ratio comparison is $-0.48$ versus $-0.30$; manuscript 03 uses the upper-endpoint derivative; manuscript 04 establishes a local IFT branch before differentiating; and manuscript 05 explicitly defines $p_B=\Prb(\Delta>0)$. Its zero-deficit-state accounting uses $\bar C(F)=Fp_B$ when every positive-demand state remains rationed.
+\paragraph{Claims, verdicts and records.}
+The actual student unit verdict is visible in manuscript 02. The student reported genuinely correcting and re-exporting 06; direct inspection confirmed the absolute first-moment assumption and $1.6(-0.30)=-0.48$. Codex independently audited the displayed mathematics and reported a substantive pass. The new scans demonstrate student-written derivations; they are not an invented blanket student verdict on every AI contribution or evidence that the student independently ran all 99 checks. No unrecorded human--AI disagreement, advisor approval or empirical finding is inferred.
 
-The student's updated manuscripts resolve the earlier upper-corner error and local IFT omission; no change to either paper proposition was required. The handwritten negative-curvature statement uses the density-weighted formula: a negative coefficient contributes strictly negative curvature only where that density is positive. This is a retained scope condition, not a claim that every state has positive density at every buffer. The scans demonstrate the core derivations and checks, while the typed paper supplies complete existence, global-enumeration and global-continuation proofs. Support and coverage kinks, local regularity, frozen schedules and the distinction between a local branch and a global optimum remain explicit.
+Raw available exchanges, including the correction/re-audit record, remain in \texttt{prompts.md}; unavailable original responses are not reconstructed. Typed guides 06--09 in \path{hand/guides/} are preparation aids, not handwriting or student verdicts; their pending language records preparation. The accepted PDFs supply the audited work. October and November~4 materials remain historical; no combined \path{hand/Post_marco_derivations.pdf} exists.
 
-The October manuscript and November-4 typed guide are historical evidence. The current four documents replace the earlier plan for a single combined scan; no combined \path{hand/Post_marco_derivations.pdf} is claimed to exist. Recovered raw collaboration exchanges are in \texttt{prompts.md}; the actual student unit verdict is evidenced by manuscript 02 rather than a fabricated conversational quotation. The student reports having corrected the evidence, and the updated pages directly demonstrate the changes. This does not imply that the student independently executed every program check or that an unrecorded human--AI disagreement occurred. Current economic propositions remain open in Lean.
+Neither the scans nor this audit establish literature-wide priority or final-source Lean validation. The Section~2 comparison retains its stated boundaries.
 \end{document}
